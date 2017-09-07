@@ -1,0 +1,3 @@
+/home/zack/git-repos/Sim01/CMakeFiles/rebuild_cache.dir
+/home/zack/git-repos/Sim01/CMakeFiles/edit_cache.dir
+/home/zack/git-repos/Sim01/CMakeFiles/sim01.dir

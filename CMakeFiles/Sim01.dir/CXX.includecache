@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zack/git-repos/Sim01/FileHandler.cpp
+FileHandler.h
+/home/zack/git-repos/Sim01/FileHandler.h
+string
+-
+iostream
+-
+cstdlib
+-
+fstream
+-
+ctime
+-
+
+/home/zack/git-repos/Sim01/FileHandler.h
+string
+-
+
+/home/zack/git-repos/Sim01/main.cpp
+iostream
+-
+cstdlib
+-
+string
+-
+FileHandler.h
+/home/zack/git-repos/Sim01/FileHandler.h
+
