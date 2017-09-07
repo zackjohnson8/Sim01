@@ -10,7 +10,7 @@ public:
 
     // constructor/destructor
     FileHandler();
-    FileHandler(std::string &fileN, std::string &fileT);
+    FileHandler(const std::string &fileN, const std::string &fileT);
     ~FileHandler();
 
     // get/set

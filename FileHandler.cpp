@@ -19,7 +19,7 @@ FileHandler::FileHandler()
 
 }
 
-FileHandler::FileHandler(std::string &fileN, std::string &fileT)
+FileHandler::FileHandler(const std::string &fileN, const std::string &fileT)
 {
 
     fileName = fileN;

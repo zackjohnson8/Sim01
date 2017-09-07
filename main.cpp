@@ -43,10 +43,18 @@ int main(int argc, char* argv[])
     // Take in argv which should specify the name of the config file
     string configFileName = argv[1];
 
-    cout << configFileName << endl;
+    int count = 0;
+    while(configFileName[count] != '.')
+    {
+
+        count++;
+
+    }
+
+    configFileName.resize(count);
 
     // alright we've got the name now lets open this file
-
+    FileHandler* configFileOpened = new FileHandler(configFileName, ".conf");
 
 
 }
