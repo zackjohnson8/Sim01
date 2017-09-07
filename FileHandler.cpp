@@ -6,7 +6,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
-#include <ctime>
 
 // constructor/destructor -------------------------------------------------
 FileHandler::FileHandler()
@@ -72,24 +71,10 @@ void FileHandler::addTextToFile(const std::string &strAddition)
 {
 
     std::ofstream stream;
-    std::time_t currentTime = std::time(NULL);
-
-    std::string timeString = std::ctime(&currentTime);
-
-    timeString[timeString.length() -1] ='-';
-
-    for(int x = 0; x < timeString.length() - 4; x++)
-    {
-
-        timeString[x] = timeString[x+4];
-
-    }
-
-    timeString.resize(timeString.length() - 5);
 
     //file exists already, append content to file
     stream.open(appendedName.c_str(), std::ios_base::app);
-    stream << timeString << " -- "  << strAddition << std::endl;
+    stream << strAddition << std::endl;
 
     stream.close();
 
@@ -100,33 +85,12 @@ void FileHandler::addTextToFile(int strAddition)
 {
 
     std::ofstream stream;
-    std::time_t currentTime = std::time(NULL);
-
-    std::string timeString = std::ctime(&currentTime);
-
-    timeString[timeString.length() -1] ='-';
-
-    for(int x = 0; x < timeString.length() - 4; x++)
-    {
-
-        timeString[x] = timeString[x+4];
-
-    }
-
-    timeString.resize(timeString.length() - 5);
 
     //file exists already, append content to file
     stream.open(appendedName.c_str(), std::ios_base::app);
-    stream << timeString << " -- "  << strAddition << std::endl;
+    stream << strAddition << std::endl;
 
     stream.close();
-
-}
-
-void FileHandler::deleteFile()
-{
-
-    std::remove(appendedName.c_str());
 
 }
 
@@ -221,6 +185,13 @@ bool FileHandler::deleteBySearch(const std::string &searchedValue)
     streamReadBack.close();
 
     return flag;
+
+}
+
+void FileHandler::readConfigFile()
+{
+
+
 
 }
 

@@ -22,9 +22,9 @@ public:
     // function
     void addTextToFile(const std::string & strAddition);
     void addTextToFile(int);
-    void deleteFile();
     bool deleteBySearch(const std::string & searchedValue);
     std::string peakTop();
+    void readConfigFile();
 
 
 

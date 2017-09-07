@@ -54,7 +54,10 @@ int main(int argc, char* argv[])
     configFileName.resize(count);
 
     // alright we've got the name now lets open this file
-    FileHandler* configFileOpened = new FileHandler(configFileName, ".conf");
+    FileHandler* configFile = new FileHandler(configFileName, ".conf");
+
+    configFile->readConfigFile();
 
 
+    delete configFile;
 }
