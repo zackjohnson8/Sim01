@@ -188,10 +188,26 @@ bool FileHandler::deleteBySearch(const std::string &searchedValue)
 
 }
 
-void FileHandler::readConfigFile()
+void FileHandler::readConfigFile
+(
+    int &TimeProcessor, int &TimeMonitor, int &TimeHardDrive, int &TimePrinter,
+        int &TimeKeyboard, int &TimeMemory, int &TimeMouse, int &TimeSpeaker, std::string &logFilePath
+)
 {
 
+    std::ifstream stream;
+    std::string holdLine;
 
+    stream.open(appendedName.c_str());
+
+    if(stream.good())
+    {
+
+        std::getline(stream, holdLine);
+
+    }
+
+    stream.close();
 
 }
 

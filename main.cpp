@@ -40,6 +40,11 @@ int main(int argc, char* argv[])
 
     */
 
+    // Parameters for config file
+    int TimeProcessor = 0, TimeMonitor = 0, TimeHardDrive = 0, TimePrinter = 0,
+        TimeKeyboard = 0, TimeMemory = 0, TimeMouse = 0, TimeSpeaker = 0;
+    string logFileName;
+
     // Take in argv which should specify the name of the config file
     string configFileName = argv[1];
 
@@ -56,7 +61,11 @@ int main(int argc, char* argv[])
     // alright we've got the name now lets open this file
     FileHandler* configFile = new FileHandler(configFileName, ".conf");
 
-    configFile->readConfigFile();
+    configFile->readConfigFile(TimeProcessor, TimeMonitor, TimeHardDrive, TimePrinter,
+        TimeKeyboard, TimeMemory, TimeMouse, TimeSpeaker, logFileName);
+
+    cout << TimeProcessor << ", " << TimeMonitor << ", " << TimeHardDrive << ", " << TimePrinter << ", " <<
+        TimeKeyboard << ", " << TimeMemory << ", " << TimeMouse << ", " << TimeSpeaker << endl;
 
 
     delete configFile;
