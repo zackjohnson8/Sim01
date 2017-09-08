@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <string>
 #include "FileHandler.h"
+#include "ConfigFile.h"
 
 using namespace std;
 
@@ -40,12 +41,34 @@ int main(int argc, char* argv[])
 
     */
 
+    // The program will be given a specific amount of configure files
+
+
     // Parameters for config file
     int TimeProcessor = 0, TimeMonitor = 0, TimeHardDrive = 0, TimePrinter = 0,
         TimeKeyboard = 0, TimeMemory = 0, TimeMouse = 0, TimeSpeaker = 0;
     string logFileName;
 
-    // Take in argv which should specify the name of the config file
+    // Parameters for config files
+    ConfigFile* ConfigFile_p;
+    ConfigFile_p = new ConfigFile[argc-1];
+
+    for(int index = 1; index < argc; index++)
+    {
+
+        ConfigFile_p->collectDataFrom(argv[index]);
+
+    }
+
+    //////////////////////////////////////
+
+    for(int x = 1; x < argc; x++)
+    {
+
+        cout << argv[x] << endl;
+
+    }
+
     string configFileName = argv[1];
 
     int count = 0;

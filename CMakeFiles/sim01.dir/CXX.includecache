@@ -6,6 +6,22 @@
 
 #IncludeRegexTransform: 
 
+/home/zack/git-repos/Sim01/ConfigFile.cpp
+ConfigFile.h
+/home/zack/git-repos/Sim01/ConfigFile.h
+string
+-
+iostream
+-
+cstdlib
+-
+fstream
+-
+
+/home/zack/git-repos/Sim01/ConfigFile.h
+string
+-
+
 /home/zack/git-repos/Sim01/FileHandler.cpp
 FileHandler.h
 /home/zack/git-repos/Sim01/FileHandler.h
@@ -31,4 +47,6 @@ string
 -
 FileHandler.h
 /home/zack/git-repos/Sim01/FileHandler.h
+ConfigFile.h
+/home/zack/git-repos/Sim01/ConfigFile.h
 

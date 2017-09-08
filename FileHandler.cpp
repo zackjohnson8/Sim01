@@ -200,12 +200,18 @@ void FileHandler::readConfigFile
 
     stream.open(appendedName.c_str());
 
+    // Eat the first line stating that its a configure file
     if(stream.good())
     {
 
         std::getline(stream, holdLine);
+        std::getline(stream, holdLine);
 
     }
+
+    holdLine.clear();
+
+    // After we need to get all the data needed
 
     stream.close();
 

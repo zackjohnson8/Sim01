@@ -123,6 +123,33 @@ sim01/fast:
 	$(MAKE) -f CMakeFiles/sim01.dir/build.make CMakeFiles/sim01.dir/build
 .PHONY : sim01/fast
 
+ConfigFile.o: ConfigFile.cpp.o
+
+.PHONY : ConfigFile.o
+
+# target to build an object file
+ConfigFile.cpp.o:
+	$(MAKE) -f CMakeFiles/sim01.dir/build.make CMakeFiles/sim01.dir/ConfigFile.cpp.o
+.PHONY : ConfigFile.cpp.o
+
+ConfigFile.i: ConfigFile.cpp.i
+
+.PHONY : ConfigFile.i
+
+# target to preprocess a source file
+ConfigFile.cpp.i:
+	$(MAKE) -f CMakeFiles/sim01.dir/build.make CMakeFiles/sim01.dir/ConfigFile.cpp.i
+.PHONY : ConfigFile.cpp.i
+
+ConfigFile.s: ConfigFile.cpp.s
+
+.PHONY : ConfigFile.s
+
+# target to generate assembly for a file
+ConfigFile.cpp.s:
+	$(MAKE) -f CMakeFiles/sim01.dir/build.make CMakeFiles/sim01.dir/ConfigFile.cpp.s
+.PHONY : ConfigFile.cpp.s
+
 FileHandler.o: FileHandler.cpp.o
 
 .PHONY : FileHandler.o
@@ -186,6 +213,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... sim01"
+	@echo "... ConfigFile.o"
+	@echo "... ConfigFile.i"
+	@echo "... ConfigFile.s"
 	@echo "... FileHandler.o"
 	@echo "... FileHandler.i"
 	@echo "... FileHandler.s"
