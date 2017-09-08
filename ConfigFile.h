@@ -29,7 +29,7 @@ private:
     std::string _configFileName;
     std::string _pathFile;
     std::string _pathLogFile;
-    std::string _logToString
+    std::string _logToString;
 
     int _version;
     int _timeProcessorCyc;

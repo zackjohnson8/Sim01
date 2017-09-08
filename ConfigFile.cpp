@@ -111,6 +111,15 @@ void ConfigFile::collectDataFrom(const std::string &fileName)
 
         _logToString.erase(_logToString.begin(), _logToString.begin()+1);
 
+        std::cout << _logToString << std::endl;
+
+        //
+        std::getline(stream, holdLine, ':');
+        std::getline(stream, _pathLogFile);
+
+        _pathLogFile.erase(_pathLogFile.begin(), _pathLogFile.begin()+1);
+
+        std::cout << _pathLogFile << std::endl;
 
 
 
@@ -120,6 +129,8 @@ void ConfigFile::collectDataFrom(const std::string &fileName)
         std::cout << "CONFIG FILE COULD NOT OPEN: " << fileName << std::endl;
 
     }
+
+    stream.close();
 
 }
 
