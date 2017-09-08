@@ -134,5 +134,99 @@ void ConfigFile::collectDataFrom(const std::string &fileName)
 
 }
 
+int ConfigFile::getVersion()
+{
+
+    return _version;
+
+}
+
+int ConfigFile::getTimeProcessor()
+{
+
+    return _timeProcessorCyc;
+
+}
+
+int ConfigFile::getTimeMonitor()
+{
+
+    return _timeMonitorDis;
+
+}
+
+int ConfigFile::getTimeHardDrive()
+{
+
+    return _timeHardDriCyc;
+
+}
+
+int ConfigFile::getTimePrinter()
+{
+
+    return _timePrinterCyc;
+
+}
+
+int ConfigFile::getTimeKeyboard()
+{
+
+    return _timeKeyboardCyc;
+
+}
+
+int ConfigFile::getTimeMemory()
+{
+
+    return _timeMemoryCyc;
+
+}
+
+int ConfigFile::getTimeMouse()
+{
+
+    return _timeMouseCyc;
+
+}
+
+int ConfigFile::getTimeSpeaker()
+{
+
+    return _timeSpeakerCyc;
+
+}
+
+
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

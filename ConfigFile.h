@@ -22,7 +22,16 @@ public:
     // Functions
     void collectDataFrom(const std::string &fileName);
 
-
+    // Get/Set
+    int getVersion();
+    int getTimeProcessor();
+    int getTimeMonitor();
+    int getTimeHardDrive();
+    int getTimePrinter();
+    int getTimeKeyboard();
+    int getTimeMemory();
+    int getTimeMouse();
+    int getTimeSpeaker();
 
 private:
 
