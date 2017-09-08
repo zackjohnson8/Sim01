@@ -42,13 +42,6 @@ int main(int argc, char* argv[])
     */
 
     // The program will be given a specific amount of configure files
-
-
-    // Parameters for config file
-    int TimeProcessor = 0, TimeMonitor = 0, TimeHardDrive = 0, TimePrinter = 0,
-        TimeKeyboard = 0, TimeMemory = 0, TimeMouse = 0, TimeSpeaker = 0;
-    string logFileName;
-
     // Parameters for config files
     ConfigFile* ConfigFile_p;
     ConfigFile_p = new ConfigFile[argc-1];
@@ -60,36 +53,8 @@ int main(int argc, char* argv[])
 
     }
 
-    //////////////////////////////////////
-
-    for(int x = 1; x < argc; x++)
-    {
-
-        cout << argv[x] << endl;
-
-    }
-
-    string configFileName = argv[1];
-
-    int count = 0;
-    while(configFileName[count] != '.')
-    {
-
-        count++;
-
-    }
-
-    configFileName.resize(count);
-
-    // alright we've got the name now lets open this file
-    FileHandler* configFile = new FileHandler(configFileName, ".conf");
-
-    configFile->readConfigFile(TimeProcessor, TimeMonitor, TimeHardDrive, TimePrinter,
-        TimeKeyboard, TimeMemory, TimeMouse, TimeSpeaker, logFileName);
-
-    cout << TimeProcessor << ", " << TimeMonitor << ", " << TimeHardDrive << ", " << TimePrinter << ", " <<
-        TimeKeyboard << ", " << TimeMemory << ", " << TimeMouse << ", " << TimeSpeaker << endl;
 
 
-    delete configFile;
+
+    delete[] ConfigFile_p;
 }

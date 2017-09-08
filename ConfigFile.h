@@ -40,7 +40,7 @@ private:
     std::string _pathLogFile;
     std::string _logToString;
 
-    int _version;
+    float _version;
     int _timeProcessorCyc;
     int _timeMonitorDis;
     int _timeHardDriCyc;
