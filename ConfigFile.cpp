@@ -140,7 +140,6 @@ void ConfigFile::collectDataFrom(const std::string &fileName)
     if(_logTo == BOTH)
     {
 
-        //file exists already, append content to file
         ostream.open(_pathLogFile.c_str());
 
         ostream << "Configuration File Data" << std::endl;
@@ -166,6 +165,52 @@ void ConfigFile::collectDataFrom(const std::string &fileName)
         std::cout << "Mouse = " << _timeProcessorCyc << " ms/cycle" << std::endl;
         std::cout << "Speaker = " << _timeProcessorCyc << " ms/cycle" << std::endl;
         std::cout << "Logged to: " << "monitor and " << _pathLogFile << std::endl << std::endl;
+    }else
+    if(_logTo == LOGFILE)
+    {
+
+        ostream.open(_pathLogFile.c_str());
+
+        ostream << "Configuration File Data" << std::endl;
+        ostream << "Processor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Monitor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Hard Drive = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Printer = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Keyboard = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Memory = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Mouse = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Speaker = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Logged to: " << "monitor and " << _pathLogFile << std::endl << std::endl;
+
+        ostream.close();
+
+    }else
+    if(_logTo == MONITOR)
+    {
+
+        std::cout << "Configuration File Data" << std::endl;
+        std::cout << "Processor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Monitor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Hard Drive = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Printer = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Keyboard = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Memory = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Mouse = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Speaker = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Logged to: " << "monitor and " << _pathLogFile << std::endl << std::endl;
+
+    }else
+    if(_logTo == NEITHER)
+    {
+
+        // DO NOTHING
+
+    }else
+    {
+
+        // There is a problem with _logTo not being set
+        std::cout << "Problem with _logTo not being set in ConfigFile class" << std::endl;
+
     }
 
 }
