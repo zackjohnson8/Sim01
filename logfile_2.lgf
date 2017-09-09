@@ -1,0 +1,11 @@
+Configuration File Data
+Processor = 10 ms/cycle
+Monitor = 10 ms/cycle
+Hard Drive = 10 ms/cycle
+Printer = 10 ms/cycle
+Keyboard = 10 ms/cycle
+Memory = 10 ms/cycle
+Mouse = 10 ms/cycle
+Speaker = 10 ms/cycle
+Logged to: monitor and logfile_2.lgf
+

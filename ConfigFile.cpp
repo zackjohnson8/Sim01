@@ -34,6 +34,7 @@ void ConfigFile::collectDataFrom(const std::string &fileName)
 {
 
     std::ifstream stream;
+    std::ofstream ostream;
     std::string holdLine;
 
     stream.open(fileName.c_str());
@@ -113,6 +114,9 @@ void ConfigFile::collectDataFrom(const std::string &fileName)
 
         std::cout << _logToString << std::endl;
 
+        //TODO Hard programmed the logto file variable until specified from TA
+        _logTo = BOTH;
+
         //
         std::getline(stream, holdLine, ':');
         std::getline(stream, _pathLogFile);
@@ -131,6 +135,38 @@ void ConfigFile::collectDataFrom(const std::string &fileName)
     }
 
     stream.close();
+
+    // Now that you've got the data log it if specified above
+    if(_logTo == BOTH)
+    {
+
+        //file exists already, append content to file
+        ostream.open(_pathLogFile.c_str());
+
+        ostream << "Configuration File Data" << std::endl;
+        ostream << "Processor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Monitor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Hard Drive = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Printer = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Keyboard = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Memory = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Mouse = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Speaker = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        ostream << "Logged to: " << "monitor and " << _pathLogFile << std::endl << std::endl;
+
+        ostream.close();
+
+        std::cout << "Configuration File Data" << std::endl;
+        std::cout << "Processor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Monitor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Hard Drive = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Printer = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Keyboard = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Memory = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Mouse = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Speaker = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Logged to: " << "monitor and " << _pathLogFile << std::endl << std::endl;
+    }
 
 }
 
