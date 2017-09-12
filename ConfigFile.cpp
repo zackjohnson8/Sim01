@@ -30,7 +30,7 @@ ConfigFile::~ConfigFile()
 
 }
 
-void ConfigFile::collectDataFrom(const std::string &fileName)
+void ConfigFile::readConfigFile(const std::string &fileName)
 {
 
     std::ifstream stream;
@@ -276,6 +276,12 @@ int ConfigFile::getTimeSpeaker()
 
     return _timeSpeakerCyc;
 
+}
+
+std::string ConfigFile::getTestPath()
+{
+
+    return _pathFile;
 }
 
 

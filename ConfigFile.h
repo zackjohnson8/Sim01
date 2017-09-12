@@ -20,7 +20,7 @@ public:
     ~ConfigFile();
 
     // Functions
-    void collectDataFrom(const std::string &fileName);
+    void readConfigFile(const std::string &fileName);
 
     // Get/Set
     int getVersion();
@@ -32,6 +32,8 @@ public:
     int getTimeMemory();
     int getTimeMouse();
     int getTimeSpeaker();
+
+    std::string getTestPath();
 
 private:
 

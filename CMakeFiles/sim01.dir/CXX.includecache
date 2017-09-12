@@ -45,6 +45,8 @@ cstdlib
 -
 string
 -
+fstream
+-
 FileHandler.h
 /home/zack/git-repos/Sim01/FileHandler.h
 ConfigFile.h
