@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <string>
 #include <fstream>
+#include <queue>
 #include "FileHandler.h"
 #include "ConfigFile.h"
 
@@ -36,6 +37,11 @@ int main(int argc, char* argv[])
     // <Meta-Data code>(Description)<number of cycles>
     std::ifstream stream;
     std::string hold;
+    std::queue<metaTask> dataQueue;
+    char metaCode;
+    int cycleNumber;
+    char exitChar = '.';
+    bool loopBool = true;
 
     for(int index = 0; index < argc - 1; index++)
     {
@@ -48,7 +54,38 @@ int main(int argc, char* argv[])
         if(stream.good())
         {
 
-            // read in the data
+            // eat first like
+            std::getline(stream, hold);
+
+            while(loopBool)
+            {
+
+                // read in the data
+                stream >> metaCode;
+                std::getline(stream, hold, ')');
+                hold += ')';
+                stream >> cycleNumber;
+
+                std::cout << metaCode << hold << cycleNumber << std::endl;
+
+                stream >> exitChar;
+
+                if(exitChar == '.')
+                {
+
+                    // loop exit
+                    loopBool = false;
+
+                }else
+                {
+
+                    // eat a white space? TODO
+
+                }
+
+            }
+
+
 
 
         }else
