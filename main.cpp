@@ -76,16 +76,11 @@ int main(int argc, char* argv[])
                     // loop exit
                     loopBool = false;
 
-                }else
-                {
-
-                    // eat a white space? TODO
-
                 }
 
             }
 
-
+            stream.close();
 
 
         }else
