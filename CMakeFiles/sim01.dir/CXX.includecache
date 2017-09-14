@@ -38,6 +38,24 @@ fstream
 string
 -
 
+/home/zack/git-repos/Sim01/MetaDataFile.cpp
+MetaDataFile.h
+/home/zack/git-repos/Sim01/MetaDataFile.h
+string
+-
+iostream
+-
+cstdlib
+-
+fstream
+-
+queue
+-
+
+/home/zack/git-repos/Sim01/MetaDataFile.h
+string
+-
+
 /home/zack/git-repos/Sim01/main.cpp
 iostream
 -

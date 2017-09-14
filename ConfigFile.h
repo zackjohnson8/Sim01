@@ -20,7 +20,7 @@ public:
     ~ConfigFile();
 
     // Functions
-    void readConfigFile(const std::string &fileName);
+    void loadConfigFile(const std::string &fileName);
 
     // Get/Set
     int getVersion();

@@ -177,6 +177,33 @@ FileHandler.cpp.s:
 	$(MAKE) -f CMakeFiles/sim01.dir/build.make CMakeFiles/sim01.dir/FileHandler.cpp.s
 .PHONY : FileHandler.cpp.s
 
+MetaDataFile.o: MetaDataFile.cpp.o
+
+.PHONY : MetaDataFile.o
+
+# target to build an object file
+MetaDataFile.cpp.o:
+	$(MAKE) -f CMakeFiles/sim01.dir/build.make CMakeFiles/sim01.dir/MetaDataFile.cpp.o
+.PHONY : MetaDataFile.cpp.o
+
+MetaDataFile.i: MetaDataFile.cpp.i
+
+.PHONY : MetaDataFile.i
+
+# target to preprocess a source file
+MetaDataFile.cpp.i:
+	$(MAKE) -f CMakeFiles/sim01.dir/build.make CMakeFiles/sim01.dir/MetaDataFile.cpp.i
+.PHONY : MetaDataFile.cpp.i
+
+MetaDataFile.s: MetaDataFile.cpp.s
+
+.PHONY : MetaDataFile.s
+
+# target to generate assembly for a file
+MetaDataFile.cpp.s:
+	$(MAKE) -f CMakeFiles/sim01.dir/build.make CMakeFiles/sim01.dir/MetaDataFile.cpp.s
+.PHONY : MetaDataFile.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -219,6 +246,9 @@ help:
 	@echo "... FileHandler.o"
 	@echo "... FileHandler.i"
 	@echo "... FileHandler.s"
+	@echo "... MetaDataFile.o"
+	@echo "... MetaDataFile.i"
+	@echo "... MetaDataFile.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
