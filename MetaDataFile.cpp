@@ -20,6 +20,13 @@ MetaDataFile::~MetaDataFile()
 
 }
 
+/*
+FUNCTION:
+    Parse all the data from the file. As you parse and determine if the data
+    is acceptable, place said data into a queue that can be returned to main
+    when called for.
+
+*/
 void MetaDataFile::loadMetaData(const std::string &metaFileName)
 {
 
@@ -46,6 +53,8 @@ void MetaDataFile::loadMetaData(const std::string &metaFileName)
         while(loopBool)
         {
 
+
+            // <Meta-Data code>(Description)<number of cycles>
             // read in the data
             stream >> metaCode;
             std::getline(stream, hold, ')');
@@ -53,6 +62,13 @@ void MetaDataFile::loadMetaData(const std::string &metaFileName)
             stream >> cycleNumber;
 
             std::cout << metaCode << hold << cycleNumber << std::endl;
+
+            // TODO above we read in the data and then need to check if its
+            // acceptable.
+
+            // Since the file ends with a period I've just used that to check.
+            // TODO What maybe better is to determine where in the file reads
+            // END of some kind which I know is in the last line.
 
             stream >> exitChar;
 

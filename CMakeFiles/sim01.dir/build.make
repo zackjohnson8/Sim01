@@ -57,57 +57,9 @@ include CMakeFiles/sim01.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/sim01.dir/flags.make
 
-CMakeFiles/sim01.dir/main.cpp.o: CMakeFiles/sim01.dir/flags.make
-CMakeFiles/sim01.dir/main.cpp.o: main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zack/git-repos/Sim01/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sim01.dir/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sim01.dir/main.cpp.o -c /home/zack/git-repos/Sim01/main.cpp
-
-CMakeFiles/sim01.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sim01.dir/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zack/git-repos/Sim01/main.cpp > CMakeFiles/sim01.dir/main.cpp.i
-
-CMakeFiles/sim01.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sim01.dir/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zack/git-repos/Sim01/main.cpp -o CMakeFiles/sim01.dir/main.cpp.s
-
-CMakeFiles/sim01.dir/main.cpp.o.requires:
-
-.PHONY : CMakeFiles/sim01.dir/main.cpp.o.requires
-
-CMakeFiles/sim01.dir/main.cpp.o.provides: CMakeFiles/sim01.dir/main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/sim01.dir/build.make CMakeFiles/sim01.dir/main.cpp.o.provides.build
-.PHONY : CMakeFiles/sim01.dir/main.cpp.o.provides
-
-CMakeFiles/sim01.dir/main.cpp.o.provides.build: CMakeFiles/sim01.dir/main.cpp.o
-
-
-CMakeFiles/sim01.dir/MetaDataFile.cpp.o: CMakeFiles/sim01.dir/flags.make
-CMakeFiles/sim01.dir/MetaDataFile.cpp.o: MetaDataFile.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zack/git-repos/Sim01/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sim01.dir/MetaDataFile.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sim01.dir/MetaDataFile.cpp.o -c /home/zack/git-repos/Sim01/MetaDataFile.cpp
-
-CMakeFiles/sim01.dir/MetaDataFile.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sim01.dir/MetaDataFile.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zack/git-repos/Sim01/MetaDataFile.cpp > CMakeFiles/sim01.dir/MetaDataFile.cpp.i
-
-CMakeFiles/sim01.dir/MetaDataFile.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sim01.dir/MetaDataFile.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zack/git-repos/Sim01/MetaDataFile.cpp -o CMakeFiles/sim01.dir/MetaDataFile.cpp.s
-
-CMakeFiles/sim01.dir/MetaDataFile.cpp.o.requires:
-
-.PHONY : CMakeFiles/sim01.dir/MetaDataFile.cpp.o.requires
-
-CMakeFiles/sim01.dir/MetaDataFile.cpp.o.provides: CMakeFiles/sim01.dir/MetaDataFile.cpp.o.requires
-	$(MAKE) -f CMakeFiles/sim01.dir/build.make CMakeFiles/sim01.dir/MetaDataFile.cpp.o.provides.build
-.PHONY : CMakeFiles/sim01.dir/MetaDataFile.cpp.o.provides
-
-CMakeFiles/sim01.dir/MetaDataFile.cpp.o.provides.build: CMakeFiles/sim01.dir/MetaDataFile.cpp.o
-
-
 CMakeFiles/sim01.dir/ConfigFile.cpp.o: CMakeFiles/sim01.dir/flags.make
 CMakeFiles/sim01.dir/ConfigFile.cpp.o: ConfigFile.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zack/git-repos/Sim01/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sim01.dir/ConfigFile.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zack/git-repos/Sim01/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sim01.dir/ConfigFile.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sim01.dir/ConfigFile.cpp.o -c /home/zack/git-repos/Sim01/ConfigFile.cpp
 
 CMakeFiles/sim01.dir/ConfigFile.cpp.i: cmake_force
@@ -131,7 +83,7 @@ CMakeFiles/sim01.dir/ConfigFile.cpp.o.provides.build: CMakeFiles/sim01.dir/Confi
 
 CMakeFiles/sim01.dir/FileHandler.cpp.o: CMakeFiles/sim01.dir/flags.make
 CMakeFiles/sim01.dir/FileHandler.cpp.o: FileHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zack/git-repos/Sim01/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sim01.dir/FileHandler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zack/git-repos/Sim01/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sim01.dir/FileHandler.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sim01.dir/FileHandler.cpp.o -c /home/zack/git-repos/Sim01/FileHandler.cpp
 
 CMakeFiles/sim01.dir/FileHandler.cpp.i: cmake_force
@@ -153,20 +105,68 @@ CMakeFiles/sim01.dir/FileHandler.cpp.o.provides: CMakeFiles/sim01.dir/FileHandle
 CMakeFiles/sim01.dir/FileHandler.cpp.o.provides.build: CMakeFiles/sim01.dir/FileHandler.cpp.o
 
 
+CMakeFiles/sim01.dir/MetaDataFile.cpp.o: CMakeFiles/sim01.dir/flags.make
+CMakeFiles/sim01.dir/MetaDataFile.cpp.o: MetaDataFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zack/git-repos/Sim01/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sim01.dir/MetaDataFile.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sim01.dir/MetaDataFile.cpp.o -c /home/zack/git-repos/Sim01/MetaDataFile.cpp
+
+CMakeFiles/sim01.dir/MetaDataFile.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sim01.dir/MetaDataFile.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zack/git-repos/Sim01/MetaDataFile.cpp > CMakeFiles/sim01.dir/MetaDataFile.cpp.i
+
+CMakeFiles/sim01.dir/MetaDataFile.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sim01.dir/MetaDataFile.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zack/git-repos/Sim01/MetaDataFile.cpp -o CMakeFiles/sim01.dir/MetaDataFile.cpp.s
+
+CMakeFiles/sim01.dir/MetaDataFile.cpp.o.requires:
+
+.PHONY : CMakeFiles/sim01.dir/MetaDataFile.cpp.o.requires
+
+CMakeFiles/sim01.dir/MetaDataFile.cpp.o.provides: CMakeFiles/sim01.dir/MetaDataFile.cpp.o.requires
+	$(MAKE) -f CMakeFiles/sim01.dir/build.make CMakeFiles/sim01.dir/MetaDataFile.cpp.o.provides.build
+.PHONY : CMakeFiles/sim01.dir/MetaDataFile.cpp.o.provides
+
+CMakeFiles/sim01.dir/MetaDataFile.cpp.o.provides.build: CMakeFiles/sim01.dir/MetaDataFile.cpp.o
+
+
+CMakeFiles/sim01.dir/main.cpp.o: CMakeFiles/sim01.dir/flags.make
+CMakeFiles/sim01.dir/main.cpp.o: main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zack/git-repos/Sim01/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sim01.dir/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sim01.dir/main.cpp.o -c /home/zack/git-repos/Sim01/main.cpp
+
+CMakeFiles/sim01.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sim01.dir/main.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zack/git-repos/Sim01/main.cpp > CMakeFiles/sim01.dir/main.cpp.i
+
+CMakeFiles/sim01.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sim01.dir/main.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zack/git-repos/Sim01/main.cpp -o CMakeFiles/sim01.dir/main.cpp.s
+
+CMakeFiles/sim01.dir/main.cpp.o.requires:
+
+.PHONY : CMakeFiles/sim01.dir/main.cpp.o.requires
+
+CMakeFiles/sim01.dir/main.cpp.o.provides: CMakeFiles/sim01.dir/main.cpp.o.requires
+	$(MAKE) -f CMakeFiles/sim01.dir/build.make CMakeFiles/sim01.dir/main.cpp.o.provides.build
+.PHONY : CMakeFiles/sim01.dir/main.cpp.o.provides
+
+CMakeFiles/sim01.dir/main.cpp.o.provides.build: CMakeFiles/sim01.dir/main.cpp.o
+
+
 # Object files for target sim01
 sim01_OBJECTS = \
-"CMakeFiles/sim01.dir/main.cpp.o" \
-"CMakeFiles/sim01.dir/MetaDataFile.cpp.o" \
 "CMakeFiles/sim01.dir/ConfigFile.cpp.o" \
-"CMakeFiles/sim01.dir/FileHandler.cpp.o"
+"CMakeFiles/sim01.dir/FileHandler.cpp.o" \
+"CMakeFiles/sim01.dir/MetaDataFile.cpp.o" \
+"CMakeFiles/sim01.dir/main.cpp.o"
 
 # External object files for target sim01
 sim01_EXTERNAL_OBJECTS =
 
-sim01: CMakeFiles/sim01.dir/main.cpp.o
-sim01: CMakeFiles/sim01.dir/MetaDataFile.cpp.o
 sim01: CMakeFiles/sim01.dir/ConfigFile.cpp.o
 sim01: CMakeFiles/sim01.dir/FileHandler.cpp.o
+sim01: CMakeFiles/sim01.dir/MetaDataFile.cpp.o
+sim01: CMakeFiles/sim01.dir/main.cpp.o
 sim01: CMakeFiles/sim01.dir/build.make
 sim01: CMakeFiles/sim01.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zack/git-repos/Sim01/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable sim01"
@@ -177,10 +177,10 @@ CMakeFiles/sim01.dir/build: sim01
 
 .PHONY : CMakeFiles/sim01.dir/build
 
-CMakeFiles/sim01.dir/requires: CMakeFiles/sim01.dir/main.cpp.o.requires
-CMakeFiles/sim01.dir/requires: CMakeFiles/sim01.dir/MetaDataFile.cpp.o.requires
 CMakeFiles/sim01.dir/requires: CMakeFiles/sim01.dir/ConfigFile.cpp.o.requires
 CMakeFiles/sim01.dir/requires: CMakeFiles/sim01.dir/FileHandler.cpp.o.requires
+CMakeFiles/sim01.dir/requires: CMakeFiles/sim01.dir/MetaDataFile.cpp.o.requires
+CMakeFiles/sim01.dir/requires: CMakeFiles/sim01.dir/main.cpp.o.requires
 
 .PHONY : CMakeFiles/sim01.dir/requires
 

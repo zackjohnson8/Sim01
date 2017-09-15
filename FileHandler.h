@@ -24,6 +24,7 @@ public:
     void addTextToFile(int);
     bool deleteBySearch(const std::string & searchedValue);
     std::string peakTop();
+
     void loadConfigFile(int &TimeProcessor, int &TimeMonitor, int &TimeHardDrive, int &TimePrinter,
         int &TimeKeyboard, int &TimeMemory, int &TimeMouse, int &TimeSpeaker, std::string &logFilePath);
 

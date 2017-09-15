@@ -71,4 +71,6 @@ FileHandler.h
 /home/zack/git-repos/Sim01/FileHandler.h
 ConfigFile.h
 /home/zack/git-repos/Sim01/ConfigFile.h
+MetaDataFile.h
+/home/zack/git-repos/Sim01/MetaDataFile.h
 
