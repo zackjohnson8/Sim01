@@ -33,7 +33,17 @@ int main(int argc, char* argv[])
     for(int index = 0; index < argc - 1; index++)
     {
 
-        MetaDataFile_p[index].loadMetaData(ConfigFile_p[index].getTestPath());
+        if(MetaDataFile_p[index].loadMetaData(ConfigFile_p[index].getTestPath()) == 0)
+        {
+
+            // good
+
+        }else
+        {
+
+            // TODO BROKEN
+
+        }
 
     }
 

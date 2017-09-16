@@ -20,7 +20,7 @@ public:
     MetaDataFile();
     ~MetaDataFile();
 
-    void loadMetaData(const std::string &);
+    int loadMetaData(const std::string &);
 
 private:
 

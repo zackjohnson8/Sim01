@@ -74,12 +74,12 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
 
                 case 'S':
                     // Operating System, Keywords (start, end)
-                    if( (hold == "start") )
+                    if( (hold == "(start)") )
                     {
                         std::cout << "WORKS" << std::endl;
 
                     }else
-                    if ( (hold == "end") )
+                    if ( (hold == "(end)") )
                     {
 
                         std::cout << "WORKS" << std::endl;
@@ -88,7 +88,8 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     {
 
                         // TODO ERROR
-                        std::cout << "ERROR" << std::endl;
+                        std::cout << "ERROR1" << std::endl;
+                        return 1;
 
                     }
 
@@ -96,12 +97,12 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
 
                 case 'A':
                     // Process application, Keywords (start, end)
-                    if( (hold == "start") )
+                    if( (hold == "(start)") )
                     {
                         std::cout << "WORKS" << std::endl;
 
                     }else
-                    if( (hold == "end") )
+                    if( (hold == "(end)") )
                     {
                         std::cout << "WORKS" << std::endl;
 
@@ -110,7 +111,8 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     {
 
                         // TODO ERROR
-                        std::cout << "ERROR" << std::endl;
+                        std::cout << "ERROR2" << std::endl;
+                        return 1;
 
                     }
 
@@ -118,7 +120,7 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
 
                 case 'P':
                     // Process, Keyword (run)
-                    if( (hold == "run") )
+                    if( (hold == "(run)") )
                     {
                         std::cout << "WORKS" << std::endl;
 
@@ -126,25 +128,26 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     {
 
                         // TODO ERROR
-                        std::cout << "ERROR" << std::endl;
+                        std::cout << "ERROR3" << std::endl;
+                        return 1;
 
                     }
                     break;
 
                 case 'I':
                     // Input, Keywords (hard drive, keyboard, mouse)
-                    if( (hold == "hard drive") )
+                    if( (hold == "(hard drive)") )
                     {
                         std::cout << "WORKS" << std::endl;
 
                     }else
-                    if( (hold == "keyboard") )
+                    if( (hold == "(keyboard)") )
                     {
                         std::cout << "WORKS" << std::endl;
 
 
                     }else
-                    if( (hold == "mouse") )
+                    if( (hold == "(mouse)") )
                     {
                         std::cout << "WORKS" << std::endl;
 
@@ -152,45 +155,53 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     {
 
                         // TODO ERROR
-                        std::cout << "ERROR" << std::endl;
+                        std::cout << "ERROR4" << std::endl;
+                        return 1;
 
                     }
                     break;
 
                 case 'O':
-                    // Output, Keywords (hard drive, monitor, speaker)
-                    if( (hold == "hard drive") )
+                    // Output, Keywords (hard drive, monitor, speaker, printer)
+                    if( (hold == "(hard drive)") )
                     {
                         std::cout << "WORKS" << std::endl;
 
                     }else
-                    if( (hold == "keyboard") )
+                    if( (hold == "(monitor)") )
                     {
 
                         std::cout << "WORKS" << std::endl;
 
                     }else
-                    if( (hold == "mouse") )
+                    if( (hold == "(speaker)") )
                     {
+                        std::cout << "WORKS" << std::endl;
+
+                    }else
+                    if( (hold == "(printer)"))
+                    {
+
                         std::cout << "WORKS" << std::endl;
 
                     }else
                     {
 
                         // TODO ERROR'
-                        std::cout << "ERROR" << std::endl;
+                        std::cout << "ERROR5" << std::endl;
+                        return 1;
 
                     }
                     break;
 
                 case 'M':
                     // Memory, Keywords (block, allocate)
-                    if( (hold == "block") )
+                    if( (hold == "(block)") )
                     {
                         std::cout << "WORKS" << std::endl;
 
                     }else
-                    if( (hold == "allocate") )
+                    if( (hold == "(allocate)") )
                     {
 
                         std::cout << "WORKS" << std::endl;
@@ -199,7 +210,8 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     {
 
                         // TODO ERROR
-                        std::cout << "ERROR" << std::endl;
+                        std::cout << "ERROR6" << std::endl;
+                        return 1;
 
                     }
                     break;
@@ -235,6 +247,7 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
         }
 
         stream.close();
+        return 0;
     }
 
 }
