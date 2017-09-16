@@ -26,8 +26,11 @@ FUNCTION:
     is acceptable, place said data into a queue that can be returned to main
     when called for.
 
+    Return value is an int. 0 is good, anything else is error break program or
+    solve in main.
+
 */
-void MetaDataFile::loadMetaData(const std::string &metaFileName)
+int MetaDataFile::loadMetaData(const std::string &metaFileName)
 {
 
     // <Meta-Data code>(Description)<number of cycles>
@@ -60,6 +63,153 @@ void MetaDataFile::loadMetaData(const std::string &metaFileName)
             std::getline(stream, hold, ')');
             hold += ')';
             stream >> cycleNumber;
+            stream >> exitChar;
+
+            // Based on the meta data code
+            switch(metaCode)
+            {
+
+                // If it makes it into one of the cases we'll need to still
+                // check if the keyword works
+
+                case 'S':
+                    // Operating System, Keywords (start, end)
+                    if( (hold == "start") )
+                    {
+                        std::cout << "WORKS" << std::endl;
+
+                    }else
+                    if ( (hold == "end") )
+                    {
+
+                        std::cout << "WORKS" << std::endl;
+
+                    }else
+                    {
+
+                        // TODO ERROR
+                        std::cout << "ERROR" << std::endl;
+
+                    }
+
+                    break;
+
+                case 'A':
+                    // Process application, Keywords (start, end)
+                    if( (hold == "start") )
+                    {
+                        std::cout << "WORKS" << std::endl;
+
+                    }else
+                    if( (hold == "end") )
+                    {
+                        std::cout << "WORKS" << std::endl;
+
+
+                    }else
+                    {
+
+                        // TODO ERROR
+                        std::cout << "ERROR" << std::endl;
+
+                    }
+
+                    break;
+
+                case 'P':
+                    // Process, Keyword (run)
+                    if( (hold == "run") )
+                    {
+                        std::cout << "WORKS" << std::endl;
+
+                    }else
+                    {
+
+                        // TODO ERROR
+                        std::cout << "ERROR" << std::endl;
+
+                    }
+                    break;
+
+                case 'I':
+                    // Input, Keywords (hard drive, keyboard, mouse)
+                    if( (hold == "hard drive") )
+                    {
+                        std::cout << "WORKS" << std::endl;
+
+                    }else
+                    if( (hold == "keyboard") )
+                    {
+                        std::cout << "WORKS" << std::endl;
+
+
+                    }else
+                    if( (hold == "mouse") )
+                    {
+                        std::cout << "WORKS" << std::endl;
+
+                    }else
+                    {
+
+                        // TODO ERROR
+                        std::cout << "ERROR" << std::endl;
+
+                    }
+                    break;
+
+                case 'O':
+                    // Output, Keywords (hard drive, monitor, speaker)
+                    if( (hold == "hard drive") )
+                    {
+                        std::cout << "WORKS" << std::endl;
+
+                    }else
+                    if( (hold == "keyboard") )
+                    {
+
+                        std::cout << "WORKS" << std::endl;
+
+                    }else
+                    if( (hold == "mouse") )
+                    {
+                        std::cout << "WORKS" << std::endl;
+
+                    }else
+                    {
+
+                        // TODO ERROR'
+                        std::cout << "ERROR" << std::endl;
+
+                    }
+                    break;
+
+                case 'M':
+                    // Memory, Keywords (block, allocate)
+                    if( (hold == "block") )
+                    {
+                        std::cout << "WORKS" << std::endl;
+
+                    }else
+                    if( (hold == "allocate") )
+                    {
+
+                        std::cout << "WORKS" << std::endl;
+
+                    }else
+                    {
+
+                        // TODO ERROR
+                        std::cout << "ERROR" << std::endl;
+
+                    }
+                    break;
+
+                default: // Meta data doesn't match the possible metacode inputs TODO
+                    std::cout << "ERROR: meta data doesn't match the possible metacode inputs" << std::endl;
+                    loopBool = false;
+                    break;
+
+            }
 
             std::cout << metaCode << hold << cycleNumber << std::endl;
 
@@ -70,46 +220,13 @@ void MetaDataFile::loadMetaData(const std::string &metaFileName)
             // TODO What maybe better is to determine where in the file reads
             // END of some kind which I know is in the last line.
 
-            stream >> exitChar;
+
 
             if(exitChar == '.')
             {
 
                 // loop exit
                 loopBool = false;
-
-            }
-
-            switch(metaCode)
-            {
-
-                case 'S':
-                    // Operating System, Keywords (start, end)
-                    break;
-
-                case 'A':
-                    // Process application, Keywords (start, end)
-                    break;
-
-                case 'P':
-                    // Process, Keyword (run)
-                    break;
-
-                case 'I':
-                    // Input, Keywords (hard drive, keyboard, mouse)
-                    break;
-
-                case 'O':
-                    // Output, Keywords (hard drive, monitor, speaker)
-                    break;
-
-                case 'M':
-                    // Memory, Keywords (block, allocate)
-                    break;
-
-                default: // Meta data doesn't match the possible metacode inputs TODO
-                    std::cout << "ERROR: meta data doesn't match the possible metacode inputs" << std::endl;
-                    break;
 
             }
 
