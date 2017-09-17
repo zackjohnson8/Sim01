@@ -1,12 +1,17 @@
 #ifndef METADATAFILE_H
 #define METADATAFILE_H
 
+#include <cstdlib>
+#include <queue>
 #include <string>
 
 struct metaTask
 {
 
-
+    // <Meta-Data code>(Description)<number of cycles>
+    char metaDataCode;
+    std::string description;
+    int numberCycles;
 
 };
 
@@ -23,6 +28,8 @@ public:
     int loadMetaData(const std::string &);
 
 private:
+
+    std::queue<metaTask>* _metaQueue;
 
 };
 

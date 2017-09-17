@@ -30,6 +30,7 @@ ConfigFile::~ConfigFile()
 
 }
 
+// TODO Still need to parse the data
 void ConfigFile::loadConfigFile(const std::string &fileName)
 {
 

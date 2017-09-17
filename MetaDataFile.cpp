@@ -11,6 +11,7 @@
 MetaDataFile::MetaDataFile()
 {
 
+    _metaQueue = new std::queue<metaTask>();
 
 }
 
@@ -41,6 +42,8 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
     int cycleNumber;
     char exitChar = '.';
     bool loopBool = true;
+
+    metaTask* holdTask;
 
     // Parse data
 
@@ -77,12 +80,27 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     if( (hold == "(start)") )
                     {
                         std::cout << "WORKS" << std::endl;
+                        holdTask = new metaTask();
+                        holdTask->metaDataCode = metaCode;
+                        holdTask->description = "start";
+                        holdTask->numberCycles = cycleNumber;
+
+                        // push holdTask onto a queue
+                        _metaQueue->push(*holdTask);
+
 
                     }else
                     if ( (hold == "(end)") )
                     {
 
                         std::cout << "WORKS" << std::endl;
+                        holdTask = new metaTask();
+                        holdTask->metaDataCode = metaCode;
+                        holdTask->description = "end";
+                        holdTask->numberCycles = cycleNumber;
+
+                        // push holdTask onto a queue
+                        _metaQueue->push(*holdTask);
 
                     }else
                     {
@@ -100,11 +118,25 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     if( (hold == "(start)") )
                     {
                         std::cout << "WORKS" << std::endl;
+                        holdTask = new metaTask();
+                        holdTask->metaDataCode = metaCode;
+                        holdTask->description = "start";
+                        holdTask->numberCycles = cycleNumber;
+
+                        // push holdTask onto a queue
+                        _metaQueue->push(*holdTask);
 
                     }else
                     if( (hold == "(end)") )
                     {
                         std::cout << "WORKS" << std::endl;
+                        holdTask = new metaTask();
+                        holdTask->metaDataCode = metaCode;
+                        holdTask->description = "end";
+                        holdTask->numberCycles = cycleNumber;
+
+                        // push holdTask onto a queue
+                        _metaQueue->push(*holdTask);
 
 
                     }else
@@ -123,6 +155,13 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     if( (hold == "(run)") )
                     {
                         std::cout << "WORKS" << std::endl;
+                        holdTask = new metaTask();
+                        holdTask->metaDataCode = metaCode;
+                        holdTask->description = "run";
+                        holdTask->numberCycles = cycleNumber;
+
+                        // push holdTask onto a queue
+                        _metaQueue->push(*holdTask);
 
                     }else
                     {
@@ -139,17 +178,38 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     if( (hold == "(hard drive)") )
                     {
                         std::cout << "WORKS" << std::endl;
+                        holdTask = new metaTask();
+                        holdTask->metaDataCode = metaCode;
+                        holdTask->description = "hard drive";
+                        holdTask->numberCycles = cycleNumber;
+
+                        // push holdTask onto a queue
+                        _metaQueue->push(*holdTask);
 
                     }else
                     if( (hold == "(keyboard)") )
                     {
                         std::cout << "WORKS" << std::endl;
+                        holdTask = new metaTask();
+                        holdTask->metaDataCode = metaCode;
+                        holdTask->description = "keyboard";
+                        holdTask->numberCycles = cycleNumber;
+
+                        // push holdTask onto a queue
+                        _metaQueue->push(*holdTask);
 
 
                     }else
                     if( (hold == "(mouse)") )
                     {
                         std::cout << "WORKS" << std::endl;
+                        holdTask = new metaTask();
+                        holdTask->metaDataCode = metaCode;
+                        holdTask->description = "mouse";
+                        holdTask->numberCycles = cycleNumber;
+
+                        // push holdTask onto a queue
+                        _metaQueue->push(*holdTask);
 
                     }else
                     {
@@ -166,23 +226,51 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     if( (hold == "(hard drive)") )
                     {
                         std::cout << "WORKS" << std::endl;
+                        holdTask = new metaTask();
+                        holdTask->metaDataCode = metaCode;
+                        holdTask->description = "hard drive";
+                        holdTask->numberCycles = cycleNumber;
+
+                        // push holdTask onto a queue
+                        _metaQueue->push(*holdTask);
 
                     }else
                     if( (hold == "(monitor)") )
                     {
 
                         std::cout << "WORKS" << std::endl;
+                        holdTask = new metaTask();
+                        holdTask->metaDataCode = metaCode;
+                        holdTask->description = "monitor";
+                        holdTask->numberCycles = cycleNumber;
+
+                        // push holdTask onto a queue
+                        _metaQueue->push(*holdTask);
 
                     }else
                     if( (hold == "(speaker)") )
                     {
                         std::cout << "WORKS" << std::endl;
+                        holdTask = new metaTask();
+                        holdTask->metaDataCode = metaCode;
+                        holdTask->description = "speaker";
+                        holdTask->numberCycles = cycleNumber;
+
+                        // push holdTask onto a queue
+                        _metaQueue->push(*holdTask);
 
                     }else
                     if( (hold == "(printer)"))
                     {
 
                         std::cout << "WORKS" << std::endl;
+                        holdTask = new metaTask();
+                        holdTask->metaDataCode = metaCode;
+                        holdTask->description = "printer";
+                        holdTask->numberCycles = cycleNumber;
+
+                        // push holdTask onto a queue
+                        _metaQueue->push(*holdTask);
 
                     }else
                     {
@@ -199,12 +287,26 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     if( (hold == "(block)") )
                     {
                         std::cout << "WORKS" << std::endl;
+                        holdTask = new metaTask();
+                        holdTask->metaDataCode = metaCode;
+                        holdTask->description = "block";
+                        holdTask->numberCycles = cycleNumber;
+
+                        // push holdTask onto a queue
+                        _metaQueue->push(*holdTask);
 
                     }else
                     if( (hold == "(allocate)") )
                     {
 
                         std::cout << "WORKS" << std::endl;
+                        holdTask = new metaTask();
+                        holdTask->metaDataCode = metaCode;
+                        holdTask->description = "allocate";
+                        holdTask->numberCycles = cycleNumber;
+
+                        // push holdTask onto a queue
+                        _metaQueue->push(*holdTask);
 
                     }else
                     {
