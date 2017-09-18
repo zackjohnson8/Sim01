@@ -35,6 +35,8 @@ public:
 
     std::string getTestPath();
 
+    void outputLog();
+
 private:
 
     std::string _configFileName;

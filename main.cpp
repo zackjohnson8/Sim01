@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 
     }
 
-    std::cout << std::endl << std::endl << std::endl;
+
 
     // config file has been read and logged
 
@@ -37,12 +37,12 @@ int main(int argc, char* argv[])
         {
 
             // good
-            std::cout << "GOOD" << std::endl;
 
         }else
         {
 
-            // TODO BROKEN
+            // ERROR
+            std::cout << "ERROR: MetaDataFile returned an error, fix and re-run the program." << std::endl;
 
         }
 
@@ -52,11 +52,139 @@ int main(int argc, char* argv[])
 
     std::queue<metaTask> *metaData;
 
-    metaData = MetaDataFile_p[0].getQueue();
+    for(int index = 0; index < argc - 1; index++)
+    {
 
-    std::cout << metaData->front().metaDataCode << std::endl;
+        metaData = MetaDataFile_p[index].getQueue();
+        ConfigFile_p[index].outputLog();
+
+        while(!metaData->empty())
+        {
 
 
+            switch(metaData->front().metaDataCode)
+            {
+
+                case 'S':
+                    // Also just start and end
+                    break;
+
+                case 'A':
+                    // Just starts and ends with no need to process yet
+                    break;
+
+                case 'P':
+                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
+                    metaData->front().numberCycles << " = ";
+
+                    std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeProcessor() << std::endl;
+                    break;
+
+                case 'I':
+                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
+                    metaData->front().numberCycles << " = ";
+
+                    if( (metaData->front().description == "hard drive") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeHardDrive() << std::endl;
+
+                    }else
+                    if( (metaData->front().description == "keyboard") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeKeyboard() << std::endl;
+
+
+                    }else
+                    if( (metaData->front().description == "mouse") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMouse() << std::endl;
+
+                    }else
+                    {
+
+                        // ERROR
+
+                    }
+
+                    break;
+
+                case 'O':
+                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
+                    metaData->front().numberCycles << " = ";
+
+                    if( (metaData->front().description == "hard drive") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeHardDrive() << std::endl;
+
+                    }else
+                    if( (metaData->front().description == "monitor") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMonitor() << std::endl;
+
+                    }else
+                    if( (metaData->front().description == "speaker") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeSpeaker() << std::endl;
+
+                    }else
+                    if( (metaData->front().description == "printer"))
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimePrinter() << std::endl;
+
+                    }else
+                    {
+
+                        // ERROR
+
+
+                    }
+
+                    break;
+
+                case 'M':
+                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
+                    metaData->front().numberCycles << " = ";
+
+                    if( (metaData->front().description == "block") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMemory() << std::endl;
+
+                    }else
+                    if( (metaData->front().description == "allocate") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMemory() << std::endl;
+
+                    }else
+                    {
+
+                        // ERROR
+
+                    }
+
+                    break;
+
+                default:
+                    std::cout << "ERROR: metaDataCode isn't matching up correctly and can't run the task" << std::endl;
+
+            }
+
+            metaData->pop();
+
+        }
+
+        std::cout << std::endl << std::endl;
+
+
+    }
 
     delete[] ConfigFile_p;
 }

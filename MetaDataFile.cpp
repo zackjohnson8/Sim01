@@ -24,9 +24,9 @@ MetaDataFile::~MetaDataFile()
 std::queue<metaTask>* MetaDataFile::getQueue()
 {
 
-    //std::queue<metaTask>* _returnedValue;
-
-    //*_returnedValue = *_metaQueue;
+    // TODO To pass back a copy, copy the data out then push into a new queue.
+    // That will give me a hard copy without the segmentation fault from trying to use
+    // queues = operator.
 
     return _metaQueue;
 
@@ -90,7 +90,7 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     // Operating System, Keywords (start, end)
                     if( (hold == "(start)") )
                     {
-                        std::cout << "WORKS" << std::endl;
+
                         holdTask = new metaTask();
                         holdTask->metaDataCode = metaCode;
                         holdTask->description = "start";
@@ -104,7 +104,6 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     if ( (hold == "(end)") )
                     {
 
-                        std::cout << "WORKS" << std::endl;
                         holdTask = new metaTask();
                         holdTask->metaDataCode = metaCode;
                         holdTask->description = "end";
@@ -116,8 +115,8 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     }else
                     {
 
-                        // TODO ERROR
-                        std::cout << "ERROR1" << std::endl;
+                        // ERROR
+                        std::cout << "ERROR: MetaData Operating System file problems" << std::endl;
                         return 1;
 
                     }
@@ -128,7 +127,7 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     // Process application, Keywords (start, end)
                     if( (hold == "(start)") )
                     {
-                        std::cout << "WORKS" << std::endl;
+
                         holdTask = new metaTask();
                         holdTask->metaDataCode = metaCode;
                         holdTask->description = "start";
@@ -140,7 +139,7 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     }else
                     if( (hold == "(end)") )
                     {
-                        std::cout << "WORKS" << std::endl;
+
                         holdTask = new metaTask();
                         holdTask->metaDataCode = metaCode;
                         holdTask->description = "end";
@@ -153,8 +152,8 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     }else
                     {
 
-                        // TODO ERROR
-                        std::cout << "ERROR2" << std::endl;
+                        // ERROR
+                        std::cout << "ERROR: MetaData Process Application file problems" << std::endl;
                         return 1;
 
                     }
@@ -165,7 +164,7 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     // Process, Keyword (run)
                     if( (hold == "(run)") )
                     {
-                        std::cout << "WORKS" << std::endl;
+
                         holdTask = new metaTask();
                         holdTask->metaDataCode = metaCode;
                         holdTask->description = "run";
@@ -177,8 +176,8 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     }else
                     {
 
-                        // TODO ERROR
-                        std::cout << "ERROR3" << std::endl;
+                        // ERROR
+                        std::cout << "ERROR: MetaData Process file problems" << std::endl;
                         return 1;
 
                     }
@@ -188,7 +187,7 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     // Input, Keywords (hard drive, keyboard, mouse)
                     if( (hold == "(hard drive)") )
                     {
-                        std::cout << "WORKS" << std::endl;
+
                         holdTask = new metaTask();
                         holdTask->metaDataCode = metaCode;
                         holdTask->description = "hard drive";
@@ -200,7 +199,7 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     }else
                     if( (hold == "(keyboard)") )
                     {
-                        std::cout << "WORKS" << std::endl;
+
                         holdTask = new metaTask();
                         holdTask->metaDataCode = metaCode;
                         holdTask->description = "keyboard";
@@ -213,7 +212,7 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     }else
                     if( (hold == "(mouse)") )
                     {
-                        std::cout << "WORKS" << std::endl;
+
                         holdTask = new metaTask();
                         holdTask->metaDataCode = metaCode;
                         holdTask->description = "mouse";
@@ -225,8 +224,8 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     }else
                     {
 
-                        // TODO ERROR
-                        std::cout << "ERROR4" << std::endl;
+                        // ERROR
+                        std::cout << "ERROR: MetaData Input file problems" << std::endl;
                         return 1;
 
                     }
@@ -236,7 +235,7 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     // Output, Keywords (hard drive, monitor, speaker, printer)
                     if( (hold == "(hard drive)") )
                     {
-                        std::cout << "WORKS" << std::endl;
+
                         holdTask = new metaTask();
                         holdTask->metaDataCode = metaCode;
                         holdTask->description = "hard drive";
@@ -249,7 +248,7 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     if( (hold == "(monitor)") )
                     {
 
-                        std::cout << "WORKS" << std::endl;
+
                         holdTask = new metaTask();
                         holdTask->metaDataCode = metaCode;
                         holdTask->description = "monitor";
@@ -261,7 +260,7 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     }else
                     if( (hold == "(speaker)") )
                     {
-                        std::cout << "WORKS" << std::endl;
+
                         holdTask = new metaTask();
                         holdTask->metaDataCode = metaCode;
                         holdTask->description = "speaker";
@@ -274,7 +273,6 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     if( (hold == "(printer)"))
                     {
 
-                        std::cout << "WORKS" << std::endl;
                         holdTask = new metaTask();
                         holdTask->metaDataCode = metaCode;
                         holdTask->description = "printer";
@@ -286,8 +284,8 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     }else
                     {
 
-                        // TODO ERROR'
-                        std::cout << "ERROR5" << std::endl;
+                        // ERROR
+                        std::cout << "ERROR: MetaData Output file problems" << std::endl;
                         return 1;
 
                     }
@@ -297,7 +295,7 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     // Memory, Keywords (block, allocate)
                     if( (hold == "(block)") )
                     {
-                        std::cout << "WORKS" << std::endl;
+
                         holdTask = new metaTask();
                         holdTask->metaDataCode = metaCode;
                         holdTask->description = "block";
@@ -310,7 +308,6 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     if( (hold == "(allocate)") )
                     {
 
-                        std::cout << "WORKS" << std::endl;
                         holdTask = new metaTask();
                         holdTask->metaDataCode = metaCode;
                         holdTask->description = "allocate";
@@ -322,24 +319,21 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
                     }else
                     {
 
-                        // TODO ERROR
-                        std::cout << "ERROR6" << std::endl;
+                        // ERROR
+                        std::cout << "ERROR: MetaData Memory file problems" << std::endl;
                         return 1;
 
                     }
                     break;
 
-                default: // Meta data doesn't match the possible metacode inputs TODO
+                default: // Meta data doesn't match the possible metacode inputs
                     std::cout << "ERROR: meta data doesn't match the possible metacode inputs" << std::endl;
                     loopBool = false;
                     break;
 
             }
 
-            std::cout << metaCode << hold << cycleNumber << std::endl;
 
-            // TODO above we read in the data and then need to check if its
-            // acceptable.
 
             // Since the file ends with a period I've just used that to check.
             // TODO What maybe better is to determine where in the file reads

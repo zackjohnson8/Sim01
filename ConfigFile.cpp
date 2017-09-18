@@ -35,7 +35,6 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 {
 
     std::ifstream stream;
-    std::ofstream ostream;
     std::string holdLine;
 
     stream.open(fileName.c_str());
@@ -50,62 +49,62 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
         std::getline(stream, holdLine, ':');
         stream >> _version;
 
-        std::cout << _version << std::endl;
+//////////////////////////////////
 
         // get path and delete first white space
         std::getline(stream, holdLine, ':');
         std::getline(stream, _pathFile);
         _pathFile.erase(_pathFile.begin(), _pathFile.begin()+1);
 
-        std::cout << _pathFile << std::endl;
+//////////////////////////////////
 
         //
         std::getline(stream, holdLine, ':');
         stream >> _timeProcessorCyc;
 
-        std::cout << _timeProcessorCyc << std::endl;
+        //std::cout << _timeProcessorCyc << std::endl;
 
         //
         std::getline(stream, holdLine, ':');
         stream >> _timeMonitorDis;
 
-        std::cout << _timeMonitorDis << std::endl;
+        //std::cout << _timeMonitorDis << std::endl;
 
         //
         std::getline(stream, holdLine, ':');
         stream >> _timeHardDriCyc;
 
-        std::cout << _timeHardDriCyc << std::endl;
+        //std::cout << _timeHardDriCyc << std::endl;
 
         //
         std::getline(stream, holdLine, ':');
         stream >> _timePrinterCyc;
 
-        std::cout << _timePrinterCyc << std::endl;
+        //std::cout << _timePrinterCyc << std::endl;
 
         //
         std::getline(stream, holdLine, ':');
         stream >> _timeKeyboardCyc;
 
-        std::cout << _timeKeyboardCyc << std::endl;
+        //std::cout << _timeKeyboardCyc << std::endl;
 
         //
         std::getline(stream, holdLine, ':');
         stream >> _timeMemoryCyc;
 
-        std::cout << _timeMemoryCyc << std::endl;
+        //std::cout << _timeMemoryCyc << std::endl;
 
         //
         std::getline(stream, holdLine, ':');
         stream >> _timeMouseCyc;
 
-        std::cout << _timeMouseCyc << std::endl;
+        //std::cout << _timeMouseCyc << std::endl;
 
         //
         std::getline(stream, holdLine, ':');
         stream >> _timeSpeakerCyc;
 
-        std::cout << _timeSpeakerCyc << std::endl;
+        //std::cout << _timeSpeakerCyc << std::endl;
 
         //
         std::getline(stream, holdLine, ':');
@@ -113,7 +112,7 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
         _logToString.erase(_logToString.begin(), _logToString.begin()+1);
 
-        std::cout << _logToString << std::endl;
+        //std::cout << _logToString << std::endl;
 
         //TODO Hard programmed the logto file variable until specified from TA
         _logTo = BOTH;
@@ -124,7 +123,7 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
         _pathLogFile.erase(_pathLogFile.begin(), _pathLogFile.begin()+1);
 
-        std::cout << _pathLogFile << std::endl;
+        //std::cout << _pathLogFile << std::endl;
 
 
 
@@ -136,6 +135,82 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
     }
 
     stream.close();
+
+}
+
+int ConfigFile::getVersion()
+{
+
+    return _version;
+
+}
+
+int ConfigFile::getTimeProcessor()
+{
+
+    return _timeProcessorCyc;
+
+}
+
+int ConfigFile::getTimeMonitor()
+{
+
+    return _timeMonitorDis;
+
+}
+
+int ConfigFile::getTimeHardDrive()
+{
+
+    return _timeHardDriCyc;
+
+}
+
+int ConfigFile::getTimePrinter()
+{
+
+    return _timePrinterCyc;
+
+}
+
+int ConfigFile::getTimeKeyboard()
+{
+
+    return _timeKeyboardCyc;
+
+}
+
+int ConfigFile::getTimeMemory()
+{
+
+    return _timeMemoryCyc;
+
+}
+
+int ConfigFile::getTimeMouse()
+{
+
+    return _timeMouseCyc;
+
+}
+
+int ConfigFile::getTimeSpeaker()
+{
+
+    return _timeSpeakerCyc;
+
+}
+
+std::string ConfigFile::getTestPath()
+{
+
+    return _pathFile;
+}
+
+void ConfigFile::outputLog()
+{
+
+    std::ofstream ostream;
 
     // Now that you've got the data log it if specified above
     if(_logTo == BOTH)
@@ -214,75 +289,6 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
     }
 
-}
-
-int ConfigFile::getVersion()
-{
-
-    return _version;
-
-}
-
-int ConfigFile::getTimeProcessor()
-{
-
-    return _timeProcessorCyc;
-
-}
-
-int ConfigFile::getTimeMonitor()
-{
-
-    return _timeMonitorDis;
-
-}
-
-int ConfigFile::getTimeHardDrive()
-{
-
-    return _timeHardDriCyc;
-
-}
-
-int ConfigFile::getTimePrinter()
-{
-
-    return _timePrinterCyc;
-
-}
-
-int ConfigFile::getTimeKeyboard()
-{
-
-    return _timeKeyboardCyc;
-
-}
-
-int ConfigFile::getTimeMemory()
-{
-
-    return _timeMemoryCyc;
-
-}
-
-int ConfigFile::getTimeMouse()
-{
-
-    return _timeMouseCyc;
-
-}
-
-int ConfigFile::getTimeSpeaker()
-{
-
-    return _timeSpeakerCyc;
-
-}
-
-std::string ConfigFile::getTestPath()
-{
-
-    return _pathFile;
 }
 
 
