@@ -37,6 +37,7 @@ int main(int argc, char* argv[])
         {
 
             // good
+            std::cout << "GOOD" << std::endl;
 
         }else
         {
@@ -47,8 +48,14 @@ int main(int argc, char* argv[])
 
     }
 
+    // Data from meta file has now been queued up and is ready to receive.
 
-    // Take _pathFile from configFile and log the data into a queue
+    std::queue<metaTask> *metaData;
+
+    metaData = MetaDataFile_p[0].getQueue();
+
+    std::cout << metaData->front().metaDataCode << std::endl;
+
 
 
     delete[] ConfigFile_p;

@@ -21,6 +21,17 @@ MetaDataFile::~MetaDataFile()
 
 }
 
+std::queue<metaTask>* MetaDataFile::getQueue()
+{
+
+    //std::queue<metaTask>* _returnedValue;
+
+    //*_returnedValue = *_metaQueue;
+
+    return _metaQueue;
+
+}
+
 /*
 FUNCTION:
     Parse all the data from the file. As you parse and determine if the data

@@ -26,6 +26,7 @@ public:
     ~MetaDataFile();
 
     int loadMetaData(const std::string &);
+    std::queue<metaTask>* getQueue();
 
 private:
 
