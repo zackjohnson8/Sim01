@@ -114,8 +114,24 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
         //std::cout << _logToString << std::endl;
 
-        //TODO Hard programmed the logto file variable until specified from TA
-        _logTo = BOTH;
+        // Based on string set _logTo to BOTH, MONITOR, or LOGFILE. Else FAIL
+        if(_logToString == "Log to Both")
+        {
+            _logTo = BOTH;
+        }else
+        if(_logToString == "Log to Monitor")
+        {
+            _logTo = MONITOR;
+        }else
+        if(_logToString == "Log to File")
+        {
+            _logTo = LOGFILE;
+        }else
+        {
+
+            std::cout << "ERROR: config file log to was neither BOTH, MONITOR, or FILE. Auto set to BOTH" << std::endl;
+            _logTo = BOTH;
+        }
 
         //
         std::getline(stream, holdLine, ':');
@@ -217,29 +233,38 @@ void ConfigFile::outputLog()
     {
 
         ostream.open(_pathLogFile.c_str());
+        if(ostream.good())
+        {
 
-        ostream << "Configuration File Data" << std::endl;
-        ostream << "Processor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Monitor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Hard Drive = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Printer = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Keyboard = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Memory = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Mouse = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Speaker = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Logged to: " << "monitor and " << _pathLogFile << std::endl << std::endl;
+            ostream << "Configuration File Data" << std::endl;
+            ostream << "Processor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+            ostream << "Monitor = " << _timeMonitorDis << " ms/cycle" << std::endl;
+            ostream << "Hard Drive = " << _timeHardDriCyc << " ms/cycle" << std::endl;
+            ostream << "Printer = " << _timePrinterCyc << " ms/cycle" << std::endl;
+            ostream << "Keyboard = " << _timeKeyboardCyc << " ms/cycle" << std::endl;
+            ostream << "Memory = " << _timeMemoryCyc << " ms/cycle" << std::endl;
+            ostream << "Mouse = " << _timeMouseCyc << " ms/cycle" << std::endl;
+            ostream << "Speaker = " << _timeSpeakerCyc << " ms/cycle" << std::endl;
+            ostream << "Logged to: " << "monitor and " << _pathLogFile << std::endl << std::endl;
 
-        ostream.close();
+            ostream.close();
+
+        }else
+        {
+
+            std::cout << "ERROR: The log directory is not valid. Information will not be logged to a file until corrected." << std::endl << std::endl;
+
+        }
 
         std::cout << "Configuration File Data" << std::endl;
         std::cout << "Processor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        std::cout << "Monitor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        std::cout << "Hard Drive = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        std::cout << "Printer = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        std::cout << "Keyboard = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        std::cout << "Memory = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        std::cout << "Mouse = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        std::cout << "Speaker = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Monitor = " << _timeMonitorDis << " ms/cycle" << std::endl;
+        std::cout << "Hard Drive = " << _timeHardDriCyc << " ms/cycle" << std::endl;
+        std::cout << "Printer = " << _timePrinterCyc << " ms/cycle" << std::endl;
+        std::cout << "Keyboard = " << _timeKeyboardCyc << " ms/cycle" << std::endl;
+        std::cout << "Memory = " << _timeMemoryCyc << " ms/cycle" << std::endl;
+        std::cout << "Mouse = " << _timeMouseCyc << " ms/cycle" << std::endl;
+        std::cout << "Speaker = " << _timeSpeakerCyc << " ms/cycle" << std::endl;
         std::cout << "Logged to: " << "monitor and " << _pathLogFile << std::endl << std::endl;
     }else
     if(_logTo == LOGFILE)
@@ -247,18 +272,27 @@ void ConfigFile::outputLog()
 
         ostream.open(_pathLogFile.c_str());
 
-        ostream << "Configuration File Data" << std::endl;
-        ostream << "Processor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Monitor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Hard Drive = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Printer = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Keyboard = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Memory = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Mouse = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Speaker = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        ostream << "Logged to: " << "monitor and " << _pathLogFile << std::endl << std::endl;
+        if(ostream.good())
+        {
+            ostream << "Configuration File Data" << std::endl;
+            ostream << "Processor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+            ostream << "Monitor = " << _timeMonitorDis << " ms/cycle" << std::endl;
+            ostream << "Hard Drive = " << _timeHardDriCyc << " ms/cycle" << std::endl;
+            ostream << "Printer = " << _timePrinterCyc << " ms/cycle" << std::endl;
+            ostream << "Keyboard = " << _timeKeyboardCyc << " ms/cycle" << std::endl;
+            ostream << "Memory = " << _timeMemoryCyc << " ms/cycle" << std::endl;
+            ostream << "Mouse = " << _timeMouseCyc << " ms/cycle" << std::endl;
+            ostream << "Speaker = " << _timeSpeakerCyc << " ms/cycle" << std::endl;
+            ostream << "Logged to: " << "monitor and " << _pathLogFile << std::endl << std::endl;
 
-        ostream.close();
+            ostream.close();
+        }else
+        {
+
+            std::cout << "ERROR: The log directory is not valid. Information will not be logged until corrected." << std::endl << std::endl;
+
+        }
+
 
     }else
     if(_logTo == MONITOR)
@@ -266,13 +300,13 @@ void ConfigFile::outputLog()
 
         std::cout << "Configuration File Data" << std::endl;
         std::cout << "Processor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        std::cout << "Monitor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        std::cout << "Hard Drive = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        std::cout << "Printer = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        std::cout << "Keyboard = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        std::cout << "Memory = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        std::cout << "Mouse = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        std::cout << "Speaker = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Monitor = " << _timeMonitorDis << " ms/cycle" << std::endl;
+        std::cout << "Hard Drive = " << _timeHardDriCyc << " ms/cycle" << std::endl;
+        std::cout << "Printer = " << _timePrinterCyc << " ms/cycle" << std::endl;
+        std::cout << "Keyboard = " << _timeKeyboardCyc << " ms/cycle" << std::endl;
+        std::cout << "Memory = " << _timeMemoryCyc << " ms/cycle" << std::endl;
+        std::cout << "Mouse = " << _timeMouseCyc << " ms/cycle" << std::endl;
+        std::cout << "Speaker = " << _timeSpeakerCyc << " ms/cycle" << std::endl;
         std::cout << "Logged to: " << "monitor and " << _pathLogFile << std::endl << std::endl;
 
     }else

@@ -1,0 +1,11 @@
+Configuration File Data
+Processor = 10 ms/cycle
+Monitor = 25 ms/cycle
+Hard Drive = 50 ms/cycle
+Printer = 500 ms/cycle
+Keyboard = 1000 ms/cycle
+Memory = 35 ms/cycle
+Mouse = 20 ms/cycle
+Speaker = 10 ms/cycle
+Logged to: monitor and output/output_1.out
+

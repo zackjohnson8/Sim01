@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
 
             // ERROR
             std::cout << "ERROR: MetaDataFile returned an error, fix and re-run the program." << std::endl;
-
+            return 0;
         }
 
     }
