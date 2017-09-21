@@ -354,9 +354,9 @@ int MetaDataFile::loadMetaData(const std::string &metaFileName)
         }
 
         stream.close();
-        return 0;
-    }
 
+    }
+    return 0;
 }
 
 

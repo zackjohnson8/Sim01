@@ -11,7 +11,6 @@
 int main(int argc, char* argv[])
 {
 
-
     // The program will be given a specific amount of configure files
     // Parameters for config files
     ConfigFile* ConfigFile_p;

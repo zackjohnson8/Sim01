@@ -12,15 +12,15 @@ ConfigFile::ConfigFile()
 {
 
     // may as well zero out the data until you read the files
-    int _version = 0;
-    int _timeProcessorCyc = 0;
-    int _timeMonitorDis = 0;
-    int _timeHardDriCyc = 0;
-    int _timePrinterCyc = 0;
-    int _timeKeyboardCyc = 0;
-    int _timeMemoryCyc = 0;
-    int _timeMouseCyc = 0;
-    int _timeSpeakerCyc = 0;
+    _version = 0;
+    _timeProcessorCyc = 0;
+    _timeMonitorDis = 0;
+    _timeHardDriCyc = 0;
+    _timePrinterCyc = 0;
+    _timeKeyboardCyc = 0;
+    _timeMemoryCyc = 0;
+    _timeMouseCyc = 0;
+    _timeSpeakerCyc = 0;
 
     _logTo = NEITHER;
 }

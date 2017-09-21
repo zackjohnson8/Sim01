@@ -1,0 +1,11 @@
+Configuration File Data
+Processor = 50 ms/cycle
+Monitor = 10 ms/cycle
+Hard Drive = 15 ms/cycle
+Printer = 35 ms/cycle
+Keyboard = 15 ms/cycle
+Memory = 60 ms/cycle
+Mouse = 20 ms/cycle
+Speaker = 5 ms/cycle
+Logged to: monitor and logfile_4.lgf
+
