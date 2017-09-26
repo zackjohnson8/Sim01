@@ -3,9 +3,11 @@
 #include <string>
 #include <fstream>
 #include <queue>
-#include "FileHandler.h"
 #include "ConfigFile.h"
 #include "MetaDataFile.h"
+#include "MemoryFunction.h"
+
+void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* MetaDataFile_p);
 
 
 int main(int argc, char* argv[])
@@ -48,10 +50,19 @@ int main(int argc, char* argv[])
     }
 
     // Data from meta file has now been queued up and is ready to receive.
+    handleMetaData(argc, ConfigFile_p, MetaDataFile_p);
+
+
+
+    delete[] ConfigFile_p;
+}
+
+void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* MetaDataFile_p)
+{
 
     std::queue<metaTask> *metaData;
 
-    for(int index = 0; index < argc - 1; index++)
+    for(int index = 0; index < numOfFiles - 1; index++)
     {
 
         metaData = MetaDataFile_p[index].getQueue();
@@ -185,7 +196,7 @@ int main(int argc, char* argv[])
 
     }
 
-    delete[] ConfigFile_p;
+
 }
 
 /*
@@ -213,4 +224,20 @@ int main(int argc, char* argv[])
 
 
 
+*/
+
+/*
+
+    Project 2 Notes:
+
+    The project needs a pcb that handles the key components
+    NEW, WAITING, READY, RUNNING, TERMINATE.
+
+    Allocate memory with the function provided in MemoryFunction.c.
+    You'll call the function with the correct about of kbytes but may need
+    to convert the data before sending. This may mean converting gb and mb to kb
+
+    Fix ConfigFile to take in the memory line which has been added.
+
+    Use the threads for I/O inputs and the wait for everything else.
 */
