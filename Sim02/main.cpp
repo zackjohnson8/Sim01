@@ -6,6 +6,7 @@
 #include "ConfigFile.h"
 #include "MetaDataFile.h"
 #include "MemoryFunction.h"
+#include "PCBObj.h"
 
 void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* MetaDataFile_p);
 
@@ -19,6 +20,7 @@ int main(int argc, char* argv[])
     ConfigFile_p = new ConfigFile[argc-1];
     MetaDataFile* MetaDataFile_p;
     MetaDataFile_p = new MetaDataFile[argc-1];
+    PCBObj* PCBObj_p = new PCBObj();
 
     for(int index = 1; index < argc; index++)
     {
@@ -59,6 +61,11 @@ int main(int argc, char* argv[])
 
 void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* MetaDataFile_p)
 {
+
+
+
+
+/*
 
     std::queue<metaTask> *metaData;
 
@@ -196,7 +203,7 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
 
     }
 
-
+*/
 }
 
 /*

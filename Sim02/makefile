@@ -3,8 +3,8 @@ DEBUG = -g
 CFLAGS = -Wall -c $(DEBUG)
 LFLAGS = -Wall $(DEBUG)
 
-sim01 : main.o ConfigFile.o MetaDataFile.o MemoryFunction.o
-	$(CC) $(LFLAGS) main.o ConfigFile.o MetaDataFile.o MemoryFunction.o -o sim01
+sim01 : main.o ConfigFile.o MetaDataFile.o MemoryFunction.o PCBObj.o
+	$(CC) $(LFLAGS) main.o ConfigFile.o MetaDataFile.o MemoryFunction.o PCBObj.o -o sim01
 
 main.o : main.cpp ConfigFile.h MetaDataFile.h MemoryFunction.h
 	$(CC) $(CFLAGS) main.cpp
@@ -17,6 +17,9 @@ MetaDataFile.o : MetaDataFile.cpp MetaDataFile.h
 
 MemoryFunction.o : MemoryFunction.cpp MemoryFunction.h
 	$(CC) $(CFLAGS) MemoryFunction.cpp
+
+PCBObj.o : PCBObj.cpp PCBObj.h
+	$(CC) $(CFLAGS) PCBObj.cpp
 
 clean:
 	\rm *.o sim01
