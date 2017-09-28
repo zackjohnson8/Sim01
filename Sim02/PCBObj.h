@@ -1,6 +1,8 @@
 #ifndef PCBOBJ_H
 #define PCBOBJ_H
 
+#include <string>
+
 enum TaskState{
     NEW,
     READY,
@@ -12,7 +14,9 @@ enum TaskState{
 typedef struct{
 
     TaskState taskState_p;
-    metaTask* metaTask_p;
+    char metaDataCode;
+    std::string description;
+    int numberCycles;
 
 
 }PCBTask;

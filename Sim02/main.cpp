@@ -25,18 +25,10 @@ int main(int argc, char* argv[])
     for(int index = 1; index < argc; index++)
     {
 
-        ConfigFile_p[index-1].loadConfigFile(argv[index]);
+        ConfigFile_p[index - 1].loadConfigFile(argv[index]);
 
-    }
-
-
-
-    // config file has been read and logged
-
-    for(int index = 0; index < argc - 1; index++)
-    {
-
-        if(MetaDataFile_p[index].loadMetaData(ConfigFile_p[index].getTestPath()) == 0)
+        // config file has been read and logged
+        if(MetaDataFile_p[index - 1].loadMetaData(ConfigFile_p[index - 1].getTestPath()) == 0)
         {
 
             // good
@@ -51,17 +43,19 @@ int main(int argc, char* argv[])
 
     }
 
+
     // Data from meta file has now been queued up and is ready to receive.
     handleMetaData(argc, ConfigFile_p, MetaDataFile_p);
 
+    // No need to delete since the program is ending anyway and will handle it just fine
 
-
-    delete[] ConfigFile_p;
 }
 
 void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* MetaDataFile_p)
 {
 
+
+    PCBTask* newTask;
 
 
 
