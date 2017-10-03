@@ -8,7 +8,7 @@
 #include "MemoryFunction.h"
 #include "PCBObj.h"
 
-void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* MetaDataFile_p);
+void handleMetaData(int, ConfigFile*, MetaDataFile*, PCBObj*);
 
 
 int main(int argc, char* argv[])
@@ -47,22 +47,30 @@ int main(int argc, char* argv[])
 
 
     // Data from meta file has now been queued up and is ready to receive.
-    handleMetaData(argc, ConfigFile_p, MetaDataFile_p);
+    handleMetaData(argc, ConfigFile_p, MetaDataFile_p, PCBObj_p);
 
     // No need to delete since the program is ending anyway and will handle it just fine
 
 }
 
-void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* MetaDataFile_p)
+void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* MetaDataFile_p, PCBObj* PCBObj_p)
 {
 
+
+    // Basically, do the same thing as before by poping out all the data.
+
     std::queue<metaTask> *metaData;
+    PCBTask* newTask;
 
     for(int index = 0; index < numOfFiles - 1; index++)
     {
 
+        // get the meta data for tasks/processes. Continue to log to the file and monitor if asked.
+        // the difference is that we won't be multiplying the data but using the new example output
         metaData = MetaDataFile_p[index].getQueue();
         ConfigFile_p[index].outputLog();
+
+        // TODO so remove all the multiplication in this form
 
         while(!metaData->empty())
         {
@@ -80,8 +88,14 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
                     break;
 
                 case 'P':
-                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
-                    metaData->front().numberCycles << " = ";
+                    newTask = new PCBTask();
+                    newTask->taskState_p = NEW;
+                    newTask->metaDataCode = metaData->front().metaDataCode;
+                    newTask->description = metaData->front().description;
+                    newTask->numberCycles = metaData->front().numberCycles;
+
+                    PCBObj_p->addTask(newTask);
+
 
                     std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeProcessor() << std::endl;
                     break;
@@ -194,7 +208,7 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
 
 
     // TODO
-    //PCBTask* newTask;
+
 
 
     //newTask = new PCBTask();
