@@ -23,7 +23,7 @@ ConfigFile::ConfigFile()
     _timeSpeakerCyc = 0;
     _memoryAllocationSize = 0;
 
-    memoryAlloType = KILO;
+    _memoryAlloType = KILO;
 
     _logTo = NEITHER;
 }
@@ -139,7 +139,7 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
         }
         std::getline(stream,holdLine,':');
-        stream >> memoryAllocationSize;
+        stream >> _memoryAllocationSize;
 
         //
         std::getline(stream, holdLine, ':');
