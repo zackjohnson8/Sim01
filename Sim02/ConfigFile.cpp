@@ -21,6 +21,9 @@ ConfigFile::ConfigFile()
     _timeMemoryCyc = 0;
     _timeMouseCyc = 0;
     _timeSpeakerCyc = 0;
+    _memoryAllocationSize = 0;
+
+    memoryAlloType = KILO;
 
     _logTo = NEITHER;
 }
@@ -36,6 +39,7 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
     std::ifstream stream;
     std::string holdLine;
+    char holdChar;
 
     stream.open(fileName.c_str());
 
@@ -94,6 +98,7 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
         //std::cout << _timeMemoryCyc << std::endl;
 
+/* Previously used in proj 1 but not in 2
         //
         std::getline(stream, holdLine, ':');
         stream >> _timeMouseCyc;
@@ -105,6 +110,36 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
         stream >> _timeSpeakerCyc;
 
         //std::cout << _timeSpeakerCyc << std::endl;
+*/
+
+        std::getline(stream, holdLine, '(');
+        // take in the char to find out if its k, M, G
+        stream >> holdChar;
+        if(holdChar == 'k')
+        {
+
+            _memoryAlloType = KILO;
+
+        }else
+        if(holdChar == 'M')
+        {
+
+            _memoryAlloType = MEGA;
+
+        }else
+        if(holdChar == 'G')
+        {
+
+            _memoryAlloType = GIGA;
+
+        }else // error
+        {
+
+            std::cout << "ERROR: configFile.cpp, _memoryAlloType could not be specified from file provided" << std::endl;
+
+        }
+        std::getline(stream,holdLine,':');
+        stream >> memoryAllocationSize;
 
         //
         std::getline(stream, holdLine, ':');

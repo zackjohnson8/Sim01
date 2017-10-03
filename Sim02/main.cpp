@@ -41,6 +41,8 @@ int main(int argc, char* argv[])
             return 0;
         }
 
+        // take data from meta class and add to PCBObj so that it can handle all the work
+
     }
 
 
@@ -53,13 +55,6 @@ int main(int argc, char* argv[])
 
 void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* MetaDataFile_p)
 {
-
-
-    PCBTask* newTask;
-
-
-
-/*
 
     std::queue<metaTask> *metaData;
 
@@ -197,7 +192,14 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
 
     }
 
-*/
+
+    // TODO
+    //PCBTask* newTask;
+
+
+    //newTask = new PCBTask();
+
+
 }
 
 /*

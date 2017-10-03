@@ -10,6 +10,13 @@ enum logTo{
     NEITHER
 };
 
+enum memoryAlloType
+{
+    KILO,
+    MEGA,
+    GIGA
+};
+
 class ConfigFile
 {
 
@@ -53,6 +60,9 @@ private:
     int _timeMemoryCyc;
     int _timeMouseCyc;
     int _timeSpeakerCyc;
+    int _memoryAllocationSize;
+
+    memoryAlloType _memoryAlloType;
 
     logTo _logTo;
 
