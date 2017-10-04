@@ -10,17 +10,22 @@
 PCBObj::PCBObj()
 {
 
+    _pcbNewTasks = new std::queue<PCBTask>();
 
 }
 
 PCBObj::~PCBObj()
 {
 
+    delete _pcbNewTasks;
+
 }
 
 void PCBObj::addTask(PCBTask* T)
 {
 
+    T->taskState_p = READY;
+    _pcbNewTasks->push(*T);
 
 /* holding code just incase
 

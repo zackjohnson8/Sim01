@@ -49,7 +49,8 @@ int main(int argc, char* argv[])
     // Data from meta file has now been queued up and is ready to receive.
     handleMetaData(argc, ConfigFile_p, MetaDataFile_p, PCBObj_p);
 
-    // No need to delete since the program is ending anyway and will handle it just fine
+    // All the data has been loaded into the pcb above and the tasks now need to run.
+
 
 }
 
@@ -135,8 +136,9 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
                     {
 
                         // ERROR
-                        delete newTask;
                         std::cout << "ERROR: deletion of task before sending to pcb" << std::endl;
+                        delete newTask;
+
 
                     }
 
@@ -180,8 +182,9 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
                     {
 
                         // ERROR
-                        delete newTask;
                         std::cout << "ERROR: deletion of task before sending to pcb" << std::endl;
+                        delete newTask;
+
 
 
                     }
@@ -212,8 +215,8 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
                     {
 
                         // ERROR
-                        delete newTask;
                         std::cout << "ERROR: deletion of task before sending to pcb" << std::endl;
+                        delete newTask;
 
                     }
 
@@ -228,15 +231,14 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
 
         }
 
+        // TODO
+        // Now that the pcb has taken in the tasks you'll need to run it before the next config file
+        // tasks
+
         std::cout << std::endl << std::endl;
 
 
     }
-
-
-    // TODO
-
-
 
     //newTask = new PCBTask();
 

@@ -2,6 +2,7 @@
 #define PCBOBJ_H
 
 #include <string>
+#include <queue>
 
 enum TaskState{
     NEW,
@@ -35,7 +36,7 @@ public:
 
 private:
 
-
+    std::queue<PCBTask>* _pcbNewTasks;
 
 };
 
