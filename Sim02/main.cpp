@@ -88,80 +88,100 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
                     break;
 
                 case 'P':
+
+                    newTask = new PCBTask();
+                    newTask->taskState_p = NEW;
+                    newTask->metaDataCode = metaData->front().metaDataCode;
+                    newTask->description = metaData->front().description;
+                    newTask->numberCycles = metaData->front().numberCycles;
+                    newTask->timeTask = ConfigFile_p[index].getTimeProcessor();
+
+                    PCBObj_p->addTask(newTask);
+
+                    break;
+
+                case 'I':
+
                     newTask = new PCBTask();
                     newTask->taskState_p = NEW;
                     newTask->metaDataCode = metaData->front().metaDataCode;
                     newTask->description = metaData->front().description;
                     newTask->numberCycles = metaData->front().numberCycles;
 
-                    PCBObj_p->addTask(newTask);
-
-
-                    std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeProcessor() << std::endl;
-                    break;
-
-                case 'I':
-                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
-                    metaData->front().numberCycles << " = ";
 
                     if( (metaData->front().description == "hard drive") )
                     {
 
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeHardDrive() << std::endl;
+                        newTask->timeTask = ConfigFile_p[index].getTimeHardDrive();
+                        PCBObj_p->addTask(newTask);
 
                     }else
                     if( (metaData->front().description == "keyboard") )
                     {
 
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeKeyboard() << std::endl;
+                        newTask->timeTask = ConfigFile_p[index].getTimeKeyboard();
+                        PCBObj_p->addTask(newTask);
 
 
                     }else
                     if( (metaData->front().description == "mouse") )
                     {
 
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMouse() << std::endl;
+                        newTask->timeTask = ConfigFile_p[index].getTimeMouse();
+                        PCBObj_p->addTask(newTask);
+
 
                     }else
                     {
 
                         // ERROR
+                        delete newTask;
+                        std::cout << "ERROR: deletion of task before sending to pcb" << std::endl;
 
                     }
 
                     break;
 
                 case 'O':
-                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
-                    metaData->front().numberCycles << " = ";
+                    newTask = new PCBTask();
+                    newTask->taskState_p = NEW;
+                    newTask->metaDataCode = metaData->front().metaDataCode;
+                    newTask->description = metaData->front().description;
+                    newTask->numberCycles = metaData->front().numberCycles;
 
                     if( (metaData->front().description == "hard drive") )
                     {
 
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeHardDrive() << std::endl;
+                        newTask->timeTask = ConfigFile_p[index].getTimeHardDrive();
+                        PCBObj_p->addTask(newTask);
 
                     }else
                     if( (metaData->front().description == "monitor") )
                     {
 
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMonitor() << std::endl;
+                        newTask->timeTask = ConfigFile_p[index].getTimeMonitor();
+                        PCBObj_p->addTask(newTask);
 
                     }else
                     if( (metaData->front().description == "speaker") )
                     {
 
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeSpeaker() << std::endl;
+                        newTask->timeTask = ConfigFile_p[index].getTimeSpeaker();
+                        PCBObj_p->addTask(newTask);
 
                     }else
                     if( (metaData->front().description == "printer"))
                     {
 
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimePrinter() << std::endl;
+                        newTask->timeTask = ConfigFile_p[index].getTimePrinter();
+                        PCBObj_p->addTask(newTask);
 
                     }else
                     {
 
                         // ERROR
+                        delete newTask;
+                        std::cout << "ERROR: deletion of task before sending to pcb" << std::endl;
 
 
                     }
@@ -169,24 +189,31 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
                     break;
 
                 case 'M':
-                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
-                    metaData->front().numberCycles << " = ";
+                    newTask = new PCBTask();
+                    newTask->taskState_p = NEW;
+                    newTask->metaDataCode = metaData->front().metaDataCode;
+                    newTask->description = metaData->front().description;
+                    newTask->numberCycles = metaData->front().numberCycles;
 
                     if( (metaData->front().description == "block") )
                     {
 
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMemory() << std::endl;
+                        newTask->timeTask = ConfigFile_p[index].getTimeMemory();
+                        PCBObj_p->addTask(newTask);
 
                     }else
                     if( (metaData->front().description == "allocate") )
                     {
 
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMemory() << std::endl;
+                        newTask->timeTask = ConfigFile_p[index].getTimeMemory();
+                        PCBObj_p->addTask(newTask);
 
                     }else
                     {
 
                         // ERROR
+                        delete newTask;
+                        std::cout << "ERROR: deletion of task before sending to pcb" << std::endl;
 
                     }
 
@@ -247,7 +274,7 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
 
     Project 2 Notes:
 
-    The project needs a pcb that handles the key components
+    The project needs a pcb that handles the key components                         DONE
     NEW, WAITING, READY, RUNNING, TERMINATE.
 
     Allocate memory with the function provided in MemoryFunction.c.

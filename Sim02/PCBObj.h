@@ -17,7 +17,7 @@ typedef struct{
     char metaDataCode;
     std::string description;
     int numberCycles;
-
+    int timeTask;
 
 }PCBTask;
 
