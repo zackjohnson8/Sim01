@@ -8,6 +8,7 @@
 #include <string>
 #include <iostream>
 #include <cstdlib>
+#include <iomanip>
 
 // constructor/destructor -------------------------------------------------
 PCBObj::PCBObj()
@@ -56,6 +57,8 @@ void PCBObj::runPCB()
     struct timeval tvEnd;
     struct timeval tvStart;
     gettimeofday(&tvStart,NULL);
+    float holdSecond;
+    float holdMilli;
 
     // Pull each queued PCBTask and handle each task accordingly
     while(!_pcbNewTasks->empty())
@@ -72,7 +75,11 @@ void PCBObj::runPCB()
                         //t = time(NULL);
                         gettimeofday(&tvEnd, NULL);
                         //std::cout << (((tvEnd.tv_sec - tvStart.tv_sec) * 1000000) + (tvEnd.tv_usec - tvStart.tv_usec))/1000 << " - Simulator program starting" << std::endl;
-                        std::cout << tvEnd.tv_usec - tvStart.tv_usec << std::endl;
+
+                        holdSecond = (tvEnd.tv_sec - tvStart.tv_sec) * 100000;
+                        holdMilli = (tvEnd.tv_usec - tvStart.tv_usec);
+
+                        std::cout << std::fixed << std::setprecision(6) << holdSecond + holdMilli / 1000000 << std::endl;
 
                     }else
                     if(_pcbNewTasks->front().description == "end")
@@ -80,8 +87,16 @@ void PCBObj::runPCB()
 
                         //seconds = difftime(t,mktime(&secondTime));
                         gettimeofday(&tvEnd, NULL);
+
+                        holdSecond = (tvEnd.tv_sec - tvStart.tv_sec) * 100000;
+                        holdMilli = (tvEnd.tv_usec - tvStart.tv_usec);
+
+
+
+                        std::cout << std::fixed << std::setprecision(6) << holdSecond + holdMilli / 1000000 << std::endl;
+
                         //std::cout << (((tvEnd.tv_sec - tvStart.tv_sec) * 1000000) + (tvEnd.tv_usec - tvStart.tv_usec))/1000 << " - Simulator program starting" << std::endl;
-                        std::cout << tvEnd.tv_usec - tvStart.tv_usec << std::endl;
+                        //std::cout << tvEnd.tv_sec - tvStart.tv_sec << (float)tvEnd.tv_usec  - (float)tvStart.tv_usec << std::endl;
                     }
 
                     break;
