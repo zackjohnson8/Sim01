@@ -82,6 +82,16 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
 
                 case 'S':
                     // Also just start and end
+
+                    newTask = new PCBTask();
+                    newTask->taskState_p = NEW;
+                    newTask->metaDataCode = metaData->front().metaDataCode;
+                    newTask->description = metaData->front().description;
+                    newTask->numberCycles = metaData->front().numberCycles;
+                    newTask->timeTask = 0;
+
+                    PCBObj_p->addTask(newTask);
+
                     break;
 
                 case 'A':
@@ -234,6 +244,7 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
         // TODO
         // Now that the pcb has taken in the tasks you'll need to run it before the next config file
         // tasks
+
 
         std::cout << std::endl << std::endl;
 
