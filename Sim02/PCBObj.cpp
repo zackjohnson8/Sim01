@@ -3,6 +3,7 @@
 
 #include "PCBObj.h"
 #include "MemoryFunction.h"
+#include <time.h>
 #include <ctime>
 #include <string>
 #include <iostream>
@@ -52,7 +53,9 @@ void PCBObj::addTask(PCBTask* T)
 void PCBObj::runPCB()
 {
 
-    time_t processTimer;
+    struct timeval tvEnd;
+    struct timeval tvStart;
+    gettimeofday(&tvStart,NULL);
 
     // Pull each queued PCBTask and handle each task accordingly
     while(!_pcbNewTasks->empty())
@@ -60,11 +63,23 @@ void PCBObj::runPCB()
 
         switch(_pcbNewTasks->front().metaDataCode)
         {
+            //std::cout << "isthisworking" << std::endl;
 
                 case 'S':
                     // Also just start and end
-                    processTimer = time(NULL);
-                    std::cout << processTimer << " - Simulator program starting" << std::endl;
+                    if( _pcbNewTasks->front().description == "start")
+                    {
+                        //t = time(NULL);
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << (((tvEnd.tv_sec - tvStart.tv_sec) * 1000000) + (tvEnd.tv_usec - tvStart.tv_usec))/1000 << " - Simulator program starting" << std::endl;
+                    }else
+                    if(_pcbNewTasks->front().description == "end")
+                    {
+
+                        //seconds = difftime(t,mktime(&secondTime));
+
+
+                    }
 
                     break;
 
@@ -160,6 +175,8 @@ void PCBObj::runPCB()
                     std::cout << "ERROR: metaDataCode isn't matching up correctly and can't run the task" << std::endl;
 
         }
+
+        _pcbNewTasks->pop();
 
     }
 

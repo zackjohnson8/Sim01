@@ -283,7 +283,7 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
         // TODO
         // Now that the pcb has taken in the tasks you'll need to run it before the next config file
         // tasks
-
+        PCBObj_p->runPCB();
 
         std::cout << std::endl << std::endl;
 
