@@ -43,6 +43,7 @@ private:
     std::queue<PCBTask>* _pcbNewTasks;
     int _procNum;
     int _memoryAlloSize;
+    unsigned int _memoryLocation;
 };
 
 
