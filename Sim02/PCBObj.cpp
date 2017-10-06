@@ -72,20 +72,18 @@ void PCBObj::runPCB()
                     // Also just start and end
                     if( _pcbNewTasks->front().description == "start")
                     {
-                        //t = time(NULL);
+                        // grab current time then print the difference from when this began
                         gettimeofday(&tvEnd, NULL);
-                        //std::cout << (((tvEnd.tv_sec - tvStart.tv_sec) * 1000000) + (tvEnd.tv_usec - tvStart.tv_usec))/1000 << " - Simulator program starting" << std::endl;
 
                         holdSecond = (tvEnd.tv_sec - tvStart.tv_sec) * 100000;
                         holdMilli = (tvEnd.tv_usec - tvStart.tv_usec);
 
-                        std::cout << std::fixed << std::setprecision(6) << holdSecond + holdMilli / 1000000 << std::endl;
+                        std::cout << std::fixed << std::setprecision(6) << holdSecond + holdMilli / 1000000 << " - Simulator program starting" << std::endl;
 
                     }else
                     if(_pcbNewTasks->front().description == "end")
                     {
 
-                        //seconds = difftime(t,mktime(&secondTime));
                         gettimeofday(&tvEnd, NULL);
 
                         holdSecond = (tvEnd.tv_sec - tvStart.tv_sec) * 100000;
@@ -93,17 +91,46 @@ void PCBObj::runPCB()
 
 
 
-                        std::cout << std::fixed << std::setprecision(6) << holdSecond + holdMilli / 1000000 << std::endl;
+                        std::cout << std::fixed << std::setprecision(6) << holdSecond + holdMilli / 1000000 << " - Simulator program ending" << std::endl;
 
-                        //std::cout << (((tvEnd.tv_sec - tvStart.tv_sec) * 1000000) + (tvEnd.tv_usec - tvStart.tv_usec))/1000 << " - Simulator program starting" << std::endl;
-                        //std::cout << tvEnd.tv_sec - tvStart.tv_sec << (float)tvEnd.tv_usec  - (float)tvStart.tv_usec << std::endl;
                     }
 
                     break;
 
                 case 'A':
                     // Using process now.
+                    if( _pcbNewTasks->front().description == "start")
+                    {
+                        // grab current time then print the difference from when this began
+                        gettimeofday(&tvEnd, NULL);
 
+                        holdSecond = (tvEnd.tv_sec - tvStart.tv_sec) * 100000;
+                        holdMilli = (tvEnd.tv_usec - tvStart.tv_usec);
+
+                        std::cout << std::fixed << std::setprecision(6) << holdSecond + holdMilli / 1000000 << " - OS: preparing process " << this->_procNum << std::endl;
+
+
+                        gettimeofday(&tvEnd, NULL);
+
+                        holdSecond = (tvEnd.tv_sec - tvStart.tv_sec) * 100000;
+                        holdMilli = (tvEnd.tv_usec - tvStart.tv_usec);
+
+                        std::cout << std::fixed << std::setprecision(6) << holdSecond + holdMilli / 1000000 << " - OS: starting process " << this->_procNum << std::endl;
+
+                    }else
+                    if(_pcbNewTasks->front().description == "end")
+                    {
+
+                        gettimeofday(&tvEnd, NULL);
+
+                        holdSecond = (tvEnd.tv_sec - tvStart.tv_sec) * 100000;
+                        holdMilli = (tvEnd.tv_usec - tvStart.tv_usec);
+
+
+
+                        std::cout << std::fixed << std::setprecision(6) << holdSecond + holdMilli / 1000000 << " - OS: removing process " << this->_procNum << std::endl;
+
+                    }
 
                     break;
 
