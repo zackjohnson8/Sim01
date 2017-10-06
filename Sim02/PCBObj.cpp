@@ -71,14 +71,17 @@ void PCBObj::runPCB()
                     {
                         //t = time(NULL);
                         gettimeofday(&tvEnd, NULL);
-                        std::cout << (((tvEnd.tv_sec - tvStart.tv_sec) * 1000000) + (tvEnd.tv_usec - tvStart.tv_usec))/1000 << " - Simulator program starting" << std::endl;
+                        //std::cout << (((tvEnd.tv_sec - tvStart.tv_sec) * 1000000) + (tvEnd.tv_usec - tvStart.tv_usec))/1000 << " - Simulator program starting" << std::endl;
+                        std::cout << tvEnd.tv_usec - tvStart.tv_usec << std::endl;
+
                     }else
                     if(_pcbNewTasks->front().description == "end")
                     {
 
                         //seconds = difftime(t,mktime(&secondTime));
-
-
+                        gettimeofday(&tvEnd, NULL);
+                        //std::cout << (((tvEnd.tv_sec - tvStart.tv_sec) * 1000000) + (tvEnd.tv_usec - tvStart.tv_usec))/1000 << " - Simulator program starting" << std::endl;
+                        std::cout << tvEnd.tv_usec - tvStart.tv_usec << std::endl;
                     }
 
                     break;
