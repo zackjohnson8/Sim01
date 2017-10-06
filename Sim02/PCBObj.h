@@ -33,11 +33,16 @@ public:
 
     // Functions
     void addTask(PCBTask*);
+    void setProcessNum(int);
+    void setMemoryAlloSize(int);
+    void runPCB();
+
 
 private:
 
     std::queue<PCBTask>* _pcbNewTasks;
-
+    int _procNum;
+    int _memoryAlloSize;
 };
 
 

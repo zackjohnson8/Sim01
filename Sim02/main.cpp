@@ -70,6 +70,36 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
         // the difference is that we won't be multiplying the data but using the new example output
         metaData = MetaDataFile_p[index].getQueue();
         ConfigFile_p[index].outputLog();
+        PCBObj_p->setProcessNum(index+1);
+
+        if(ConfigFile_p->getMemoryAlloType() == KILO)
+        {
+
+            // already kilo
+            PCBObj_p->setMemoryAlloSize(ConfigFile_p->getMemoryAlloSize());
+
+        }else
+        if(ConfigFile_p->getMemoryAlloType() == MEGA)
+        {
+
+            // convert to kilo
+            PCBObj_p->setMemoryAlloSize(ConfigFile_p->getMemoryAlloSize()*1000);
+
+        }else
+        if(ConfigFile_p->getMemoryAlloType() == GIGA)
+        {
+
+            // convert to kilo
+            PCBObj_p->setMemoryAlloSize(ConfigFile_p->getMemoryAlloSize()*1000*1000);
+
+
+        }else
+        {
+
+            // ERROR
+            std::cout << "ERROR: ConfigFiles parameter Memory type isn't returning correctly" << std::endl;
+
+        }
 
         // TODO so remove all the multiplication in this form
 
@@ -95,7 +125,16 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
                     break;
 
                 case 'A':
-                    // Just starts and ends with no need to process yet
+                    // Using process now.
+                    newTask = new PCBTask();
+                    newTask->taskState_p = NEW;
+                    newTask->metaDataCode = metaData->front().metaDataCode;
+                    newTask->description = metaData->front().description;
+                    newTask->numberCycles = metaData->front().numberCycles;
+                    newTask->timeTask = 0;
+
+                    PCBObj_p->addTask(newTask);
+
                     break;
 
                 case 'P':

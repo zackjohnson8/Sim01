@@ -39,6 +39,8 @@ public:
     int getTimeMemory();
     int getTimeMouse();
     int getTimeSpeaker();
+    memoryAlloType getMemoryAlloType();
+    int getMemoryAlloSize();
 
     std::string getTestPath();
 

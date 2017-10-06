@@ -2,6 +2,8 @@
 #define PCBOBJ_CPP
 
 #include "PCBObj.h"
+#include "MemoryFunction.h"
+#include <ctime>
 #include <string>
 #include <iostream>
 #include <cstdlib>
@@ -11,6 +13,8 @@ PCBObj::PCBObj()
 {
 
     _pcbNewTasks = new std::queue<PCBTask>();
+    _procNum = 0;
+    _memoryAlloSize = 0;
 
 }
 
@@ -21,11 +25,148 @@ PCBObj::~PCBObj()
 
 }
 
+void PCBObj::setProcessNum(int T)
+{
+
+    _procNum = T;
+
+}
+
+void PCBObj::setMemoryAlloSize(int T)
+{
+
+    _memoryAlloSize = T; // should be coming in as kilobyte already so no need to mod that
+
+}
+
 void PCBObj::addTask(PCBTask* T)
 {
 
     T->taskState_p = READY;
     _pcbNewTasks->push(*T);
+
+
+
+}
+
+void PCBObj::runPCB()
+{
+
+    time_t processTimer;
+
+    // Pull each queued PCBTask and handle each task accordingly
+    while(!_pcbNewTasks->empty())
+    {
+
+        switch(_pcbNewTasks->front().metaDataCode)
+        {
+
+                case 'S':
+                    // Also just start and end
+                    processTimer = time(NULL);
+                    std::cout << processTimer << " - Simulator program starting" << std::endl;
+
+                    break;
+
+                case 'A':
+                    // Using process now.
+
+
+                    break;
+
+                case 'P':
+
+
+                    break;
+
+                case 'I':
+
+
+                    if( (_pcbNewTasks->front().description == "hard drive") )
+                    {
+
+                    }else
+                    if( (_pcbNewTasks->front().description == "keyboard") )
+                    {
+
+                    }else
+                    if( (_pcbNewTasks->front().description == "mouse") )
+                    {
+
+
+                    }else
+                    {
+
+                        // ERROR
+                        std::cout << "ERROR: deletion of task before sending to pcb" << std::endl;
+
+
+                    }
+
+                    break;
+
+                case 'O':
+
+
+                    if( (_pcbNewTasks->front().description == "hard drive") )
+                    {
+
+
+
+                    }else
+                    if( (_pcbNewTasks->front().description == "monitor") )
+                    {
+
+
+
+                    }else
+                    if( (_pcbNewTasks->front().description == "speaker") )
+                    {
+
+                    }else
+                    if( (_pcbNewTasks->front().description == "printer"))
+                    {
+
+                    }else
+                    {
+
+                        // ERROR
+                        std::cout << "ERROR: deletion of task before sending to pcb" << std::endl;
+                    }
+
+                    break;
+
+                case 'M':
+
+
+                    if( (_pcbNewTasks->front().description == "block") )
+                    {
+
+                    }else
+                    if( (_pcbNewTasks->front().description == "allocate") )
+                    {
+
+                    }else
+                    {
+
+                        // ERROR
+                        std::cout << "ERROR: deletion of task before sending to pcb" << std::endl;
+
+                    }
+
+                    break;
+
+                default:
+                    std::cout << "ERROR: metaDataCode isn't matching up correctly and can't run the task" << std::endl;
+
+        }
+
+    }
+
+}
+
+#endif
+
 
 /* holding code just incase
 
@@ -155,38 +296,3 @@ void PCBObj::addTask(PCBTask* T)
             }
 
             */
-
-}
-
-#endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -224,6 +224,20 @@ int ConfigFile::getTimePrinter()
 
 }
 
+memoryAlloType ConfigFile::getMemoryAlloType()
+{
+
+    return _memoryAlloType;
+
+}
+
+int ConfigFile::getMemoryAlloSize()
+{
+
+    return _memoryAllocationSize;
+
+}
+
 int ConfigFile::getTimeKeyboard()
 {
 
