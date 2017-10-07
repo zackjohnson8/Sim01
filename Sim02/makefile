@@ -2,9 +2,10 @@ CC = g++
 DEBUG = -g
 CFLAGS = -Wall -c $(DEBUG)
 LFLAGS = -Wall $(DEBUG)
+LFLAGSLIBS = -lpthread
 
 sim01 : main.o ConfigFile.o MetaDataFile.o MemoryFunction.o PCBObj.o
-	$(CC) $(LFLAGS) main.o ConfigFile.o MetaDataFile.o MemoryFunction.o PCBObj.o -o sim01
+	$(CC) $(LFLAGS) main.o ConfigFile.o MetaDataFile.o MemoryFunction.o PCBObj.o -o sim01 $(LFLAGSLIBS)
 
 main.o : main.cpp ConfigFile.h MetaDataFile.h MemoryFunction.h
 	$(CC) $(CFLAGS) main.cpp

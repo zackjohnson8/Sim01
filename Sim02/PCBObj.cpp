@@ -11,6 +11,7 @@
 #include <iomanip>
 #include <unistd.h>
 #include <bitset>
+#include <pthread.h>
 
 // constructor/destructor -------------------------------------------------
 PCBObj::PCBObj()
@@ -59,6 +60,11 @@ void PCBObj::runPCB()
     struct timeval tvEnd;
     struct timeval tvStart;
     gettimeofday(&tvStart,NULL);
+
+    // pthread... we need a way to identify the pthread and also a variable to tell the pthread how to handle the thread
+    pthread_t threadId;
+    pthread_attr_t threadAttr;
+    int* passVal;
 
     // Pull each queued PCBTask and handle each task accordingly
     while(!_pcbNewTasks->empty())
@@ -129,17 +135,33 @@ void PCBObj::runPCB()
 
                     // TODO THREADING~!!!
 
+                    // Initialize the threadAttribute
+                    pthread_attr_init(&threadAttr);
+
+                    // Integer value to pass to thread
+                    passVal = (int*)malloc(sizeof(*passVal));
+                    *passVal = _pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask;
+
+
                     if( (_pcbNewTasks->front().description == "hard drive") )
                     {
+
+                        pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
+                        pthread_join(threadId, NULL);
 
                     }else
                     if( (_pcbNewTasks->front().description == "keyboard") )
                     {
 
+                        pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
+                        pthread_join(threadId, NULL);
+
                     }else
                     if( (_pcbNewTasks->front().description == "mouse") )
                     {
 
+                        pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
+                        pthread_join(threadId, NULL);
 
                     }else
                     {
@@ -156,21 +178,32 @@ void PCBObj::runPCB()
 
 
                     // TODO THREADING!!!
+                    // Initialize the threadAttribute
+                    pthread_attr_init(&threadAttr);
+
+                    // Integer value to pass to thread
+                    passVal = (int*)malloc(sizeof(*passVal));
+                    *passVal = _pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask;
 
                     if( (_pcbNewTasks->front().description == "hard drive") )
                     {
 
-
+                        pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
+                        pthread_join(threadId, NULL);
 
                     }else
                     if( (_pcbNewTasks->front().description == "monitor") )
                     {
 
-
+                        pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
+                        pthread_join(threadId, NULL);
 
                     }else
                     if( (_pcbNewTasks->front().description == "speaker") )
                     {
+
+                        pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
+                        pthread_join(threadId, NULL);
 
                     }else
                     if( (_pcbNewTasks->front().description == "printer"))
@@ -235,6 +268,16 @@ void PCBObj::runPCB()
         _pcbNewTasks->pop();
 
     }
+
+}
+
+void* PCBObj::runPCBThreadFunction(void* arg)
+{
+
+    int i = *((int*)arg);
+
+    std::cout << "THREADED" << std::endl;
+    pthread_exit(0);
 
 }
 

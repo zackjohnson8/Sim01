@@ -44,6 +44,9 @@ private:
     int _procNum;
     int _memoryAlloSize;
     unsigned int _memoryLocation;
+
+    // private function
+    static void* runPCBThreadFunction(void* arg);
 };
 
 
