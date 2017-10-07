@@ -74,7 +74,6 @@ void PCBObj::runPCB()
                     {
                         // grab current time then print the difference from when this began
                         gettimeofday(&tvEnd, NULL);
-
                         std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Simulator program starting" << std::endl;
 
                     }else
@@ -82,7 +81,6 @@ void PCBObj::runPCB()
                     {
 
                         gettimeofday(&tvEnd, NULL);
-
                         std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Simulator program ending" << std::endl;
 
                     }
@@ -95,12 +93,10 @@ void PCBObj::runPCB()
                     {
                         // grab current time then print the difference from when this began
                         gettimeofday(&tvEnd, NULL);
-
                         std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - OS: preparing process " << this->_procNum << std::endl;
 
 
                         gettimeofday(&tvEnd, NULL);
-
                         std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - OS: starting process " << this->_procNum << std::endl;
 
                     }else
@@ -108,7 +104,6 @@ void PCBObj::runPCB()
                     {
 
                         gettimeofday(&tvEnd, NULL);
-
                         std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - OS: removing process " << this->_procNum << std::endl;
 
                     }
@@ -118,14 +113,12 @@ void PCBObj::runPCB()
                 case 'P':
 
                         gettimeofday(&tvEnd, NULL);
-
                         std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                         << ": start processing action" << std::endl;
 
                         usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask);
 
                         gettimeofday(&tvEnd, NULL);
-
                         std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                         << ": start processing action" << std::endl;
 
@@ -199,90 +192,29 @@ void PCBObj::runPCB()
                     {
 
                         gettimeofday(&tvEnd, NULL);
-
                         std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                         << ": start memory blocking" << std::endl;
 
                         usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask);
 
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": end memory blocking" << std::endl;
 
                     }else
                     if( (_pcbNewTasks->front().description == "allocate") )
                     {
 
                         gettimeofday(&tvEnd, NULL);
-
                         std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                         << ": allocating memory" << std::endl;
 
-                        gettimeofday(&tvEnd, NULL);
-
                         _memoryLocation = allocateMemory(_memoryAlloSize);
 
+                        gettimeofday(&tvEnd, NULL);
                         std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                         << ": memory allocated at 0x" << std::bitset<8>(_memoryLocation) << std::endl;
 
-
-
-
-
-//                        if( _memoryLocation < 10 )
-//                        {
-//
-//                            std::cout << "0x0000000" << _memoryLocation << std::endl;
-//
-//                        }else
-//                        if( _memoryLocation < 100 )
-//                        {
-//
-//                            std::cout << "0x000000" << _memoryLocation << std::endl;
-//
-//                        }else
-//                        if( _memoryLocation < 1000 )
-//                        {
-//
-//                            std::cout << "0x00000" << _memoryLocation << std::endl;
-//
-//                        }else
-//                        if( _memoryLocation < 10000 )
-//                        {
-//
-//                            std::cout << "0x0000" << _memoryLocation << std::endl;
-//
-//                        }else
-//                        if( _memoryLocation < 100000 )
-//                        {
-//
-//                            std::cout << "0x000" << _memoryLocation << std::endl;
-//
-//                        }else
-//                        if( _memoryLocation < 1000000 )
-//                        {
-//
-//                            std::cout << "0x00" << _memoryLocation << std::endl;
-//
-//                        }else
-//                        if( _memoryLocation < 10000000 )
-//                        {
-//
-//                            std::cout << "0x0" << _memoryLocation << std::endl;
-//
-//                        }else
-//                        if( _memoryLocation < 100000000 )
-//                        {
-//
-//                            std::cout << "0x" << _memoryLocation << std::endl;
-//
-//                        }else
-//                        {
-//
-//                            std::cout << std::endl << "ERROR: calling memoryFunction returned wrong value" << std::endl;
-//
-//                        }
-
-
-
-                        usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask);
 
 
                     }else
