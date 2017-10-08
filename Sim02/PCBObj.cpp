@@ -61,6 +61,8 @@ void PCBObj::runPCB()
     struct timeval tvStart;
     gettimeofday(&tvStart,NULL);
 
+    int microToMilli = 1000;
+
     // pthread... we need a way to identify the pthread and also a variable to tell the pthread how to handle the thread
     pthread_t threadId;
     pthread_attr_t threadAttr;
@@ -80,14 +82,16 @@ void PCBObj::runPCB()
                     {
                         // grab current time then print the difference from when this began
                         gettimeofday(&tvEnd, NULL);
-                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Simulator program starting" << std::endl;
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
+                        << " - Simulator program starting" << std::endl;
 
                     }else
                     if(_pcbNewTasks->front().description == "end")
                     {
 
                         gettimeofday(&tvEnd, NULL);
-                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Simulator program ending" << std::endl;
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
+                        << " - Simulator program ending" << std::endl;
 
                     }
 
@@ -99,18 +103,21 @@ void PCBObj::runPCB()
                     {
                         // grab current time then print the difference from when this began
                         gettimeofday(&tvEnd, NULL);
-                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - OS: preparing process " << this->_procNum << std::endl;
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
+                        << " - OS: preparing process " << this->_procNum << std::endl;
 
 
                         gettimeofday(&tvEnd, NULL);
-                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - OS: starting process " << this->_procNum << std::endl;
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
+                        << " - OS: starting process " << this->_procNum << std::endl;
 
                     }else
                     if(_pcbNewTasks->front().description == "end")
                     {
 
                         gettimeofday(&tvEnd, NULL);
-                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - OS: removing process " << this->_procNum << std::endl;
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
+                        << " - OS: removing process " << this->_procNum << std::endl;
 
                     }
 
@@ -119,14 +126,14 @@ void PCBObj::runPCB()
                 case 'P':
 
                         gettimeofday(&tvEnd, NULL);
-                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                         << ": start processing action" << std::endl;
 
                         usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask);
 
                         gettimeofday(&tvEnd, NULL);
-                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                        << ": start processing action" << std::endl;
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": end processing action" << std::endl;
 
 
                     break;
@@ -146,22 +153,45 @@ void PCBObj::runPCB()
                     if( (_pcbNewTasks->front().description == "hard drive") )
                     {
 
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": start hard drive input" << std::endl;
+
                         pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                         pthread_join(threadId, NULL);
+
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": end hard drive input" << std::endl;
 
                     }else
                     if( (_pcbNewTasks->front().description == "keyboard") )
                     {
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": start keyboard input" << std::endl;
 
                         pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                         pthread_join(threadId, NULL);
+
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": end keyboard input" << std::endl;
 
                     }else
                     if( (_pcbNewTasks->front().description == "mouse") )
                     {
 
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": start mouse input" << std::endl;
+
                         pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                         pthread_join(threadId, NULL);
+
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": start mouse input" << std::endl;
 
                     }else
                     {
@@ -188,26 +218,61 @@ void PCBObj::runPCB()
                     if( (_pcbNewTasks->front().description == "hard drive") )
                     {
 
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": start hard drive output" << std::endl;
+
                         pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                         pthread_join(threadId, NULL);
+
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": end hard drive output" << std::endl;
 
                     }else
                     if( (_pcbNewTasks->front().description == "monitor") )
                     {
 
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": start monitor output" << std::endl;
+
                         pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                         pthread_join(threadId, NULL);
+
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": end monitor output" << std::endl;
 
                     }else
                     if( (_pcbNewTasks->front().description == "speaker") )
                     {
 
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": start speaker output" << std::endl;
+
                         pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                         pthread_join(threadId, NULL);
+
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": end speaker output" << std::endl;
 
                     }else
                     if( (_pcbNewTasks->front().description == "printer"))
                     {
+
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": start printer output" << std::endl;
+
+                        pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
+                        pthread_join(threadId, NULL);
+
+                        gettimeofday(&tvEnd, NULL);
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        << ": end printer output" << std::endl;
 
                     }else
                     {
@@ -225,13 +290,13 @@ void PCBObj::runPCB()
                     {
 
                         gettimeofday(&tvEnd, NULL);
-                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                         << ": start memory blocking" << std::endl;
 
                         usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask);
 
                         gettimeofday(&tvEnd, NULL);
-                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                         << ": end memory blocking" << std::endl;
 
                     }else
@@ -239,13 +304,13 @@ void PCBObj::runPCB()
                     {
 
                         gettimeofday(&tvEnd, NULL);
-                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                         << ": allocating memory" << std::endl;
 
                         _memoryLocation = allocateMemory(_memoryAlloSize);
 
                         gettimeofday(&tvEnd, NULL);
-                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec) * 100000) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
+                        std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                         << ": memory allocated at 0x" << std::bitset<8>(_memoryLocation) << std::endl;
 
 
@@ -276,7 +341,8 @@ void* PCBObj::runPCBThreadFunction(void* arg)
 
     int i = *((int*)arg);
 
-    std::cout << "THREADED" << std::endl;
+    usleep(i * 1000);
+
     pthread_exit(0);
 
 }
