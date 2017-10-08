@@ -71,26 +71,27 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
         metaData = MetaDataFile_p[index].getQueue();
         ConfigFile_p[index].outputLog();
         PCBObj_p->setProcessNum(index+1);
+        PCBObj_p->setLogTo(ConfigFile_p[index].getLogTo(), ConfigFile_p[index].getLogToString());
 
         if(ConfigFile_p->getMemoryAlloType() == KILO)
         {
 
             // already kilo
-            PCBObj_p->setMemoryAlloSize(ConfigFile_p->getMemoryAlloSize());
+            PCBObj_p->setMemoryAlloSize(ConfigFile_p[index].getMemoryAlloSize());
 
         }else
         if(ConfigFile_p->getMemoryAlloType() == MEGA)
         {
 
             // convert to kilo
-            PCBObj_p->setMemoryAlloSize(ConfigFile_p->getMemoryAlloSize()*1000);
+            PCBObj_p->setMemoryAlloSize(ConfigFile_p[index].getMemoryAlloSize()*1000);
 
         }else
         if(ConfigFile_p->getMemoryAlloType() == GIGA)
         {
 
             // convert to kilo
-            PCBObj_p->setMemoryAlloSize(ConfigFile_p->getMemoryAlloSize()*1000*1000);
+            PCBObj_p->setMemoryAlloSize(ConfigFile_p[index].getMemoryAlloSize()*1000*1000);
 
 
         }else
@@ -101,8 +102,8 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
 
         }
 
-        // TODO so remove all the multiplication in this form
 
+        // Begin to handle all the tasks and place them into the PCB
         while(!metaData->empty())
         {
 
@@ -280,7 +281,6 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
 
         }
 
-        // TODO
         // Now that the pcb has taken in the tasks you'll need to run it before the next config file
         // tasks
         PCBObj_p->runPCB();
@@ -294,46 +294,3 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
 
 
 }
-
-/*
-
-    RUN THE PROGRAM WITH
-    ./sim01 config_1.conf config_2.conf config_3.conf
-
-    SELF NOTES:
-
-    CONFIG FILE / META DATA HANDLING
-    Read in the data from the config file. Once we've had that
-    written we can then extract the data that will run based on the config file.
-
-    Config files can have the same test file? Either way I can just take the
-    data for each file and use it with the config file.
-
-    Both the config file parameter and meta data parameter arrays should have
-    the same position. This position can be easily used to keep track of
-    which config file belongs to each meta data file.
-
-    The MetaDataFile class will probably just return a set of data in queue
-    form so that it can be manipulated.
-
-    //////////////////////////////////////////
-
-
-
-*/
-
-/*
-
-    Project 2 Notes:
-
-    The project needs a pcb that handles the key components                         DONE
-    NEW, WAITING, READY, RUNNING, TERMINATE.
-
-    Allocate memory with the function provided in MemoryFunction.c.
-    You'll call the function with the correct about of kbytes but may need
-    to convert the data before sending. This may mean converting gb and mb to kb
-
-    Fix ConfigFile to take in the memory line which has been added.
-
-    Use the threads for I/O inputs and the wait for everything else.
-*/

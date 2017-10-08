@@ -31,6 +31,25 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="ConfigFile.cpp" />
+		<Unit filename="ConfigFile.h" />
+		<Unit filename="MemoryFunction.cpp" />
+		<Unit filename="MemoryFunction.h" />
+		<Unit filename="MetaDataFile.cpp" />
+		<Unit filename="MetaDataFile.h" />
+		<Unit filename="PCBObj.cpp" />
+		<Unit filename="PCBObj.h" />
+		<Unit filename="README.md" />
+		<Unit filename="Test_1a.mdf" />
+		<Unit filename="config_1-1.conf" />
+		<Unit filename="config_1.conf" />
+		<Unit filename="config_2.conf" />
+		<Unit filename="config_3.conf" />
+		<Unit filename="config_4.conf" />
+		<Unit filename="logfile_1.lgf" />
+		<Unit filename="logfile_2.lgf" />
+		<Unit filename="main.cpp" />
+		<Unit filename="makefile" />
 		<Extensions>
 			<code_completion />
 			<debugger />

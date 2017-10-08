@@ -12,6 +12,13 @@ enum TaskState{
     TERMINATE
 };
 
+enum logTo{
+    BOTH,
+    MONITOR,
+    LOGFILE,
+    NEITHER
+};
+
 typedef struct{
 
     TaskState taskState_p;
@@ -36,6 +43,7 @@ public:
     void setProcessNum(int);
     void setMemoryAlloSize(int);
     void runPCB();
+    void setLogTo(logTo, const std::string &);
 
 
 private:
@@ -44,6 +52,9 @@ private:
     int _procNum;
     int _memoryAlloSize;
     unsigned int _memoryLocation;
+    std::string _pathLogFile;
+
+    logTo _logTo;
 
     // private function
     static void* runPCBThreadFunction(void* arg);

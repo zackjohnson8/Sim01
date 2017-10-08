@@ -2,13 +2,7 @@
 #define CONFIGFILE_H
 
 #include <string>
-
-enum logTo{
-    BOTH,
-    MONITOR,
-    LOGFILE,
-    NEITHER
-};
+#include "PCBObj.h"
 
 enum memoryAlloType
 {
@@ -42,7 +36,10 @@ public:
     memoryAlloType getMemoryAlloType();
     int getMemoryAlloSize();
 
+    logTo getLogTo();
+
     std::string getTestPath();
+    std::string getLogToString();
 
     void outputLog();
 

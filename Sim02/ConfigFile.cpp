@@ -33,6 +33,13 @@ ConfigFile::~ConfigFile()
 
 }
 
+logTo ConfigFile::getLogTo()
+{
+
+    return _logTo;
+
+}
+
 // TODO Still need to parse the data
 void ConfigFile::loadConfigFile(const std::string &fileName)
 {
@@ -144,6 +151,7 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
         //
         std::getline(stream, holdLine, ':');
         std::getline(stream, _logToString);
+
 
         _logToString.erase(_logToString.begin(), _logToString.begin()+1);
 
@@ -272,10 +280,18 @@ std::string ConfigFile::getTestPath()
     return _pathFile;
 }
 
+std::string ConfigFile::getLogToString()
+{
+
+    return _pathLogFile;
+
+}
+
 void ConfigFile::outputLog()
 {
 
     std::ofstream ostream;
+
 
     // Now that you've got the data log it if specified above
     if(_logTo == BOTH)
