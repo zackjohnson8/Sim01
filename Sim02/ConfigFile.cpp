@@ -98,7 +98,7 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
         //std::cout << _timeMemoryCyc << std::endl;
 
-/* Previously used in proj 1 but not in 2
+
         //
         std::getline(stream, holdLine, ':');
         stream >> _timeMouseCyc;
@@ -110,7 +110,7 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
         stream >> _timeSpeakerCyc;
 
         //std::cout << _timeSpeakerCyc << std::endl;
-*/
+
 
         std::getline(stream, holdLine, '(');
         // take in the char to find out if its k, M, G

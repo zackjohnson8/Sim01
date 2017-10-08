@@ -5,7 +5,7 @@ Hard Drive = 25 ms/cycle
 Printer = 15 ms/cycle
 Keyboard = 60 ms/cycle
 Memory = 20 ms/cycle
-Mouse = 0 ms/cycle
-Speaker = 0 ms/cycle
+Mouse = 20 ms/cycle
+Speaker = 5 ms/cycle
 Logged to: monitor and logfile_2.lgf
 
