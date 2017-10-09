@@ -1,0 +1,48 @@
+Configuration File Data
+Processor = 50 ms/cycle
+Monitor = 10 ms/cycle
+Hard Drive = 15 ms/cycle
+Printer = 35 ms/cycle
+Keyboard = 15 ms/cycle
+Memory = 60 ms/cycle
+Mouse = 20 ms/cycle
+Speaker = 5 ms/cycle
+Logged to: monitor and logfile_4.lgf
+
+0.000026 - Simulator program starting
+0.000065 - OS: preparing process 4
+0.000081 - OS: starting process 4
+0.000097 - Process 4: start processing action
+0.001292 - Process 4: end processing action
+0.001369 - Process 4: allocating memory
+0.001392 - Process 4: memory allocated at 0x11101111
+0.001417 - Process 4: start monitor output
+0.072395 - Process 4: end monitor output
+0.072507 - Process 4: start hard drive input
+0.193658 - Process 4: end hard drive input
+0.193823 - Process 4: start mouse input
+0.354909 - Process 4: start mouse input
+0.355061 - Process 4: start printer output
+1.055736 - Process 4: end printer output
+1.055904 - Process 4: start processing action
+1.056464 - Process 4: end processing action
+1.056599 - Process 4: start printer output
+1.197647 - Process 4: end printer output
+1.197814 - Process 4: start memory blocking
+1.198508 - Process 4: end memory blocking
+1.198635 - Process 4: start keyboard input
+1.454657 - Process 4: end keyboard input
+1.454776 - Process 4: start memory blocking
+1.455458 - Process 4: end memory blocking
+1.455536 - Process 4: start speaker output
+1.496555 - Process 4: end speaker output
+1.496697 - Process 4: start processing action
+1.497322 - Process 4: end processing action
+1.497403 - Process 4: start processing action
+1.498322 - Process 4: end processing action
+1.498402 - Process 4: start hard drive output
+1.589228 - Process 4: end hard drive output
+1.589439 - Process 4: start processing action
+1.590895 - Process 4: end processing action
+1.590975 - OS: removing process 4
+1.590992 - Simulator program ending

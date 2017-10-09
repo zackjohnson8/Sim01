@@ -9,3 +9,40 @@ Mouse = 20 ms/cycle
 Speaker = 5 ms/cycle
 Logged to: monitor and logfile_2.lgf
 
+0.000179 - Simulator program starting
+0.000384 - OS: preparing process 2
+0.000504 - OS: starting process 2
+0.000753 - Process 2: start processing action
+0.001773 - Process 2: end processing action
+0.001919 - Process 2: allocating memory
+0.001943 - Process 2: memory allocated at 0x00001111
+0.002059 - Process 2: start monitor output
+0.073138 - Process 2: end monitor output
+0.073522 - Process 2: start hard drive input
+0.274491 - Process 2: end hard drive input
+0.274659 - Process 2: start mouse input
+0.435838 - Process 2: start mouse input
+0.436033 - Process 2: start printer output
+0.737261 - Process 2: end printer output
+0.737460 - Process 2: start processing action
+0.737730 - Process 2: end processing action
+0.737878 - Process 2: start printer output
+0.799292 - Process 2: end printer output
+0.799470 - Process 2: start memory blocking
+0.799962 - Process 2: end memory blocking
+0.800087 - Process 2: start keyboard input
+1.821284 - Process 2: end keyboard input
+1.821470 - Process 2: start memory blocking
+1.821774 - Process 2: end memory blocking
+1.821932 - Process 2: start speaker output
+1.863289 - Process 2: end speaker output
+1.863482 - Process 2: start processing action
+1.863817 - Process 2: end processing action
+1.863992 - Process 2: start processing action
+1.865027 - Process 2: end processing action
+1.865162 - Process 2: start hard drive output
+2.016343 - Process 2: end hard drive output
+2.016533 - Process 2: start processing action
+2.018111 - Process 2: end processing action
+2.018317 - OS: removing process 2
+2.018334 - Simulator program ending
