@@ -46,7 +46,7 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
     std::ifstream stream;
     std::string holdLine;
-    char holdChar;
+
 
     stream.open(fileName.c_str());
 
@@ -56,6 +56,7 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
         // Eat the first line
         std::getline(stream, holdLine);
 
+
         // Ate the first line. Now read and place the data in the correct locations.
 
         while(stream.good())
@@ -63,11 +64,16 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
 
             std::getline(stream, holdLine, ':');
+            //std::cout << holdLine << std::endl;
 
             if(holdLine == "Version/Phase")
             {
 
                 stream >> _version;
+
+                std::getline(stream, holdLine);
+
+                //std::cout << "version set" << std::endl;
 
             }else
             if( holdLine == "File Path")
@@ -76,11 +82,17 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
                 std::getline(stream, _pathFile);
                 _pathFile.erase(_pathFile.begin(), _pathFile.begin()+1);
 
+
+                //std::cout << "File Path set" << std::endl;
+
             }else
             if( holdLine == "Processor cycle time (msec)")
             {
 
+                //std::cout << "Processor set" << std::endl;
                 stream >> _timeProcessorCyc;
+
+                std::getline(stream, holdLine);
 
             }else
             if( holdLine == "Monitor display time (msec)")
@@ -88,29 +100,44 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
                 stream >> _timeMonitorDis;
 
+                //std::cout << "Monitor set" << std::endl;
+                std::getline(stream, holdLine);
+
             }else
             if( holdLine == "Hard drive cycle time (msec)")
             {
 
+                //std::cout << "Hard drive set" << std::endl;
                 stream >> _timeHardDriCyc;
+
+                std::getline(stream, holdLine);
 
             }else
             if( holdLine == "Printer cycle time (msec)")
             {
 
+                //std::cout << "Printer set" << std::endl;
                 stream >> _timePrinterCyc;
+
+                std::getline(stream, holdLine);
 
             }else
             if( holdLine == "Keyboard cycle time (msec)")
             {
 
+                //std::cout << "Keyboard set" << std::endl;
                 stream >> _timeKeyboardCyc;
+
+                std::getline(stream, holdLine);
 
             }else
             if( holdLine == "Memory cycle time (msec)" )
             {
 
+                //std::cout << "Memory cycle set" << std::endl;
                 stream >> _timeMemoryCyc;
+
+                std::getline(stream, holdLine);
 
             }else
             if( holdLine == "System memory (kbytes)")
@@ -118,18 +145,27 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
                 _memoryAlloType = KILO;
                 stream >> _memoryAllocationSize;
+                //std::cout << "System mem set" << std::endl;
+
+                std::getline(stream, holdLine);
 
             }else
             if( holdLine == "System memory (Mbytes)")
             {
                 _memoryAlloType = MEGA;
                 stream >> _memoryAllocationSize;
+                //std::cout << "System Memory set" << std::endl;
+
+                std::getline(stream, holdLine);
 
             }else
             if( holdLine == "System memory (Gbytes)")
             {
                 _memoryAlloType = GIGA;
                 stream >> _memoryAllocationSize;
+                //std::cout << "System mem set" << std::endl;
+
+                std::getline(stream, holdLine);
 
             }else
             if( holdLine == "Memory block size (kbytes)")
@@ -137,6 +173,9 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
                 _memoryBlockType = KILO;
                 stream >> _memoryBlockSize;
+                //std::cout << "Memory block set" << std::endl;
+
+                std::getline(stream, holdLine);
 
             }else
             if( holdLine == "Memory block size (Mbytes)")
@@ -144,6 +183,9 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
                 _memoryBlockType = MEGA;
                 stream >> _memoryBlockSize;
+                //std::cout << "Memory block set" << std::endl;
+
+                std::getline(stream, holdLine);
 
             }else
             if( holdLine == "Memory block size (Gbytes)")
@@ -151,18 +193,27 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
                 _memoryBlockType = GIGA;
                 stream >> _memoryBlockSize;
+                //std::cout << "Memory block set" << std::endl;
+
+                std::getline(stream, holdLine);
 
             }else
             if( holdLine == "Printer quantity")
             {
 
                 stream >> _printerQuantity;
+                //std::cout << "Printer quan set" << std::endl;
+
+                std::getline(stream, holdLine);
 
             }else
             if( holdLine == "Hard drive quantity")
             {
 
                 stream >> _harddriveQuantity;
+                //std::cout << "Hard drive quan set" << std::endl;
+
+                std::getline(stream, holdLine);
 
             }else
             if( holdLine == "Log")
@@ -191,6 +242,8 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
                     _logTo = BOTH;
                 }
 
+                //std::cout << "Log set" << std::endl;
+
             }else
             if( holdLine == "Log File Path")
             {
@@ -198,6 +251,8 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
                 std::getline(stream, _pathLogFile);
 
                 _pathLogFile.erase(_pathLogFile.begin(), _pathLogFile.begin()+1);
+
+                //std::cout << "log path set" << std::endl;
 
             }else
             {
@@ -210,7 +265,7 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
                 }else
                 {
 
-                    std::cout << "ERROR: reading in config file" << std::endl;
+                    std::cout << "ERROR: reading in config file" << std::endl << std::endl;
 
                 }
 
