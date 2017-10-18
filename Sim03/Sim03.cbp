@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Sim03" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Sim03" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Sim03" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="ConfigFile.cpp" />
+		<Unit filename="ConfigFile.h" />
+		<Unit filename="MemoryFunction.cpp" />
+		<Unit filename="MemoryFunction.h" />
+		<Unit filename="MetaDataFile.cpp" />
+		<Unit filename="MetaDataFile.h" />
+		<Unit filename="PCBObj.cpp" />
+		<Unit filename="PCBObj.h" />
+		<Unit filename="README.md" />
+		<Unit filename="config_1.conf" />
+		<Unit filename="config_2.conf" />
+		<Unit filename="config_3.conf" />
+		<Unit filename="config_4.conf" />
+		<Unit filename="main.cpp" />
+		<Unit filename="makefile" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

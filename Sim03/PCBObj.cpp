@@ -144,7 +144,7 @@ void PCBObj::runPCB()
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": start processing action" << std::endl;
 
-                    usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask*1000);
+                    usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask);
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
@@ -308,7 +308,7 @@ void PCBObj::runPCB()
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": start memory blocking" << std::endl;
 
-                    usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask*1000);
+                    usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask);
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
@@ -406,7 +406,7 @@ void PCBObj::runPCB()
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": start processing action" << std::endl;
 
-                    usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask*1000);
+                    usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask);
 
                     gettimeofday(&tvEnd, NULL);
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
@@ -570,7 +570,7 @@ void PCBObj::runPCB()
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": start memory blocking" << std::endl;
 
-                    usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask*1000);
+                    usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask);
 
                     gettimeofday(&tvEnd, NULL);
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
@@ -681,7 +681,7 @@ void PCBObj::runPCB()
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": start processing action" << std::endl;
 
-                    usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask*1000);
+                    usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask);
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
@@ -877,7 +877,7 @@ void PCBObj::runPCB()
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": start memory blocking" << std::endl;
 
-                    usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask*1000);
+                    usleep(_pcbNewTasks->front().numberCycles * _pcbNewTasks->front().timeTask);
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
@@ -941,7 +941,7 @@ void* PCBObj::runPCBThreadFunction(void* arg)
 
     int i = *((int*)arg);
 
-    usleep(i*1000);
+    usleep(i * 1000);
 
     pthread_exit(0);
 
@@ -949,3 +949,132 @@ void* PCBObj::runPCBThreadFunction(void* arg)
 
 #endif
 
+
+/* holding code just incase
+
+    for(int index = 0; index < numOfFiles - 1; index++)
+    {
+
+        metaData = MetaDataFile_p[index].getQueue();
+        ConfigFile_p[index].outputLog();
+
+        while(!metaData->empty())
+        {
+
+
+            switch(metaData->front().metaDataCode)
+            {
+
+                case 'S':
+                    // Also just start and end
+                    break;
+
+                case 'A':
+                    // Just starts and ends with no need to process yet
+                    break;
+
+                case 'P':
+                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
+                    metaData->front().numberCycles << " = ";
+
+                    std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeProcessor() << std::endl;
+                    break;
+
+                case 'I':
+                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
+                    metaData->front().numberCycles << " = ";
+
+                    if( (metaData->front().description == "hard drive") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeHardDrive() << std::endl;
+
+                    }else
+                    if( (metaData->front().description == "keyboard") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeKeyboard() << std::endl;
+
+
+                    }else
+                    if( (metaData->front().description == "mouse") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMouse() << std::endl;
+
+                    }else
+                    {
+
+                        // ERROR
+
+                    }
+
+                    break;
+
+                case 'O':
+                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
+                    metaData->front().numberCycles << " = ";
+
+                    if( (metaData->front().description == "hard drive") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeHardDrive() << std::endl;
+
+                    }else
+                    if( (metaData->front().description == "monitor") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMonitor() << std::endl;
+
+                    }else
+                    if( (metaData->front().description == "speaker") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeSpeaker() << std::endl;
+
+                    }else
+                    if( (metaData->front().description == "printer"))
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimePrinter() << std::endl;
+
+                    }else
+                    {
+
+                        // ERROR
+
+
+                    }
+
+                    break;
+
+                case 'M':
+                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
+                    metaData->front().numberCycles << " = ";
+
+                    if( (metaData->front().description == "block") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMemory() << std::endl;
+
+                    }else
+                    if( (metaData->front().description == "allocate") )
+                    {
+
+                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMemory() << std::endl;
+
+                    }else
+                    {
+
+                        // ERROR
+
+                    }
+
+                    break;
+
+                default:
+                    std::cout << "ERROR: metaDataCode isn't matching up correctly and can't run the task" << std::endl;
+
+            }
+
+            */
