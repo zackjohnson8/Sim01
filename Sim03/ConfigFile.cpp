@@ -19,8 +19,8 @@ ConfigFile::ConfigFile()
     _timePrinterCyc = 0;
     _timeKeyboardCyc = 0;
     _timeMemoryCyc = 0;
-    _timeMouseCyc = 0;
-    _timeSpeakerCyc = 0;
+    _timeMouseCyc = 1;
+    _timeSpeakerCyc = 1;
     _memoryAllocationSize = 0;
 
     _memoryAlloType = KILO;
