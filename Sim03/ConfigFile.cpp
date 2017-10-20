@@ -23,6 +23,9 @@ ConfigFile::ConfigFile()
     _timeSpeakerCyc = 1;
     _memoryAllocationSize = 0;
 
+    _printerQuantity = 1;
+    _harddriveQuantity = 1;
+
     _memoryAlloType = KILO;
 
     _logTo = NEITHER;
@@ -101,6 +104,13 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
                 stream >> _timeMonitorDis;
 
                 //std::cout << "Monitor set" << std::endl;
+                std::getline(stream, holdLine);
+
+            }else
+            if(holdLine == "Mouse cycle time (msec)")
+            {
+
+                stream >> _timeMouseCyc;
                 std::getline(stream, holdLine);
 
             }else
@@ -245,6 +255,14 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
                 //std::cout << "Log set" << std::endl;
 
             }else
+            if(holdLine == "Speaker cycle time (msec)")
+            {
+
+                stream >> _timeSpeakerCyc;
+
+                std::getline(stream, holdLine);
+
+            }else
             if( holdLine == "Log File Path")
             {
 
@@ -372,6 +390,20 @@ std::string ConfigFile::getLogToString()
 {
 
     return _pathLogFile;
+
+}
+
+int ConfigFile::getNumOfHardDrives()
+{
+
+    return _harddriveQuantity;
+
+}
+
+int ConfigFile::getNumOfPrinters()
+{
+
+    return _printerQuantity;
 
 }
 

@@ -44,6 +44,8 @@ public:
     void setMemoryAlloSize(int);
     void runPCB();
     void setLogTo(logTo, const std::string &);
+    void setNumOfHardDrives(int);
+    void setNumOfPrinters(int);
 
 
 private:
@@ -53,6 +55,12 @@ private:
     int _memoryAlloSize;
     unsigned int _memoryLocation;
     std::string _pathLogFile;
+
+    int _numOfPrinters;
+    int _numOfHardDrives;
+
+    int* _flagPrinters;
+    int* _flagHardDrives;
 
     logTo _logTo;
 

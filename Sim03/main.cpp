@@ -72,6 +72,9 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
         ConfigFile_p[index].outputLog();
         PCBObj_p->setProcessNum(index+1);
         PCBObj_p->setLogTo(ConfigFile_p[index].getLogTo(), ConfigFile_p[index].getLogToString());
+        PCBObj_p->setNumOfHardDrives(ConfigFile_p[index].getNumOfHardDrives());
+        PCBObj_p->setNumOfPrinters(ConfigFile_p[index].getNumOfPrinters());
+
 
         if(ConfigFile_p->getMemoryAlloType() == KILO)
         {

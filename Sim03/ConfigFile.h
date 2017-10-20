@@ -35,6 +35,8 @@ public:
     int getTimeSpeaker();
     memoryAlloType getMemoryAlloType();
     int getMemoryAlloSize();
+    int getNumOfHardDrives();
+    int getNumOfPrinters();
 
     logTo getLogTo();
 

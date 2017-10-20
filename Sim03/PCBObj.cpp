@@ -24,6 +24,12 @@ PCBObj::PCBObj()
     _logTo = BOTH;
     _pathLogFile = "defaultPCBLog";
 
+    _numOfHardDrives  = 0;
+    _numOfPrinters = 0;
+
+    _flagPrinters = NULL;
+    _flagHardDrives = NULL;
+
 }
 
 PCBObj::~PCBObj()
@@ -62,6 +68,56 @@ void PCBObj::setLogTo(logTo p, const std::string &fileName)
 
     _logTo = p;
     _pathLogFile = fileName;
+
+}
+
+void PCBObj::setNumOfHardDrives(int pNum)
+{
+
+    if( _flagHardDrives != NULL)
+    {
+
+        delete _flagHardDrives;
+        _flagHardDrives = NULL;
+
+    }
+
+    // Set the number integer then create the array
+    _numOfHardDrives = pNum;
+    _flagHardDrives = new int[pNum];
+
+    // set all the flags to 0
+    for(int x = 0; x < pNum; x++)
+    {
+
+        _flagHardDrives[x] = 0;
+
+    }
+
+}
+
+void PCBObj::setNumOfPrinters(int pNum)
+{
+
+    if( _flagPrinters != NULL)
+    {
+
+        delete _flagPrinters;
+        _flagPrinters = NULL;
+
+    }
+
+    // Set the number integer then create the array
+    _numOfPrinters = pNum;
+    _flagPrinters = new int[pNum];
+
+    // set all the flags to 0
+    for(int x = 0; x < pNum; x++)
+    {
+
+        _flagPrinters[x] = 0;
+
+    }
 
 }
 
@@ -949,132 +1005,3 @@ void* PCBObj::runPCBThreadFunction(void* arg)
 
 #endif
 
-
-/* holding code just incase
-
-    for(int index = 0; index < numOfFiles - 1; index++)
-    {
-
-        metaData = MetaDataFile_p[index].getQueue();
-        ConfigFile_p[index].outputLog();
-
-        while(!metaData->empty())
-        {
-
-
-            switch(metaData->front().metaDataCode)
-            {
-
-                case 'S':
-                    // Also just start and end
-                    break;
-
-                case 'A':
-                    // Just starts and ends with no need to process yet
-                    break;
-
-                case 'P':
-                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
-                    metaData->front().numberCycles << " = ";
-
-                    std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeProcessor() << std::endl;
-                    break;
-
-                case 'I':
-                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
-                    metaData->front().numberCycles << " = ";
-
-                    if( (metaData->front().description == "hard drive") )
-                    {
-
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeHardDrive() << std::endl;
-
-                    }else
-                    if( (metaData->front().description == "keyboard") )
-                    {
-
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeKeyboard() << std::endl;
-
-
-                    }else
-                    if( (metaData->front().description == "mouse") )
-                    {
-
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMouse() << std::endl;
-
-                    }else
-                    {
-
-                        // ERROR
-
-                    }
-
-                    break;
-
-                case 'O':
-                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
-                    metaData->front().numberCycles << " = ";
-
-                    if( (metaData->front().description == "hard drive") )
-                    {
-
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeHardDrive() << std::endl;
-
-                    }else
-                    if( (metaData->front().description == "monitor") )
-                    {
-
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMonitor() << std::endl;
-
-                    }else
-                    if( (metaData->front().description == "speaker") )
-                    {
-
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeSpeaker() << std::endl;
-
-                    }else
-                    if( (metaData->front().description == "printer"))
-                    {
-
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimePrinter() << std::endl;
-
-                    }else
-                    {
-
-                        // ERROR
-
-
-                    }
-
-                    break;
-
-                case 'M':
-                    std::cout << metaData->front().metaDataCode << '(' << metaData->front().description << ')' <<
-                    metaData->front().numberCycles << " = ";
-
-                    if( (metaData->front().description == "block") )
-                    {
-
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMemory() << std::endl;
-
-                    }else
-                    if( (metaData->front().description == "allocate") )
-                    {
-
-                        std::cout << metaData->front().numberCycles * ConfigFile_p[index].getTimeMemory() << std::endl;
-
-                    }else
-                    {
-
-                        // ERROR
-
-                    }
-
-                    break;
-
-                default:
-                    std::cout << "ERROR: metaDataCode isn't matching up correctly and can't run the task" << std::endl;
-
-            }
-
-            */
