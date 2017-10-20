@@ -137,6 +137,11 @@ void PCBObj::runPCB()
     pthread_attr_t threadAttr;
     int* passVal;
 
+    int index;
+
+    pthread_mutex_t mutex;
+    pthread_mutex_init(&mutex, NULL);
+
     // Pull each queued PCBTask and handle each task accordingly
     while(!_pcbNewTasks->empty())
     {
@@ -288,6 +293,17 @@ void PCBObj::runPCB()
 
                 if( (_pcbNewTasks->front().description == "hard drive") )
                 {
+                    pthread_mutex_lock(&mutex);
+
+                    index = 0;
+
+                    while( _flagHardDrives[index % _numOfHardDrives] == 1 )
+                    {
+                        index++;
+                    }
+
+                    // set flag since I'm about to use it
+                    _flagHardDrives[index] = 1;
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
@@ -299,6 +315,11 @@ void PCBObj::runPCB()
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": end hard drive output" << std::endl;
+
+                    // reset flag back to 0 now that its done
+                    _flagHardDrives[index] = 0;
+
+                    pthread_mutex_unlock(&mutex);
 
                 }else
                 if( (_pcbNewTasks->front().description == "monitor") )
@@ -334,16 +355,36 @@ void PCBObj::runPCB()
                 if( (_pcbNewTasks->front().description == "printer"))
                 {
 
+                    // MUTEX THE ENTIRE IF STATEMENT HERE
+
+                    pthread_mutex_lock(&mutex);
+
+                    index = 0;
+
+                    while( _flagPrinters[index % _numOfPrinters] == 1 )
+                    {
+                        index++;
+                    }
+
+                    // set flag since I'm about to use it
+                    _flagPrinters[index] = 1;
+
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": start printer output" << std::endl;
+                    << ": start printer output on PRNTR " << index << std::endl;
 
                     pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                     pthread_join(threadId, NULL);
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": end printer output" << std::endl;
+                    << ": end printer output on PRNTR " << index << std::endl;
+
+                    // reset flag back to 0 now that its done
+                    _flagPrinters[index] = 0;
+
+                    // TO HERE
+                    pthread_mutex_unlock(&mutex);
 
                 }else
                 {
@@ -551,6 +592,18 @@ void PCBObj::runPCB()
                 if( (_pcbNewTasks->front().description == "hard drive") )
                 {
 
+                    pthread_mutex_lock(&mutex);
+
+                    index = 0;
+
+                    while( _flagHardDrives[index % _numOfHardDrives] == 1 )
+                    {
+                        index++;
+                    }
+
+                    // set flag since I'm about to use it
+                    _flagHardDrives[index] = 1;
+
                     gettimeofday(&tvEnd, NULL);
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": start hard drive output" << std::endl;
@@ -561,6 +614,11 @@ void PCBObj::runPCB()
                     gettimeofday(&tvEnd, NULL);
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": end hard drive output" << std::endl;
+
+                    // reset flag back to 0 now that its done
+                    _flagHardDrives[index] = 0;
+
+                    pthread_mutex_unlock(&mutex);
 
                 }else
                 if( (_pcbNewTasks->front().description == "monitor") )
@@ -596,6 +654,18 @@ void PCBObj::runPCB()
                 if( (_pcbNewTasks->front().description == "printer"))
                 {
 
+                    pthread_mutex_lock(&mutex);
+
+                    index = 0;
+
+                    while( _flagPrinters[index % _numOfPrinters] == 1 )
+                    {
+                        index++;
+                    }
+
+                    // set flag since I'm about to use it
+                    _flagPrinters[index] = 1;
+
                     gettimeofday(&tvEnd, NULL);
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": start printer output" << std::endl;
@@ -606,6 +676,11 @@ void PCBObj::runPCB()
                     gettimeofday(&tvEnd, NULL);
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": end printer output" << std::endl;
+
+                    // reset flag back to 0 now that its done
+                    _flagPrinters[index] = 0;
+
+                    pthread_mutex_unlock(&mutex);
 
                 }else
                 {
@@ -840,6 +915,18 @@ void PCBObj::runPCB()
                 if( (_pcbNewTasks->front().description == "hard drive") )
                 {
 
+                    pthread_mutex_lock(&mutex);
+
+                    index = 0;
+
+                    while( _flagHardDrives[index % _numOfHardDrives] == 1 )
+                    {
+                        index++;
+                    }
+
+                    // set flag since I'm about to use it
+                    _flagHardDrives[index] = 1;
+
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": start hard drive output" << std::endl;
@@ -854,6 +941,11 @@ void PCBObj::runPCB()
                     << ": end hard drive output" << std::endl;
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": end hard drive output" << std::endl;
+
+                    // reset flag back to 0 now that its done
+                    _flagHardDrives[index] = 0;
+
+                    pthread_mutex_unlock(&mutex);
 
                 }else
                 if( (_pcbNewTasks->front().description == "monitor") )
@@ -897,6 +989,18 @@ void PCBObj::runPCB()
                 if( (_pcbNewTasks->front().description == "printer"))
                 {
 
+                    pthread_mutex_lock(&mutex);
+
+                    index = 0;
+
+                    while( _flagPrinters[index % _numOfPrinters] == 1 )
+                    {
+                        index++;
+                    }
+
+                    // set flag since I'm about to use it
+                    _flagPrinters[index] = 1;
+
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": start printer output" << std::endl;
@@ -911,6 +1015,11 @@ void PCBObj::runPCB()
                     << ": end printer output" << std::endl;
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": end printer output" << std::endl;
+
+                    // reset flag back to 0 now that its done
+                    _flagPrinters[index] = 0;
+
+                    pthread_mutex_unlock(&mutex);
 
                 }else
                 {
@@ -989,6 +1098,7 @@ void PCBObj::runPCB()
     }
 
     ostream.close();
+    pthread_mutex_destroy(&mutex);
 
 }
 
