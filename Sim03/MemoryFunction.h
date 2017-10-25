@@ -31,4 +31,8 @@
 
 unsigned int allocateMemory( int totMem );
 
+static int blockSizes = 0;
+static int memoryMaxSize = 0;
+static int memoryCurrentSize = 0;
+
 #endif // MEM_FUNC_H
