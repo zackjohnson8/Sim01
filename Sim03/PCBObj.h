@@ -67,6 +67,9 @@ private:
     int* _flagPrinters;
     int* _flagHardDrives;
 
+    int indexPrinters;
+    int indexHDD;
+
     logTo _logTo;
 
     // private function

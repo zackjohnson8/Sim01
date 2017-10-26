@@ -26,6 +26,9 @@ PCBObj::PCBObj()
     _logTo = BOTH;
     _pathLogFile = "defaultPCBLog";
 
+    indexPrinters = -1;
+    indexHDD = -1;
+
     _numOfHardDrives  = 0;
     _numOfPrinters = 0;
 
@@ -181,6 +184,8 @@ void PCBObj::runPCB()
                     << " - Simulator program ending" << std::endl;
 
                     _memoryCurrentSize = 0;
+                    indexHDD = -1;
+                    indexPrinters = -1;
 
                 }
 
@@ -313,14 +318,17 @@ void PCBObj::runPCB()
                     while( _flagHardDrives[index % _numOfHardDrives] == 1 )
                     {
                         index++;
+                        
                     }
+
+                    indexHDD++;
 
                     // set flag since I'm about to use it
                     _flagHardDrives[index] = 1;
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": start hard drive output on HDD " << index << std::endl;
+                    << ": start hard drive output on HDD " << indexHDD % _numOfHardDrives << std::endl;
 
                     pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                     pthread_join(threadId, NULL);
@@ -379,19 +387,21 @@ void PCBObj::runPCB()
                         index++;
                     }
 
+                    indexPrinters++;
+
                     // set flag since I'm about to use it
                     _flagPrinters[index] = 1;
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": start printer output on PRNTR " << index << std::endl;
+                    << ": start printer output on PRNTR " << indexPrinters % _numOfPrinters << std::endl;
 
                     pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                     pthread_join(threadId, NULL);
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": end printer output on PRNTR " << index << std::endl;
+                    << ": end printer output" << std::endl;
 
                     // reset flag back to 0 now that its done
                     _flagPrinters[index] = 0;
@@ -614,12 +624,14 @@ void PCBObj::runPCB()
                         index++;
                     }
 
+                    indexHDD++;
+
                     // set flag since I'm about to use it
                     _flagHardDrives[index] = 1;
 
                     gettimeofday(&tvEnd, NULL);
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": start hard drive output on HDD " << index << std::endl;
+                    << ": start hard drive output on HDD " << indexHDD % _numOfHardDrives << std::endl;
 
                     pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                     pthread_join(threadId, NULL);
@@ -676,12 +688,14 @@ void PCBObj::runPCB()
                         index++;
                     }
 
+                    indexPrinters++;
+
                     // set flag since I'm about to use it
                     _flagPrinters[index] = 1;
 
                     gettimeofday(&tvEnd, NULL);
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": start printer output" << std::endl;
+                    << ": start printer output on PRNTR " << indexPrinters % _numOfPrinters<< std::endl;
 
                     pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                     pthread_join(threadId, NULL);
@@ -937,14 +951,16 @@ void PCBObj::runPCB()
                         index++;
                     }
 
+                    indexHDD++;
+
                     // set flag since I'm about to use it
                     _flagHardDrives[index] = 1;
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": start hard drive output on HDD " << index << std::endl;
+                    << ": start hard drive output on HDD " << indexHDD % _numOfHardDrives << std::endl;
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": start hard drive output on HDD " << index << std::endl;
+                    << ": start hard drive output on HDD " << indexHDD % _numOfHardDrives << std::endl;
 
                     pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                     pthread_join(threadId, NULL);
@@ -1011,14 +1027,16 @@ void PCBObj::runPCB()
                         index++;
                     }
 
+                    indexPrinters++;
+
                     // set flag since I'm about to use it
                     _flagPrinters[index] = 1;
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": start printer output" << std::endl;
+                    << ": start printer output on PRNTR " << indexPrinters % _numOfPrinters << std::endl;
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": start printer output" << std::endl;
+                    << ": start printer output on PRNTR" << indexPrinters % _numOfPrinters << std::endl;
 
                     pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                     pthread_join(threadId, NULL);
