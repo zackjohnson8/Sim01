@@ -9,50 +9,50 @@ Mouse = 1 ms/cycle
 Speaker = 1 ms/cycle
 Logged to: monitor and logfile_1.lgf
 
-0.000088 - Simulator program starting
-0.000204 - OS: preparing process 2
-0.000248 - OS: starting process 2
-0.000272 - Process 2: start processing action
-0.000574 - Process 2: end processing action
-0.000644 - Process 2: allocating memory
-0.000679 - Process 2: memory allocated at 0x11011000
-0.000715 - Process 2: start monitor output
-0.155932 - Process 2: end monitor output
-0.156121 - Process 2: start hard drive input
-1.357523 - Process 2: end hard drive input
-1.357711 - Process 2: start printer output
-12.360043 - Process 2: end printer output
-12.360259 - Process 2: allocating memory
-12.360290 - Process 2: memory allocated at 0x00111010
-12.360441 - Process 2: start printer output
-15.661716 - Process 2: end printer output
-15.661914 - Process 2: allocating memory
-15.661945 - Process 2: memory allocated at 0x00000101
-15.662074 - Process 2: start hard drive input
-16.713024 - Process 2: end hard drive input
-16.713234 - Process 2: start hard drive output
-17.014236 - Process 2: end hard drive output
-17.014397 - Process 2: start hard drive output
-19.416216 - Process 2: end hard drive output
-19.416376 - Process 2: allocating memory
-19.416407 - Process 2: memory allocated at 0x10100110
-19.416431 - Process 2: start processing action
-19.416847 - Process 2: end processing action
-19.416925 - Process 2: start printer output
-21.617975 - Process 2: end printer output
-21.618128 - Process 2: start memory blocking
-21.618662 - Process 2: end memory blocking
-21.618738 - Process 2: start keyboard input
-22.639952 - Process 2: end keyboard input
-22.640198 - Process 2: start memory blocking
-22.640600 - Process 2: end memory blocking
-22.640738 - Process 2: start processing action
-22.640894 - Process 2: end processing action
-22.641001 - Process 2: start processing action
-22.641689 - Process 2: end processing action
-22.641901 - Process 2: start hard drive output
-23.543034 - Process 2: end hard drive output
-23.543184 - Process 2: start processing action
-23.543671 - Process 2: end processing action
-23.543745 - OS: removing process 2
-23.543766 - Simulator program ending
+0.000050 - Simulator program starting
+0.000178 - OS: preparing process 2
+0.000286 - OS: starting process 2
+0.000384 - Process 2: start processing action
+0.001157 - Process 2: end processing action
+0.001307 - Process 2: allocating memory
+0.001549 - Process 2: memory allocated at 0x80
+0.001689 - Process 2: start monitor output
+0.156599 - Process 2: end monitor output
+0.156832 - Process 2: start hard drive input
+1.358009 - Process 2: end hard drive input
+1.358244 - Process 2: start printer output
+12.360519 - Process 2: end printer output
+12.360760 - Process 2: allocating memory
+12.360846 - Process 2: memory allocated at 0x100
+12.360875 - Process 2: start printer output
+15.662338 - Process 2: end printer output
+15.662612 - Process 2: allocating memory
+15.662696 - Process 2: memory allocated at 0x180
+15.662726 - Process 2: start hard drive input
+16.714092 - Process 2: end hard drive input
+16.714334 - Process 2: start hard drive output
+17.015818 - Process 2: end hard drive output
+17.016230 - Process 2: start hard drive output
+19.417456 - Process 2: end hard drive output
+19.417681 - Process 2: allocating memory
+19.417734 - Process 2: memory allocated at 0x200
+19.417768 - Process 2: start processing action
+19.418001 - Process 2: end processing action
+19.418131 - Process 2: start printer output
+21.619682 - Process 2: end printer output
+21.619905 - Process 2: start memory blocking
+21.620169 - Process 2: end memory blocking
+21.620235 - Process 2: start keyboard input
+22.641899 - Process 2: end keyboard input
+22.642046 - Process 2: start memory blocking
+22.643280 - Process 2: end memory blocking
+22.643375 - Process 2: start processing action
+22.643621 - Process 2: end processing action
+22.643682 - Process 2: start processing action
+22.643847 - Process 2: end processing action
+22.643900 - Process 2: start hard drive output
+23.545141 - Process 2: end hard drive output
+23.545330 - Process 2: start processing action
+23.545597 - Process 2: end processing action
+23.545721 - OS: removing process 2
+23.545740 - Simulator program ending

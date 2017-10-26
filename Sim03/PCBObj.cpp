@@ -20,7 +20,9 @@ PCBObj::PCBObj()
 
     _pcbNewTasks = new std::queue<PCBTask>();
     _procNum = 0;
-    _memoryAlloSize = 0;
+    _memoryMaxSize = 0;
+    _memoryCurrentSize = 0;
+    _blockSizes = 0;
     _logTo = BOTH;
     _pathLogFile = "defaultPCBLog";
 
@@ -43,13 +45,6 @@ void PCBObj::setProcessNum(int T)
 {
 
     _procNum = T;
-
-}
-
-void PCBObj::setMemoryAlloSize(int T)
-{
-
-    _memoryAlloSize = T; // should be coming in as kilobyte already so no need to mod that
 
 }
 
@@ -99,9 +94,11 @@ void PCBObj::setNumOfHardDrives(int pNum)
 void PCBObj::setNumOfPrinters(int pNum)
 {
 
-    if( _flagPrinters != NULL)
+    int getMemoryBlockSize();
+    int getMemoryAlloSize();    if( _flagPrinters != NULL)
     {
-
+        int getMemoryBlockSize();
+        int getMemoryAlloSize();
         delete _flagPrinters;
         _flagPrinters = NULL;
 
@@ -118,6 +115,20 @@ void PCBObj::setNumOfPrinters(int pNum)
         _flagPrinters[x] = 0;
 
     }
+
+}
+
+void PCBObj::setBlockSize(int pSize)
+{
+
+    _blockSizes = pSize;
+
+}
+
+void PCBObj::setMemorySize(int pSize)
+{
+
+    _memoryMaxSize = pSize;
 
 }
 
@@ -168,6 +179,8 @@ void PCBObj::runPCB()
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
                     << " - Simulator program ending" << std::endl;
+
+                    _memoryCurrentSize = 0;
 
                 }
 
@@ -307,7 +320,7 @@ void PCBObj::runPCB()
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": start hard drive output" << std::endl;
+                    << ": start hard drive output on HDD " << index << std::endl;
 
                     pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                     pthread_join(threadId, NULL);
@@ -419,11 +432,11 @@ void PCBObj::runPCB()
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": allocating memory" << std::endl;
 
-                    _memoryLocation = allocateMemory(_memoryAlloSize);
+                    _memoryLocation = allocateMemory();
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": memory allocated at 0x" << std::bitset<8>(_memoryLocation) << std::endl;
+                    << ": memory allocated at 0x" << std::setprecision(8) << std::hex << _memoryLocation << std::endl;
 
 
 
@@ -606,7 +619,7 @@ void PCBObj::runPCB()
 
                     gettimeofday(&tvEnd, NULL);
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": start hard drive output" << std::endl;
+                    << ": start hard drive output on HDD " << index << std::endl;
 
                     pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                     pthread_join(threadId, NULL);
@@ -715,11 +728,11 @@ void PCBObj::runPCB()
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": allocating memory" << std::endl;
 
-                    _memoryLocation = allocateMemory(_memoryAlloSize);
+                    _memoryLocation = allocateMemory();
 
                     gettimeofday(&tvEnd, NULL);
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": memory allocated at 0x" << std::bitset<8>(_memoryLocation) << std::endl;
+                    << ": memory allocated at 0x" << std::setprecision(8) << std::hex << _memoryLocation << std::endl;
 
 
 
@@ -929,9 +942,9 @@ void PCBObj::runPCB()
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": start hard drive output" << std::endl;
+                    << ": start hard drive output on HDD " << index << std::endl;
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": start hard drive output" << std::endl;
+                    << ": start hard drive output on HDD " << index << std::endl;
 
                     pthread_create(&threadId, &threadAttr, runPCBThreadFunction, (void*)passVal );
                     pthread_join(threadId, NULL);
@@ -1060,13 +1073,13 @@ void PCBObj::runPCB()
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
                     << ": allocating memory" << std::endl;
 
-                    _memoryLocation = allocateMemory(_memoryAlloSize);
+                    _memoryLocation = allocateMemory();
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": memory allocated at 0x" << std::bitset<8>(_memoryLocation) << std::endl;
+                    << ": memory allocated at 0x" << std::setprecision(8) << std::hex << _memoryLocation << std::endl;
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000 << " - Process " << this->_procNum
-                    << ": memory allocated at 0x" << std::bitset<8>(_memoryLocation) << std::endl;
+                    << ": memory allocated at 0x" << std::setprecision(8) << std::hex << _memoryLocation << std::endl;
 
 
 
@@ -1111,6 +1124,28 @@ void* PCBObj::runPCBThreadFunction(void* arg)
 
     pthread_exit(0);
 
+}
+
+// Return a kilobyte answer that needs to be converted by the caller
+unsigned int PCBObj::allocateMemory()
+{
+    unsigned int address;
+    
+    if(( _memoryCurrentSize + _blockSizes ) < _memoryMaxSize )
+    {
+
+        address = _memoryCurrentSize + _blockSizes;
+        _memoryCurrentSize += _blockSizes;
+
+    }else
+    {
+
+        address = _blockSizes;
+        _memoryCurrentSize = _blockSizes;
+
+    }
+    
+	return address;
 }
 
 #endif

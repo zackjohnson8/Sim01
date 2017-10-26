@@ -33,10 +33,15 @@ public:
     int getTimeMemory();
     int getTimeMouse();
     int getTimeSpeaker();
-    memoryAlloType getMemoryAlloType();
-    int getMemoryAlloSize();
+
     int getNumOfHardDrives();
     int getNumOfPrinters();
+    
+    memoryAlloType getMemoryAlloType();
+    int getMemoryAlloSize();
+    memoryAlloType getMemoryBlockType();
+    int getMemoryBlockSize();
+
 
     logTo getLogTo();
 

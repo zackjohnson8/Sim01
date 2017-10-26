@@ -18,7 +18,7 @@
 #ifndef MEM_FUNC_C
 #define MEM_FUNC_C
 
-// HEADER FILES ////////////////////////////////////////////////////////////////
+// HEADER FILES ////////html burn text/html burn text/html burn text//////////////////////////////////////////////////////
 
 #include "MemoryFunction.h"
 
@@ -43,17 +43,6 @@
  *
  * @exception Address pointer should be null
  */
-unsigned int allocateMemory( int totMem )
-{
-	unsigned int address;
-	
-	srand(time(NULL));
-	
-	if( totMem > 0 )
-	{
-		address = rand() % totMem;
-	}
-	return address;
-}
+
 
 #endif // MEM_FUNC_C

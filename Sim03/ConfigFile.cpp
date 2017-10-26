@@ -407,6 +407,20 @@ int ConfigFile::getNumOfPrinters()
 
 }
 
+int ConfigFile::getMemoryBlockSize()
+{
+
+    return _memoryBlockSize;
+
+}
+
+memoryAlloType ConfigFile::getMemoryBlockType()
+{
+
+    return _memoryBlockType;
+
+}
+
 void ConfigFile::outputLog()
 {
 

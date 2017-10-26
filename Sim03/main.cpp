@@ -5,7 +5,6 @@
 #include <queue>
 #include "ConfigFile.h"
 #include "MetaDataFile.h"
-#include "MemoryFunction.h"
 #include "PCBObj.h"
 
 void handleMetaData(int, ConfigFile*, MetaDataFile*, PCBObj*);
@@ -74,27 +73,60 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
         PCBObj_p->setLogTo(ConfigFile_p[index].getLogTo(), ConfigFile_p[index].getLogToString());
         PCBObj_p->setNumOfHardDrives(ConfigFile_p[index].getNumOfHardDrives());
         PCBObj_p->setNumOfPrinters(ConfigFile_p[index].getNumOfPrinters());
-
-
-        if(ConfigFile_p->getMemoryAlloType() == KILO)
+        
+        
+        // Set memory block and size
+        if(ConfigFile_p[index].getMemoryBlockType() == KILO)
         {
 
             // already kilo
-            PCBObj_p->setMemoryAlloSize(ConfigFile_p[index].getMemoryAlloSize());
+            PCBObj_p->setBlockSize(ConfigFile_p[index].getMemoryBlockSize());
+
 
         }else
-        if(ConfigFile_p->getMemoryAlloType() == MEGA)
+        if(ConfigFile_p[index].getMemoryBlockType() == MEGA)
         {
 
             // convert to kilo
-            PCBObj_p->setMemoryAlloSize(ConfigFile_p[index].getMemoryAlloSize()*1000);
+            PCBObj_p->setBlockSize(ConfigFile_p[index].getMemoryBlockSize()*1000);
 
         }else
-        if(ConfigFile_p->getMemoryAlloType() == GIGA)
+        if(ConfigFile_p[index].getMemoryBlockType() == GIGA)
         {
 
             // convert to kilo
-            PCBObj_p->setMemoryAlloSize(ConfigFile_p[index].getMemoryAlloSize()*1000*1000);
+            PCBObj_p->setBlockSize(ConfigFile_p[index].getMemoryBlockSize()*1000*1000);
+
+
+        }else
+        {
+
+            // ERROR
+            std::cout << "ERROR: ConfigFiles parameter Memory type isn't returning correctly" << std::endl;
+
+        }
+
+
+        if(ConfigFile_p[index].getMemoryAlloType() == KILO)
+        {
+
+            // already kilo
+            PCBObj_p->setMemorySize(ConfigFile_p[index].getMemoryAlloSize());
+
+
+        }else
+        if(ConfigFile_p[index].getMemoryAlloType() == MEGA)
+        {
+
+            // convert to kilo
+            PCBObj_p->setMemorySize(ConfigFile_p[index].getMemoryAlloSize()*1000);
+
+        }else
+        if(ConfigFile_p[index].getMemoryAlloType() == GIGA)
+        {
+
+            // convert to kilo
+            PCBObj_p->setMemorySize(ConfigFile_p[index].getMemoryAlloSize()*1000*1000);
 
 
         }else

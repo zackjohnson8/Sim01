@@ -41,12 +41,12 @@ public:
     // Functions
     void addTask(PCBTask*);
     void setProcessNum(int);
-    void setMemoryAlloSize(int);
     void runPCB();
     void setLogTo(logTo, const std::string &);
     void setNumOfHardDrives(int);
     void setNumOfPrinters(int);
-
+    void setBlockSize(int);
+    void setMemorySize(int);
 
 private:
 
@@ -55,6 +55,11 @@ private:
     int _memoryAlloSize;
     unsigned int _memoryLocation;
     std::string _pathLogFile;
+    unsigned int allocateMemory();
+
+    int _blockSizes;
+    int _memoryMaxSize;
+    int _memoryCurrentSize;
 
     int _numOfPrinters;
     int _numOfHardDrives;
