@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 
         ConfigFile_p[index - 1].loadConfigFile(argv[index]);
 
-        // config file has been read and logged
+        // config file has been read
         if(MetaDataFile_p[index - 1].loadMetaData(ConfigFile_p[index - 1].getTestPath()) == 0)
         {
 
@@ -67,8 +67,8 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
 
         // get the meta data for tasks/processes. Continue to log to the file and monitor if asked.
         // the difference is that we won't be multiplying the data but using the new example output
-        metaData = MetaDataFile_p[index].getQueue();
         ConfigFile_p[index].outputLog();
+        metaData = MetaDataFile_p[index].getQueue();
         PCBObj_p->setProcessNum(index+1);
         PCBObj_p->setLogTo(ConfigFile_p[index].getLogTo(), ConfigFile_p[index].getLogToString());
         PCBObj_p->setNumOfHardDrives(ConfigFile_p[index].getNumOfHardDrives());

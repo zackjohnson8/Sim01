@@ -2,7 +2,6 @@
 #define PCBOBJ_CPP
 
 #include "PCBObj.h"
-#include "MemoryFunction.h"
 #include <time.h>
 #include <ctime>
 #include <string>
@@ -13,6 +12,9 @@
 #include <bitset>
 #include <pthread.h>
 #include <fstream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/time.h>
 
 // constructor/destructor -------------------------------------------------
 PCBObj::PCBObj()
@@ -1130,6 +1132,8 @@ void PCBObj::runPCB()
 
     ostream.close();
     pthread_mutex_destroy(&mutex);
+
+    std::cout << std::dec;
 
 }
 

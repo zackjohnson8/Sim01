@@ -13,15 +13,15 @@ ConfigFile::ConfigFile()
 
     // may as well zero out the data until you read the files
     _version = 0;
-    _timeProcessorCyc = 0;
-    _timeMonitorDis = 0;
-    _timeHardDriCyc = 0;
-    _timePrinterCyc = 0;
-    _timeKeyboardCyc = 0;
-    _timeMemoryCyc = 0;
+    _timeProcessorCyc = 1;
+    _timeMonitorDis = 1;
+    _timeHardDriCyc = 1;
+    _timePrinterCyc = 1;
+    _timeKeyboardCyc = 1;
+    _timeMemoryCyc = 1;
     _timeMouseCyc = 1;
     _timeSpeakerCyc = 1;
-    _memoryAllocationSize = 0;
+    _memoryAllocationSize = 1;
 
     _printerQuantity = 1;
     _harddriveQuantity = 1;
@@ -233,14 +233,18 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
                 _logToString.erase(_logToString.begin(), _logToString.begin()+1);
 
+                std::cout << _logToString;
+
                 // Based on string set _logTo to BOTH, MONITOR, or LOGFILE. Else FAIL
                 if(_logToString == "Log to Both")
                 {
                     _logTo = BOTH;
+
                 }else
                 if(_logToString == "Log to Monitor")
                 {
                     _logTo = MONITOR;
+
                 }else
                 if(_logToString == "Log to File")
                 {
@@ -426,10 +430,22 @@ void ConfigFile::outputLog()
 
     std::ofstream ostream;
 
+    std::cout << std::dec;
 
     // Now that you've got the data log it if specified above
     if(_logTo == BOTH)
     {
+
+        std::cout << "Configuration File Data" << std::endl;
+        std::cout << "Processor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
+        std::cout << "Monitor = " << _timeMonitorDis << " ms/cycle" << std::endl;
+        std::cout << "Hard Drive = " << _timeHardDriCyc << " ms/cycle" << std::endl;
+        std::cout << "Printer = " << _timePrinterCyc << " ms/cycle" << std::endl;
+        std::cout << "Keyboard = " << _timeKeyboardCyc << " ms/cycle" << std::endl;
+        std::cout << "Memory = " << _timeMemoryCyc << " ms/cycle" << std::endl;
+        std::cout << "Mouse = " << _timeMouseCyc << " ms/cycle" << std::endl;
+        std::cout << "Speaker = " << _timeSpeakerCyc << " ms/cycle" << std::endl;
+        std::cout << "Logged to: " << "monitor and " << _pathLogFile << std::endl << std::endl;
 
         ostream.open(_pathLogFile.c_str());
         if(ostream.good())
@@ -455,16 +471,8 @@ void ConfigFile::outputLog()
 
         }
 
-        std::cout << "Configuration File Data" << std::endl;
-        std::cout << "Processor = " << _timeProcessorCyc << " ms/cycle" << std::endl;
-        std::cout << "Monitor = " << _timeMonitorDis << " ms/cycle" << std::endl;
-        std::cout << "Hard Drive = " << _timeHardDriCyc << " ms/cycle" << std::endl;
-        std::cout << "Printer = " << _timePrinterCyc << " ms/cycle" << std::endl;
-        std::cout << "Keyboard = " << _timeKeyboardCyc << " ms/cycle" << std::endl;
-        std::cout << "Memory = " << _timeMemoryCyc << " ms/cycle" << std::endl;
-        std::cout << "Mouse = " << _timeMouseCyc << " ms/cycle" << std::endl;
-        std::cout << "Speaker = " << _timeSpeakerCyc << " ms/cycle" << std::endl;
-        std::cout << "Logged to: " << "monitor and " << _pathLogFile << std::endl << std::endl;
+
+
     }else
     if(_logTo == LOGFILE)
     {
@@ -482,7 +490,7 @@ void ConfigFile::outputLog()
             ostream << "Memory = " << _timeMemoryCyc << " ms/cycle" << std::endl;
             ostream << "Mouse = " << _timeMouseCyc << " ms/cycle" << std::endl;
             ostream << "Speaker = " << _timeSpeakerCyc << " ms/cycle" << std::endl;
-            ostream << "Logged to: " << "monitor and " << _pathLogFile << std::endl << std::endl;
+            ostream << "Logged to: " << _pathLogFile << std::endl << std::endl;
 
             ostream.close();
         }else
@@ -506,7 +514,7 @@ void ConfigFile::outputLog()
         std::cout << "Memory = " << _timeMemoryCyc << " ms/cycle" << std::endl;
         std::cout << "Mouse = " << _timeMouseCyc << " ms/cycle" << std::endl;
         std::cout << "Speaker = " << _timeSpeakerCyc << " ms/cycle" << std::endl;
-        std::cout << "Logged to: " << "monitor and " << _pathLogFile << std::endl << std::endl;
+        std::cout << "Logged to: " << "monitor" << std::endl << std::endl;
 
     }else
     if(_logTo == NEITHER)
