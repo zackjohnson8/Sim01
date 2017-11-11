@@ -18,6 +18,7 @@ MetaDataFile::MetaDataFile()
 MetaDataFile::~MetaDataFile()
 {
 
+    delete _metaQueue;
 
 }
 

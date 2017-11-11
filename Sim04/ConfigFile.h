@@ -2,12 +2,13 @@
 #define CONFIGFILE_H
 
 #include <string>
+#include "PCBObj.h"
 
-enum logTo{
-    BOTH,
-    MONITOR,
-    LOGFILE,
-    NEITHER
+enum memoryAlloType
+{
+    KILO,
+    MEGA,
+    GIGA
 };
 
 class ConfigFile
@@ -33,7 +34,19 @@ public:
     int getTimeMouse();
     int getTimeSpeaker();
 
+    int getNumOfHardDrives();
+    int getNumOfPrinters();
+    
+    memoryAlloType getMemoryAlloType();
+    int getMemoryAlloSize();
+    memoryAlloType getMemoryBlockType();
+    int getMemoryBlockSize();
+
+
+    logTo getLogTo();
+
     std::string getTestPath();
+    std::string getLogToString();
 
     void outputLog();
 
@@ -53,6 +66,14 @@ private:
     int _timeMemoryCyc;
     int _timeMouseCyc;
     int _timeSpeakerCyc;
+    int _memoryAllocationSize;
+    int _memoryBlockSize;
+
+    memoryAlloType _memoryAlloType;
+    memoryAlloType _memoryBlockType;
+
+    int _printerQuantity;
+    int _harddriveQuantity;
 
     logTo _logTo;
 
