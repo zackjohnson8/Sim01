@@ -43,7 +43,6 @@ logTo ConfigFile::getLogTo()
 
 }
 
-// TODO Still need to parse the data
 void ConfigFile::loadConfigFile(const std::string &fileName)
 {
 
@@ -58,7 +57,7 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
         // Eat the first line
         std::getline(stream, holdLine);
-
+        
 
         // Ate the first line. Now read and place the data in the correct locations.
 
@@ -67,7 +66,7 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
 
             std::getline(stream, holdLine, ':');
-            //std::cout << holdLine << std::endl;
+            // std::cout << holdLine << std::endl;
 
             if(holdLine == "Version/Phase")
             {
@@ -91,14 +90,38 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
             }else
             if(holdLine == "Processor Quantum Number") // processor quantum
             {
-
                 
+                stream >> _processorQuantumNum;
+
+                std::getline(stream, holdLine);
 
             }else
             if(holdLine == "CPU Scheduling Code") // pcb alg to use
             {
 
+                std::getline(stream, holdLine);
+                
+                holdLine.erase(holdLine.begin(), holdLine.begin()+1);
 
+                if(holdLine == "FIFO")
+                {
+                    _CPUScheduling = FIFO;
+                }else
+                if(_logToString == "SJF")
+                {
+                    _CPUScheduling = SJF;
+
+                }else
+                if(_logToString == "PS")
+                {
+                    _CPUScheduling = PS;
+                }else
+                {
+
+                    std::cout << "ERROR: configfile.cpp, trouble with CPU Scheduling, 128" << std::endl;
+                    // DEFAULT FIFO
+                    _CPUScheduling = FIFO;
+                }   
 
             }else
             if( holdLine == "Processor cycle time (msec)")
@@ -245,7 +268,7 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
 
                 _logToString.erase(_logToString.begin(), _logToString.begin()+1);
 
-                std::cout << _logToString;
+                //std::cout << _logToString;
 
                 // Based on string set _logTo to BOTH, MONITOR, or LOGFILE. Else FAIL
                 if(_logToString == "Log to Both")

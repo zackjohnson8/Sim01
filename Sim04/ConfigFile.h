@@ -11,6 +11,15 @@ enum memoryAlloType
     GIGA
 };
 
+enum algorithmChoices
+{
+
+    FIFO,
+    SJF,
+    PS
+
+};
+
 class ConfigFile
 {
 
@@ -74,6 +83,10 @@ private:
 
     int _printerQuantity;
     int _harddriveQuantity;
+
+    int _processorQuantumNum;
+    algorithmChoices _CPUScheduling;
+
 
     logTo _logTo;
 
