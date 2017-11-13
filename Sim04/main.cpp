@@ -10,6 +10,19 @@
 void handleMetaData(int, ConfigFile*, MetaDataFile*, PCBObj*);
 
 
+// TODO : SIM04
+/*
+
+Implement:
+    CPU Scheduling, 
+    - FIFO -> 
+    - SJF ->
+    - PS ->
+
+
+
+*/
+
 int main(int argc, char* argv[])
 {
 
@@ -62,6 +75,7 @@ void handleMetaData(int numOfFiles, ConfigFile* ConfigFile_p, MetaDataFile* Meta
         PCBObj_p->setLogTo(ConfigFile_p[index].getLogTo(), ConfigFile_p[index].getLogToString());
         PCBObj_p->setNumOfHardDrives(ConfigFile_p[index].getNumOfHardDrives());
         PCBObj_p->setNumOfPrinters(ConfigFile_p[index].getNumOfPrinters());
+        PCBObj_p->setCPUScheduling(ConfigFile_p[index].getCPUScheduling());
         
         
         // Set memory block and size

@@ -11,15 +11,6 @@ enum memoryAlloType
     GIGA
 };
 
-enum algorithmChoices
-{
-
-    FIFO,
-    SJF,
-    PS
-
-};
-
 class ConfigFile
 {
 
@@ -51,6 +42,7 @@ public:
     memoryAlloType getMemoryBlockType();
     int getMemoryBlockSize();
 
+    algorithmChoices getCPUScheduling();
 
     logTo getLogTo();
 

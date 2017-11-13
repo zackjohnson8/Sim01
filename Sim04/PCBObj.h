@@ -19,6 +19,15 @@ enum logTo{
     NEITHER
 };
 
+enum algorithmChoices
+{
+
+    FIFO,
+    SJF,
+    PS
+
+};
+
 typedef struct{
 
     TaskState taskState_p;
@@ -47,6 +56,7 @@ public:
     void setNumOfPrinters(int);
     void setBlockSize(int);
     void setMemorySize(int);
+    void setCPUScheduling(algorithmChoices);
 
 private:
 
@@ -71,6 +81,8 @@ private:
     int indexHDD;
 
     logTo _logTo;
+
+    algorithmChoices CPUScheduling;
 
     // private function
     static void* runPCBThreadFunction(void* arg);

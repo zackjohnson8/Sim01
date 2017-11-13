@@ -384,6 +384,13 @@ memoryAlloType ConfigFile::getMemoryAlloType()
 
 }
 
+algorithmChoices ConfigFile::getCPUScheduling()
+{
+
+    return _CPUScheduling;
+
+}
+
 int ConfigFile::getMemoryAlloSize()
 {
 

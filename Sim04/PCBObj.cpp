@@ -37,6 +37,8 @@ PCBObj::PCBObj()
     _flagPrinters = NULL;
     _flagHardDrives = NULL;
 
+    CPUScheduling = FIFO; // default
+
 }
 
 PCBObj::~PCBObj()
@@ -50,16 +52,6 @@ void PCBObj::setProcessNum(int T)
 {
 
     _procNum = T;
-
-}
-
-void PCBObj::addTask(PCBTask* T)
-{
-
-    T->taskState_p = READY;
-    _pcbNewTasks->push(*T);
-
-
 
 }
 
@@ -137,6 +129,26 @@ void PCBObj::setMemorySize(int pSize)
 
 }
 
+void PCBObj::setCPUScheduling(algorithmChoices T)
+{
+
+    CPUScheduling = T;
+
+}
+
+void PCBObj::addTask(PCBTask* T)
+{
+
+    T->taskState_p = READY;
+    _pcbNewTasks->push(*T);
+
+    // for different CPU Scheduling I'll need to know how many of which task I've got
+    
+
+
+
+}
+
 void PCBObj::runPCB()
 {
 
@@ -157,6 +169,27 @@ void PCBObj::runPCB()
 
     pthread_mutex_t mutex;
     pthread_mutex_init(&mutex, NULL);
+
+    // Prepare PCB tasks for FIFO, SJF, PS
+    if(CPUScheduling == SJF)
+    {
+
+        // SJF: The SJF should count the total number of tasks in a process
+        // and the process with least number of tasks will be completed first.
+        
+
+    }else
+    if(CPUScheduling == PS)
+    {
+
+
+
+    }else 
+    {
+
+        // already in FIFO order
+
+    }
 
     // Pull each queued PCBTask and handle each task accordingly
     while(!_pcbNewTasks->empty())

@@ -4,8 +4,8 @@ CFLAGS = -Wall -c $(DEBUG)
 LFLAGS = -Wall $(DEBUG)
 LFLAGSLIBS = -lpthread
 
-sim03 : main.o ConfigFile.o MetaDataFile.o PCBObj.o
-	$(CC) $(LFLAGS) main.o ConfigFile.o MetaDataFile.o PCBObj.o -o sim03 $(LFLAGSLIBS)
+sim04 : main.o ConfigFile.o MetaDataFile.o PCBObj.o
+	$(CC) $(LFLAGS) main.o ConfigFile.o MetaDataFile.o PCBObj.o -o sim04 $(LFLAGSLIBS)
 
 main.o : main.cpp ConfigFile.h MetaDataFile.h
 	$(CC) $(CFLAGS) main.cpp
@@ -20,5 +20,5 @@ PCBObj.o : PCBObj.cpp PCBObj.h
 	$(CC) $(CFLAGS) PCBObj.cpp
 
 clean:
-	\rm *.o sim03
+	\rm *.o sim04
 
