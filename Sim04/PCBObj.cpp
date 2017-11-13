@@ -1156,18 +1156,22 @@ unsigned int PCBObj::allocateMemory()
     if(( _memoryCurrentSize + _blockSizes ) < _memoryMaxSize )
     {
 
-        address = _memoryCurrentSize + _blockSizes;
+        address = _memoryCurrentSize;
         _memoryCurrentSize += _blockSizes;
+
+        return address;
 
     }else
     {
 
-        address = _blockSizes;
-        _memoryCurrentSize = _blockSizes;
+        address = 0;
+        _memoryCurrentSize = 0;
+
+        return address;
 
     }
     
-	return address;
+	
 }
 
 #endif
