@@ -143,7 +143,12 @@ void PCBObj::addTask(PCBTask* T)
     _pcbNewTasks->push(*T);
 
     // for different CPU Scheduling I'll need to know how many of which task I've got
-    
+    /*
+
+    Task Options:
+
+
+    */
 
 
 
@@ -216,6 +221,8 @@ void PCBObj::runPCB()
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
+                    << " - OS: process " << _procNum << " completed" << std::endl;
+                    std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
                     << " - Simulator program ending" << std::endl;
 
                     _memoryCurrentSize = 0;
@@ -246,8 +253,8 @@ void PCBObj::runPCB()
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
-                    << " - OS: removing process " << this->_procNum << std::endl;
-
+                    << " - End process " << this->_procNum << std::endl;
+                    _procNum ++;
                 }
 
                 break;
@@ -514,6 +521,7 @@ void PCBObj::runPCB()
                 {
                     // grab current time then print the difference from when this began
                     gettimeofday(&tvEnd, NULL);
+                    
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
                     << " - Simulator program starting" << std::endl;
 
@@ -522,6 +530,8 @@ void PCBObj::runPCB()
                 {
 
                     gettimeofday(&tvEnd, NULL);
+                    ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
+                    << " - OS: process " << _procNum << " completed" << std::endl;
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
                     << " - Simulator program ending" << std::endl;
 
@@ -549,8 +559,8 @@ void PCBObj::runPCB()
 
                     gettimeofday(&tvEnd, NULL);
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
-                    << " - OS: removing process " << this->_procNum << std::endl;
-
+                    << " - End process " << this->_procNum << std::endl;
+                    _procNum++;
                 }
 
                 break;
@@ -824,8 +834,12 @@ void PCBObj::runPCB()
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
+                    << " - OS: process " << _procNum << " completed" << std::endl;
+                    std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
                     << " - Simulator program ending" << std::endl;
 
+                    ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
+                    << " - OS: process " << _procNum << " completed" << std::endl;
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
                     << " - Simulator program ending" << std::endl;
 
@@ -858,10 +872,10 @@ void PCBObj::runPCB()
 
                     gettimeofday(&tvEnd, NULL);
                     std::cout << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
-                    << " - OS: removing process " << this->_procNum << std::endl;
+                    << " - End process " << this->_procNum << std::endl;
                     ostream << std::fixed << std::setprecision(6) << (float)((tvEnd.tv_sec - tvStart.tv_sec)) + (float)(tvEnd.tv_usec - tvStart.tv_usec) / 1000000
-                    << " - OS: removing process " << this->_procNum << std::endl;
-
+                    << " - End process " << this->_procNum << std::endl;
+                    _procNum++;
                 }
 
                 break;
