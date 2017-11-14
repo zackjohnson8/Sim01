@@ -15,6 +15,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include <algorithm>
+#include <vector>
 
 // constructor/destructor -------------------------------------------------
 PCBObj::PCBObj()
@@ -142,20 +144,14 @@ void PCBObj::addTask(PCBTask* T)
     T->taskState_p = READY;
     _pcbNewTasks->push(*T);
 
-    // for different CPU Scheduling I'll need to know how many of which task I've got
-    /*
-
-    Task Options:
-
-
-    */
-
-
-
 }
 
 void PCBObj::runPCB()
 {
+
+    std::vector<PCBTask>* holdVector;
+    std::queue<PCBTask>* newQueue;
+    PCBTask* holdTask;
 
     struct timeval tvEnd;
     struct timeval tvStart;
@@ -176,11 +172,16 @@ void PCBObj::runPCB()
     pthread_mutex_init(&mutex, NULL);
 
     // Prepare PCB tasks for FIFO, SJF, PS
+    holdVector = new std::vector<PCBTask>();
+    newQueue = new std::queue<PCBTask>();
+    bool loopBool = true;
     if(CPUScheduling == SJF)
     {
 
+        
         // SJF: The SJF should count the total number of tasks in a process
         // and the process with least number of tasks will be completed first.
+        
         
 
     }else
@@ -193,6 +194,34 @@ void PCBObj::runPCB()
     {
 
         // already in FIFO order
+        while(loopBool)
+        {
+            holdTask = &_pcbNewTasks->front();
+            while(holdTask->metaDataCode != 'A' && holdTask->description != "start")
+            {
+
+                holdTask = &_pcbNewTasks->front();
+                newQueue->push(_pcbNewTasks->front());
+                _pcbNewTasks->pop();
+
+            }
+
+            // now take in data up until A(end)
+            while(holdTask->metaDataCode != 'A' && holdTask->description != "end")
+            {
+
+                holdTask = &_pcbNewTasks->front();
+                holdVector->push_back(_pcbNewTasks->front());
+                _pcbNewTasks->pop();
+
+            }
+
+            // place tasks in SJF order then push into new queue
+            std::sort(holdVector->begin(), holdVector->end());
+
+        }
+
+
 
     }
 

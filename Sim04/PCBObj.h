@@ -36,6 +36,8 @@ typedef struct{
     int numberCycles;
     int timeTask;
 
+    bool operator<(PCBTask const & rhs) const { numberCycles < rhs.numberCycles; }
+
 }PCBTask;
 
 class PCBObj
