@@ -149,10 +149,6 @@ void PCBObj::addTask(PCBTask* T)
 void PCBObj::runPCB()
 {
 
-    std::vector<PCBTask>* holdVector;
-    std::queue<PCBTask>* newQueue;
-    PCBTask* holdTask;
-
     struct timeval tvEnd;
     struct timeval tvStart;
     gettimeofday(&tvStart,NULL);
@@ -166,22 +162,63 @@ void PCBObj::runPCB()
     pthread_attr_t threadAttr;
     int* passVal;
 
-    int index;
+    int index = 0;
 
     pthread_mutex_t mutex;
     pthread_mutex_init(&mutex, NULL);
 
     // Prepare PCB tasks for FIFO, SJF, PS
-    holdVector = new std::vector<PCBTask>();
-    newQueue = new std::queue<PCBTask>();
-    bool loopBool = true;
+    std::vector<PCBTask>* holdVector = new std::vector<PCBTask>();
+    std::queue<int>* processPositions = new std::queue<int>();
     if(CPUScheduling == SJF)
     {
 
         
         // SJF: The SJF should count the total number of tasks in a process
         // and the process with least number of tasks will be completed first.
-        
+        // Move queue into the hold vector
+        while(!_pcbNewTasks->empty())
+        {
+            holdVector->push_back(_pcbNewTasks->front());
+            _pcbNewTasks->pop();
+
+        }
+
+        // Determine all the process positions
+        for(unsigned int x = 0; x < holdVector->size(); x++)
+        {
+
+            if(holdVector->at(x).metaDataCode == 'A' && holdVector->at(x).description == "start")
+            {
+                
+                processPositions->push(x);
+
+            }
+        }
+
+        // Sort
+        while(!processPositions->empty())
+        {
+            index = processPositions->front();
+            processPositions->pop();
+            if(!processPositions->empty())
+            {
+                std::sort(holdVector->begin()+index, holdVector->begin()+processPositions->front());
+            }else // we don't know where the end is so use vectors size -1
+            {
+
+                std::sort(holdVector->begin()+index, holdVector->end()-1);
+
+            }
+        }
+
+        // push back into queue
+        for(unsigned int x = 0; x < holdVector->size(); x++)
+        {
+
+            _pcbNewTasks->push(holdVector->at(x));
+
+        }
         
 
     }else
@@ -193,49 +230,44 @@ void PCBObj::runPCB()
     }else 
     {
 
-        // already in FIFO order
-        holdTask = &_pcbNewTasks->front();
-        while(loopBool)
-        {
+        
+/*
             
-            while(holdTask->metaDataCode != 'A' && holdTask->description != "start")
-            {
+        while(holdTask->metaDataCode != 'A' && holdTask->description != "start")
+        {
 
-                holdTask = &_pcbNewTasks->front();
-                newQueue->push(_pcbNewTasks->front());
-                _pcbNewTasks->pop();
-
-            }
-
-            // now take in data up until A(end)
-            while(holdTask->metaDataCode != 'A' && holdTask->description != "end")
-            {
-
-                holdTask = &_pcbNewTasks->front();
-                if(holdTask->metaDataCode != 'A' && holdTask->description != "end")
-                {
-                    holdVector->push_back(_pcbNewTasks->front());
-                    _pcbNewTasks->pop();
-                }
-            }
-
-            // place tasks in SJF order then push into new queue
-            std::sort(holdVector->begin(), holdVector->end());
-            for(int index = 0; index < holdVector->size(); index++)
-            {
-                newQueue->push(holdVector->at(index));
-            }
-
+            holdTask = &_pcbNewTasks->front();
             newQueue->push(_pcbNewTasks->front());
             _pcbNewTasks->pop();
-            holdTask = &_pcbNewTasks->front();
 
         }
 
+        // now take in data up until A(end)
+        while(holdTask->metaDataCode != 'A' && holdTask->description != "end")
+        {
 
+            holdTask = &_pcbNewTasks->front();
+            if(holdTask->metaDataCode != 'A' && holdTask->description != "end")
+            {
+                holdVector->push_back(_pcbNewTasks->front());
+                _pcbNewTasks->pop();
+            }
+        }
+
+        // place tasks in SJF order then push into new queue
+        std::sort(holdVector->begin(), holdVector->end());
+        for(int index = 0; index < holdVector->size(); index++)
+        {
+            newQueue->push(holdVector->at(index));
+        }
+
+        newQueue->push(_pcbNewTasks->front());
+        _pcbNewTasks->pop();
+        holdTask = &_pcbNewTasks->front();
+*/
 
     }
-
+    
     // Pull each queued PCBTask and handle each task accordingly
     while(!_pcbNewTasks->empty())
     {
