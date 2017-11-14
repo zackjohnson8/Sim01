@@ -176,7 +176,6 @@ void PCBObj::runPCB()
         
         // SJF: The SJF should count the total number of tasks in a process
         // and the process with least number of tasks will be completed first.
-        // Move queue into the hold vector
         while(!_pcbNewTasks->empty())
         {
             holdVector->push_back(_pcbNewTasks->front());
@@ -203,11 +202,11 @@ void PCBObj::runPCB()
             processPositions->pop();
             if(!processPositions->empty())
             {
-                std::sort(holdVector->begin()+index, holdVector->begin()+processPositions->front());
+                std::sort(holdVector->begin()+index+1, holdVector->begin()+processPositions->front());
             }else // we don't know where the end is so use vectors size -1
             {
 
-                std::sort(holdVector->begin()+index, holdVector->end()-1);
+                std::sort(holdVector->begin()+index+1, holdVector->end()-1);
 
             }
         }
@@ -231,40 +230,7 @@ void PCBObj::runPCB()
     {
 
         
-/*
-            
-        while(holdTask->metaDataCode != 'A' && holdTask->description != "start")
-        {
-
-            holdTask = &_pcbNewTasks->front();
-            newQueue->push(_pcbNewTasks->front());
-            _pcbNewTasks->pop();
-
-        }
-
-        // now take in data up until A(end)
-        while(holdTask->metaDataCode != 'A' && holdTask->description != "end")
-        {
-
-            holdTask = &_pcbNewTasks->front();
-            if(holdTask->metaDataCode != 'A' && holdTask->description != "end")
-            {
-                holdVector->push_back(_pcbNewTasks->front());
-                _pcbNewTasks->pop();
-            }
-        }
-
-        // place tasks in SJF order then push into new queue
-        std::sort(holdVector->begin(), holdVector->end());
-        for(int index = 0; index < holdVector->size(); index++)
-        {
-            newQueue->push(holdVector->at(index));
-        }
-
-        newQueue->push(_pcbNewTasks->front());
-        _pcbNewTasks->pop();
-        holdTask = &_pcbNewTasks->front();
-*/
+        
 
     }
     

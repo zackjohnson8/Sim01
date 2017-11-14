@@ -107,12 +107,12 @@ void ConfigFile::loadConfigFile(const std::string &fileName)
                 {
                     _CPUScheduling = FIFO;
                 }else
-                if(_logToString == "SJF")
+                if(holdLine == "SJF")
                 {
                     _CPUScheduling = SJF;
 
                 }else
-                if(_logToString == "PS")
+                if(holdLine == "PS")
                 {
                     _CPUScheduling = PS;
                 }else

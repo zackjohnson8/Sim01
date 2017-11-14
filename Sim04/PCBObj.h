@@ -36,7 +36,7 @@ struct PCBTask{
     int numberCycles;
     int timeTask;
 
-    bool operator<(PCBTask const &rhs) { return numberCycles > rhs.numberCycles; }
+    bool operator<(PCBTask const &rhs) { return numberCycles < rhs.numberCycles; }
 
 };
 
