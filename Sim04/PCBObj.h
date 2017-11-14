@@ -28,7 +28,7 @@ enum algorithmChoices
 
 };
 
-typedef struct{
+struct PCBTask{
 
     TaskState taskState_p;
     char metaDataCode;
@@ -36,9 +36,9 @@ typedef struct{
     int numberCycles;
     int timeTask;
 
-    bool operator<(PCBTask const & rhs) const { numberCycles < rhs.numberCycles; }
+    bool operator<(PCBTask const &rhs) { return numberCycles > rhs.numberCycles; }
 
-}PCBTask;
+};
 
 class PCBObj
 {

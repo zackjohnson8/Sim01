@@ -194,9 +194,10 @@ void PCBObj::runPCB()
     {
 
         // already in FIFO order
+        holdTask = &_pcbNewTasks->front();
         while(loopBool)
         {
-            holdTask = &_pcbNewTasks->front();
+            
             while(holdTask->metaDataCode != 'A' && holdTask->description != "start")
             {
 
@@ -211,13 +212,23 @@ void PCBObj::runPCB()
             {
 
                 holdTask = &_pcbNewTasks->front();
-                holdVector->push_back(_pcbNewTasks->front());
-                _pcbNewTasks->pop();
-
+                if(holdTask->metaDataCode != 'A' && holdTask->description != "end")
+                {
+                    holdVector->push_back(_pcbNewTasks->front());
+                    _pcbNewTasks->pop();
+                }
             }
 
             // place tasks in SJF order then push into new queue
             std::sort(holdVector->begin(), holdVector->end());
+            for(int index = 0; index < holdVector->size(); index++)
+            {
+                newQueue->push(holdVector->at(index));
+            }
+
+            newQueue->push(_pcbNewTasks->front());
+            _pcbNewTasks->pop();
+            holdTask = &_pcbNewTasks->front();
 
         }
 
