@@ -1,0 +1,23 @@
+NETWORK 400 Group Project
+
+Dynamic Routing Mechanism Design in Faulty Networks:
+This team will simulate a mesh network where nodes and links may fail. Nodes and links may fail 
+intermittently, as an input to the simulation, each node & link will have a certain probability to fail.
+When such failures occur, the network must adapt & re-route to avoid the faulty link/node.
+
+MESH NETWORKS:
+
+- Can relay messages using either flooding technique or routing technique.
+- Fixing itself using shortest path bridging.
+
+MESH NETWORKS MESSAGE TECHNIQUES:
+
+- flooding technique: Sending the message to each child which then sends the message to all its children.
+    (can use ACK or non ACK type)
+- routing technique: Is based on the multicast, unicast, ... and so on. This sounds like a form of porting 
+    in which each node waits for a specific port call to then receive the message.
+
+SOLVING PROBLEMS:
+
+- Mesh networks don't connect dynamically and non-hierarchically
+- Each node knows it's neighbor, so how would it know the shortest distance from one node to another?
