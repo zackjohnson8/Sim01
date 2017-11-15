@@ -202,7 +202,9 @@ void PCBObj::runPCB()
             processPositions->pop();
             if(!processPositions->empty())
             {
-                std::sort(holdVector->begin()+index+1, holdVector->begin()+processPositions->front());
+
+                std::sort(holdVector->begin()+index+1, holdVector->begin()+processPositions->front()-1);
+
             }else // we don't know where the end is so use vectors size -1
             {
 
@@ -224,13 +226,58 @@ void PCBObj::runPCB()
     if(CPUScheduling == PS)
     {
 
+        // SJF: The SJF should count the total number of tasks in a process
+        // and the process with least number of tasks will be completed first.
+        while(!_pcbNewTasks->empty())
+        {
+            holdVector->push_back(_pcbNewTasks->front());
+            _pcbNewTasks->pop();
 
+        }
+
+        // Determine all the process positions
+        for(unsigned int x = 0; x < holdVector->size(); x++)
+        {
+
+            if(holdVector->at(x).metaDataCode == 'A' && holdVector->at(x).description == "start")
+            {
+                
+                processPositions->push(x);
+
+            }
+        }
+
+        // Sort
+        while(!processPositions->empty())
+        {
+            index = processPositions->front();
+            processPositions->pop();
+            if(!processPositions->empty())
+            {
+
+                std::sort(holdVector->begin()+index+1, holdVector->begin()+processPositions->front()-1);
+
+            }else // we don't know where the end is so use vectors size -1
+            {
+
+                std::sort(holdVector->begin()+index+1, holdVector->end()-1);
+
+            }
+        }
+
+        // push back into queue
+        for(unsigned int x = 0; x < holdVector->size(); x++)
+        {
+
+            _pcbNewTasks->push(holdVector->at(x));
+
+        }
 
     }else 
     {
 
         
-        
+        // Alread in FIFO
 
     }
     
