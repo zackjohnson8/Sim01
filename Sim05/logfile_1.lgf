@@ -1,0 +1,36 @@
+Configuration File Data
+Processor = 5 ms/cycle
+Monitor = 22 ms/cycle
+Hard Drive = 150 ms/cycle
+Printer = 550 ms/cycle
+Keyboard = 60 ms/cycle
+Memory = 10 ms/cycle
+Mouse = 1 ms/cycle
+Speaker = 1 ms/cycle
+Logged to: monitor and logfile_1.lgf
+
+0.000051 - Simulator program starting
+0.000311 - OS: preparing process 1
+0.000443 - OS: starting process 1
+0.000557 - Process 1: start processing action
+0.000790 - Process 1: end processing action
+0.000949 - Process 1: allocating memory
+0.001000 - Process 1: memory allocated at 0x0
+0.001078 - End process 1
+0.001139 - OS: preparing process 2
+0.001300 - OS: starting process 2
+0.001480 - Process 2: start hard drive output on HDD 0
+0.903050 - Process 2: end hard drive output
+0.903462 - End process 2
+0.903533 - OS: preparing process 3
+0.903558 - OS: starting process 3
+0.903673 - Process 3: start processing action
+0.903841 - Process 3: end processing action
+0.903927 - Process 3: start keyboard input
+1.984751 - Process 3: end keyboard input
+1.985105 - Process 3: allocating memory
+1.985153 - Process 3: memory allocated at 0x80
+1.985226 - Process 3: start processing action
+1.985457 - Process 3: end processing action
+1.985591 - OS: process 3 completed
+1.985591 - Simulator program ending

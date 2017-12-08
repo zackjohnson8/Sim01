@@ -25,6 +25,7 @@ int main(int argc, char* argv[])
     {
         ConfigFile_p[index - 1].loadConfigFile(argv[index]);
     }
+
     // Load data from Meta File
     for(index = 1; index < argc; index++)
     {
